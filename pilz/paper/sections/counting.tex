@@ -1,0 +1,283 @@
+\section{Counting rough components}\label{sec:counting}
+
+This section proves \cref{thm:localized-intro}. Throughout, $\K$ is any field and $D\in\K[x_p]$ is normalised and nonconstant, with $u$ terms and largest prime~$q$. All estimates rest on~\eqref{eq:rough-decomposition}, \cref{lem:profile} and the budgets \eqref{eq:budget4}--\eqref{eq:budget8}, in which every coefficient is nonnegative (for~\eqref{eq:budget4}, as soon as $u\ge4$, which holds whenever we use it). So lower bounds for the counts $\Phi_q$ and $I_q$ may be substituted directly.
+
+\subsection{Sieve estimates}
+Put $\varrho(q)=\prod_{p\le q}(1-1/p)$.
+
+\begin{lemma}[Discrepancy]\label{lem:discrepancy}
+For every real $x\ge0$, $|\Phi_q(x)-\varrho(q)x|\le \delta_q$, where
+\[
+ \delta_2=\tfrac12,\qquad \delta_3=\tfrac23,\qquad \delta_q=\tfrac{14}{15}\,2^{\pi(q)-3}\quad(q\ge5).
+\]
+Consequently $I_q(x)\ge\varrho(q)x/2-2\delta_q$.
+\end{lemma}
+
+\begin{proof}
+The cases $q=2,3$ follow from the residues modulo $2$ and $6$. Modulo $30$ the rough residues are $\mathcal R=\{1,7,11,13,17,19,23,29\}$. At these points the values of $15\Phi_5(x)-4x$ are
+\[
+ 11,\ 2,\ 1,\ 8,\ 7,\ 14,\ 13,\ 4 .
+\]
+Between consecutive jumps the error $\Phi_5(x)-\frac4{15}x$ decreases linearly. Just before the jump at a listed point it equals the listed value divided by $15$, minus one. The error is periodic modulo $30$, so $|\Phi_5(x)-\frac4{15}x|\le\frac{14}{15}$. Adding a prime $p$ to the sieve gives $\Phi_{T\cup\{p\}}(x)=\Phi_T(x)-\Phi_T(x/p)$. This multiplies the density by $1-1/p$ and at most doubles the discrepancy. Induction proves the claim, and subtracting the estimates at $x$ and $x/2$ gives the bound for~$I_q$.
+\end{proof}
+
+\begin{lemma}[A one-step sieve]\label{lem:one-step}
+Let $T$ and $T'$ be disjoint finite sets of primes, and suppose $|\Phi_T(x)-\varrho x|\le \delta$ for all $x\ge0$. Put
+\[
+ \alpha=\varrho\Bigl(1-\sum_{p\in T'}\frac1p\Bigr),\qquad \bar\delta=(1+|T'|)\,\delta .
+\]
+Then $\Phi_{T\cup T'}(x)\ge\alpha x-\bar\delta$ and $I_{T\cup T'}(x)\ge\alpha x/2-2\bar\delta$. If moreover $|I_T(x)-\varrho x/2|\le \delta'$ for all $x$, then $I_{T\cup T'}(x)\ge\alpha x/2-(1+|T'|)\delta'$.
+\end{lemma}
+
+\begin{proof}
+Remove from the $T$-rough integers the multiples of each $p\in T'$, charging an integer once for each such divisor. Since multiplication by $p\notin T$ preserves $T$-roughness, this union bound gives
+\[
+ \Phi_{T\cup T'}(x)\ge\Phi_T(x)-\sum_{p\in T'}\Phi_T(x/p).
+\]
+The same argument on $(x/2,x]$ gives $I_{T\cup T'}(x)\ge I_T(x)-\sum_{p\in T'}I_T(x/p)$. Insert the discrepancy bounds, using $\delta'=2\delta$ when no better bound is available.
+\end{proof}
+
+\begin{lemma}[Half-interval discrepancy]\label{lem:half}
+For every real $x\ge0$, $|I_5(x)-\frac2{15}x|\le\frac{22}{15}$.
+\end{lemma}
+
+\begin{proof}
+The error $I_5(x)-\frac{2}{15}x$ has period $60$, since $I_5(x+60)=I_5(x)+8$. Between jumps it has slope $-\frac2{15}$. It jumps up at the integers coprime to~$30$ and down at twice those integers. At the sixteen upward jumps $t\in(0,60)$ the values of $15I_5(t)-2t$ are:
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|rrrrrrrr}
+$t$&1&7&11&13&17&19&23&29\\\hline
+$15I_5(t)-2t$&13&1&8&19&11&22&14&2\\[2pt]
+$t$&31&37&41&43&47&49&53&59\\\hline
+$15I_5(t)-2t$&13&1&$-7$&4&$-4$&7&14&2
+\end{tabular}
+\end{center}
+\smallskip
+
+So the error is at most $\frac{22}{15}$. For nonintegral $x\in(0,60)$, the reflection $b\mapsto60-b$ of residues gives $I_5(60-x)=8-I_5(x)$, so the error changes sign. Every value is a one-sided limit of values at nonintegral points, which proves the lower bound.
+\end{proof}
+
+For a prime $q\ge7$ put
+\[
+ \alpha_q=\tfrac4{15}\Bigl(1-\sum_{7\le p\le q}\tfrac1p\Bigr),\qquad \nu_q=\pi(q)-2 .
+\]
+\Cref{lem:discrepancy,lem:one-step,lem:half}, applied with $T=\{2,3,5\}$ and $|T'|=\pi(q)-3$, give
+\begin{equation}\label{eq:alpha-sieve}
+ \Phi_q(x)\ge\alpha_qx-\tfrac{14}{15}\nu_q,\qquad I_q(x)\ge\tfrac12\alpha_qx-\tfrac{22}{15}\nu_q .
+\end{equation}
+
+\subsection{Small support primes}
+
+\begin{proposition}\label{prop:small-q}
+\Cref{thm:localized-intro} holds when $q\le13$.
+\end{proposition}
+
+\begin{proof}
+Let $n\ge67$. The hypothesis $q<2(u-1)$ gives $u\ge3,4,5,7,8$ for $q=3,5,7,11,13$, respectively.
+
+\emph{$q=2$.} Every component has at least two terms (\cref{lem:profile}), so $\wt(F_nD)\ge2\Phi_2(n)=2\lceil n/2\rceil\ge n$.
+
+\emph{$q=3$.} The profile is $u\ge3$ at index one, $4$ at index two (as $2<q$), and $3$ beyond. Hence
+\[
+ \wt(F_nD)\ge3\Phi_3(n)+\bigl(\Phi_3(n/2)-\Phi_3(n/3)\bigr).
+\]
+The residues $1,5$ modulo $6$ give $3\Phi_3(n)\ge n-1$. Consecutive such residues are at most $4$ apart, so the interval $(n/3,n/2]$, of length $n/6\ge4$, contains a $3$-rough integer.
+
+\emph{$q=5$.} Every component has at least four terms, so
+\[
+ \wt(F_nD)\ge4\Phi_5(n)\ge\tfrac{16n-56}{15}\ge n\qquad(n\ge56).
+\]
+
+\emph{$q=7,11,13$.} With the least admissible $u$, the profile from index two onwards is bounded below by
+\[
+ (4,5,5,\dots),\qquad(4,6,6,\dots),\qquad(4,6,6,7,7,\dots),
+\]
+respectively. Hence $\wt(F_nD)\ge\Lambda_q(n)$, where
+\begin{align*}
+ \Lambda_7(n)&=5\Phi_7(n)-\Phi_7(n/2)+\Phi_7(n/3)=4\Phi_7(n)+I_7(n)+\Phi_7(n/3),\\
+ \Lambda_{11}(n)&=7\Phi_{11}(n)-3\Phi_{11}(n/2)+2\Phi_{11}(n/3)=4\Phi_{11}(n)+3I_{11}(n)+2\Phi_{11}(n/3),\\
+ \Lambda_{13}(n)&=8\Phi_{13}(n)-4\Phi_{13}(n/2)+2\Phi_{13}(n/3)+\Phi_{13}(n/5)\\
+ &=4\Phi_{13}(n)+4I_{13}(n)+2\Phi_{13}(n/3)+\Phi_{13}(n/5).
+\end{align*}
+Larger values of $u$ only add $(u-u_{\min})I_q(n)\ge0$. Substitute into the second, nonnegative forms the bounds $\Phi_q(x)\ge\alpha_qx-\frac{14}{15}\nu_q$ from~\eqref{eq:alpha-sieve} and $I_q(x)\ge\frac12\alpha_qx-2\cdot\frac{14}{15}\nu_q$ from \cref{lem:one-step}, with the constants
+\[
+\begin{array}{c|ccc}
+q&7&11&13\\\hline
+\alpha_q&8/35&236/1155&184/1001\\
+\tfrac{14}{15}\nu_q&28/15&14/5&56/15
+\end{array}
+\]
+For these three primes the cruder error $2\cdot\frac{14}{15}\nu_q$ in the bound for $I_q$ is sufficient, so we use it rather than $\frac{22}{15}\nu_q$ from~\eqref{eq:alpha-sieve}. This gives
+\[
+ \Lambda_7(n)\ge\tfrac{116n-1372}{105},\qquad
+ \Lambda_{11}(n)\ge\tfrac{4366n-116424}{3465},\qquad
+ \Lambda_{13}(n)\ge\tfrac{18952n-840840}{15015}.
+\]
+Since weights are integers, these give $\wt(F_nD)\ge n$ as soon as the right side exceeds $n-1$. This happens for $n\ge116$, $126$, $210$ respectively, the conditions being $11n>1267$, $901n>112959$ and $3937n>825825$.
+
+For the remaining ranges we use \cref{tab:small-q}. For a row $[a,b]$ put $b_7=\min(b,115)$, $b_{11}=\min(b,125)$ and $b_{13}=b$. Since $\Phi_q$ is nondecreasing, $\Lambda_q(n)\ge\Lambda^-_q$ for $a\le n\le b_q$. Here $\Lambda^-_q$ is obtained from the first form of $\Lambda_q$ by replacing every positive argument $n/k$ by $a/k$, and the sole negative argument $n/2$ by $b_q/2$. Every entry is at least the corresponding $b_q$. A dash means that the linear bound already covers the row.
+
+\begin{table}[ht]
+\centering\small
+\caption{Lower bounds $\Lambda^-_q$ for $67\le n\le209$.}\label{tab:small-q}
+\begin{tabular}{c|rrr}
+\toprule
+$[a,b]$&$\Lambda^-_7$&$\Lambda^-_{11}$&$\Lambda^-_{13}$\\\midrule
+$[67,76]$&76&89&91\\
+$[77,85]$&86&102&105\\
+$[86,94]$&94&110&114\\
+$[95,101]$&101&121&127\\
+$[102,110]$&110&132&139\\
+$[111,145]$&126&149&149\\
+$[146,181]$&--&--&181\\
+$[182,209]$&--&--&238\\\bottomrule
+\end{tabular}
+\end{table}
+
+The counts in \cref{tab:small-q} come from $N_{30}$ (\cref{sec:primes}) by inclusion--exclusion over the primes $7,11,13$. For $0\le t\le209$,
+\begin{align*}
+ \Phi_7(t)&=N_{30}(t)-N_{30}(t/7),\\
+ \Phi_{11}(t)&=N_{30}(t)-N_{30}(t/7)-N_{30}(t/11)+\mathbf 1_{t\ge77},\\
+ \Phi_{13}(t)&=N_{30}(t)-N_{30}(t/7)-N_{30}(t/11)-N_{30}(t/13)+\mathbf 1_{t\ge77}+\mathbf 1_{t\ge91}+\mathbf 1_{t\ge143}.
+\end{align*}
+These hold because $t/(pp')<7$ for distinct $p,p'\in\{7,11,13\}$, so that $N_{30}(t/(pp'))=\mathbf 1_{t\ge pp'}$, and because $7\cdot11\cdot13=1001>209$. For example, in the row $[111,145]$ the values of $\Phi_q$ at $111$, at $b_q/2$, at $37$ and at $111/5$ are $(26,13,9,5)$, $(25,14,8,4)$ and $(24,15,7,3)$ for $q=7,11,13$. The three bounds are therefore $130-13+9=126$, $175-42+16=149$ and $192-60+14+3=149$.
+\end{proof}
+
+\subsection{Larger support primes up to \texorpdfstring{$n=1023$}{n = 1023}}
+
+\begin{lemma}[Prime budget]\label{lem:prime-budget}
+Suppose $r(n)\ge8$, $17\le q\le n/2$ and $q<2(u-1)$. Then
+\[
+ \wt(F_nD)\ge\beta(n)+(u-10)(r(n)-8)\ge\beta(n),
+\]
+with $\beta(n)$ as in \cref{prop:fresh-count}.
+\end{lemma}
+
+\begin{proof}
+Every prime in $(n/2,n]$ exceeds $q$, so $I_q(n)\ge r(n)$. Also $\Phi_q(t)\ge1+\pi(t)-\pi(q)$ for all $t$: when the right side is positive, it counts $1$ and the primes in $(q,t]$. Inserting these into~\eqref{eq:budget8} gives
+\[
+ \wt(F_nD)\ge u\,r(n)+4\pi(n/2)+2\pi(n/3)+2\pi(n/5)+8-8\pi(q).
+\]
+Now $q\le2u-3$, and $u\ge10$ since $q\ge17$. Increasing $u$ by one adds a single odd integer to $[1,2u-3]$, so $\pi(q)\le\pi(2u-3)\le\pi(17)+(u-10)=u-3$. Substituting gives the claim.
+\end{proof}
+
+\subsection{Larger support primes beyond \texorpdfstring{$n=1023$}{n = 1023}}
+
+\begin{lemma}[Reciprocal sums]\label{lem:reciprocals}
+We have
+\[
+ \sum_{7\le p\le53}\frac1p<\frac{259}{400},\qquad
+ \sum_{11\le p\le149}\frac1p<\frac{229}{320},\qquad
+ \sum_{11\le p\le271}\frac1p<\frac{33}{40}.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $\sqrt{271}<17$, an integer in $[17,271]$ is prime exactly when it is coprime to $2\cdot3\cdot5\cdot7\cdot11\cdot13$. So the primes in $[17,271]$ are the integers there that are coprime to $30$ and not divisible by $7$, $11$ or $13$. Together with $11$ and $13$, they are the primes in $[11,271]$. Let $B_j$ be the sum of $1/p$ over these primes in $[30j,30j+30)$. Then:
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|l|r}
+$j$&denominators in $B_j$&$4000B_j<$\\\hline
+0&11, 13, 17, 19, 23, 29&1429\\
+1&31, 37, 41, 43, 47, 53, 59&657\\
+2&61, 67, 71, 73, 79, 83, 89&381\\
+3&97, 101, 103, 107, 109, 113&230\\
+4&127, 131, 137, 139, 149&147\\
+5&151, 157, 163, 167, 173, 179&146\\
+6&181, 191, 193, 197, 199&105\\
+7&211, 223, 227, 229, 233, 239&106\\
+8&241, 251, 257, 263, 269&79\\
+9&271&15
+\end{tabular}
+\end{center}
+\smallskip
+
+The first sum is less than $\frac17+\frac{1429+657}{4000}-\frac1{59}=\frac{259}{400}-\frac{19}{206500}$. The second and third are less than $\frac{2844}{4000}=\frac{711}{1000}<\frac{229}{320}$ and $\frac{3295}{4000}=\frac{659}{800}<\frac{33}{40}$.
+\end{proof}
+
+\begin{lemma}[{Support primes in $[17,53]$}]\label{lem:five-bands}
+If $17\le q\le53$ and $q<2(u-1)$, then $\wt(F_nD)>n$ for every $n\ge1024$.
+\end{lemma}
+
+\begin{proof}
+By~\eqref{eq:budget8} (in the equivalent form $4\Phi_q(n)+(u-4)I_q(n)+2\Phi_q(n/3)+2\Phi_q(n/5)$) and~\eqref{eq:alpha-sieve},
+\begin{equation}\label{eq:five-band}
+ \wt(F_nD)\ge\alpha_q\Bigl(\frac u2+\frac{46}{15}\Bigr)n-\frac{22u+24}{15}\,\nu_q .
+\end{equation}
+Use the five bands below. In each band, $u\ge u_*$, $\nu_q\le\nu_*$ and $\alpha_q>a_*$. The last inequality follows from the first sum in \cref{lem:reciprocals}, after removing the primes beyond the band.
+\[
+\begin{array}{c|ccccc}
+q\in&[17,23]&[29,37]&[41,43]&\{47\}&\{53\}\\\hline
+u_*&10&16&22&25&28\\
+a_*&7/50&7/60&13/125&99/1000&47/500\\
+\nu_*&7&10&12&13&14
+\end{array}
+\]
+At $n=1024$ and $u=u_*$, the right side of~\eqref{eq:five-band}, with $a_*$ and $\nu_*$ in place of $\alpha_q$ and $\nu_q$, exceeds $n$ by
+\[
+ \tfrac{6964}{375},\quad\tfrac{10672}{225},\quad\tfrac{126832}{1875},\quad\tfrac{106162}{1875},\quad\tfrac{40192}{1875}.
+\]
+At $n=1024$ its slopes in $u$ are $\frac{4606}{75}$, $\frac{676}{15}$, $\frac{4456}{125}$, $\frac{11858}{375}$, $\frac{10348}{375}$. Its slope in $n$, minus one, is positive at $u_*$ and increases with $u$. So the bound exceeds $n$ for all $n\ge1024$ and $u\ge u_*$.
+\end{proof}
+
+\begin{lemma}[{Support primes in $[59,271]$}]\label{lem:middle}
+If $59\le q\le271$ and $q<2(u-1)$, then $\wt(F_nD)>n$ for every $n\ge32768$.
+\end{lemma}
+
+\begin{proof}
+Sieve first by $T_0=\{2,3,5,7\}$. This has density $\frac8{35}$ and discrepancy at most $\frac{28}{15}$ by \cref{lem:discrepancy}. With
+\[
+ \alpha=\tfrac8{35}\Bigl(1-\sum_{11\le p\le q}\tfrac1p\Bigr),\qquad \bar\delta=\tfrac{28}{15}\bigl(\pi(q)-3\bigr),
+\]
+\cref{lem:one-step} and~\eqref{eq:budget4} give
+\[
+ \wt(F_nD)\ge4(\alpha n-\bar\delta)+(u-4)(\tfrac12\alpha n-2\bar\delta)=\tfrac{u+4}2\alpha n-2(u-2)\bar\delta .
+\]
+From $\pi(q)\le2+\Phi_5(q)<3+\frac{4q}{15}$ we get $\bar\delta<\frac{112q}{225}$.
+\begin{itemize}
+\item If $59\le q\le149$, then \cref{lem:reciprocals} gives $\alpha>\frac{13}{200}$, and $\bar\delta<75$, and the hypothesis gives $u\ge31$. At $n=32768$ and $u=31$ the bound minus $n$ is $\frac{11}{80}\cdot32768-2\cdot29\cdot75=\frac{778}5>0$.
+\item If $151\le q\le271$, then $\alpha>\frac1{25}$, $\bar\delta<135$ and $u\ge77$. The corresponding margin is $\frac{31}{50}\cdot32768-2\cdot75\cdot135=\frac{1654}{25}>0$.
+\end{itemize}
+In both cases the slopes in $n$ and in $u$ are positive at the corner and remain so; the $u$-slopes are $\frac{13}{400}n-150$ and $\frac{n}{50}-270$.
+\end{proof}
+
+\begin{lemma}[Odd-integer telescoping]\label{lem:rho}
+For every odd prime $q$, $\varrho(q)>1/(2\sqrt q)$.
+\end{lemma}
+
+\begin{proof}
+Including the odd composite factors decreases the product. For odd $m\ge3$ we have $(1-1/m)^2>(m-2)/m$, and the product of $(m-2)/m$ over odd $m\in[3,q]$ telescopes to $1/q$. Hence $\varrho(q)\ge\frac12\prod_{3\le m\le q,\ m\text{ odd}}(1-1/m)>\frac1{2\sqrt q}$.
+\end{proof}
+
+By Mertens' theorem~\cite{Mertens}, $\varrho(q)\sim e^{-\gamma}/\log q$. The elementary bound of \cref{lem:rho} is weaker but sufficient.
+
+\begin{lemma}[Large support primes]\label{lem:large-q}
+Suppose $n\ge32768$, $u<\frac{20}7\log n$ and $277\le q<2(u-1)$. Then $\wt(F_nD)>\frac54n$.
+\end{lemma}
+
+\begin{proof}
+Put $L=\log n$. Then $q<\frac{40}7L$ and $L>\frac7{40}(q+2)\ge\frac{1953}{40}>48$. The $11$-rough integers up to $q$ include $1$, every prime in $(11,q]$, and the composites $169$ and $221$. By \cref{lem:discrepancy} (density $\frac{16}{77}$, discrepancy $\frac{56}{15}$),
+\[
+ \pi(q)\le\Phi_{11}(q)+2\le\tfrac{16}{77}q+\tfrac{86}{15}<\tfrac{16}{77}q+6 .
+\]
+Since $\log2<\frac7{10}$, this gives
+\[
+ \delta_q<\tfrac{112}{15}\exp\bigl(\tfrac{16}{77}q\log2\bigr)<\tfrac{112}{15}e^{64L/77},
+\]
+and hence
+\[
+ \frac{2u\delta_q}{n}<\frac{128}3Le^{-13L/77}<2048\,e^{-624/77}<\frac{2048}{2800}<\frac34 .
+\]
+Here $Le^{-13L/77}$ decreases for $L\ge48$, $\frac{624}{77}>8$, and $e^8=e^6e^2>20^2\cdot7=2800$. The last bound follows from the partial sums $e^3>\sum_{j\le8}3^j/j!=\frac{89641}{4480}>20$ and $e^2>\sum_{j\le4}2^j/j!=7$. On the other hand, $u>q/2$ and \cref{lem:rho} give $\frac12u\varrho(q)>\frac{\sqrt q}8>2$. By~\eqref{eq:budget4}, $\wt(F_nD)\ge uI_q(n)\ge u(\frac12\varrho(q)n-2\delta_q)>2n-\frac34n$.
+\end{proof}
+
+\subsection{Proof of \texorpdfstring{\cref{thm:localized-intro}}{Theorem 1.2}}
+Let $n\ge67$ and let $D$ be as in the theorem. If $q\le13$, apply \cref{prop:small-q}. So assume $q\ge17$, which forces $u\ge10$. Every prime in $(n/2,n]$ is $q$-rough, so the index-one components give $\wt(F_nD)\ge u\,r(n)$, and we may assume $u<n/r(n)$.
+\begin{itemize}
+\item For $67\le n\le1023$, \cref{prop:fresh-count}(a) and \cref{lem:prime-budget} give $\wt(F_nD)\ge\beta(n)\ge n$.
+\item For $1024\le n\le32768$, \cref{prop:fresh-count}(b) gives $u<30$. Hence $q<2(u-1)\le56$, so $q\le53$, and \cref{lem:five-bands} applies.
+\item For $n\ge32768$, \cref{prop:fresh-count}(c) gives $u<\frac{20}{7}\log n$. \Cref{lem:five-bands,lem:middle,lem:large-q} cover $q\le53$, $59\le q\le271$ and $q\ge277$, respectively. The only odd integers in the gaps, $55,57,273,275$, are composite.
+\end{itemize}
+This completes the proof over every field. \qed

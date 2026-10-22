@@ -1,0 +1,118 @@
+\documentclass[11pt]{amsart}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=green!35!black,urlcolor=blue!50!black]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+
+\hypersetup{pdftitle={A proof of Pilz's Extended 1-2-3 Conjecture},pdfauthor={}}
+\setlength{\emergencystretch}{2em}
+\setlist{itemsep=2pt,topsep=4pt}
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{maintheorem}{Theorem A}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\crefname{maintheorem}{Theorem}{Theorems}
+
+% ---------- notation ----------
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Ft}{\mathbb{F}_2}
+\newcommand{\K}{\mathbb{K}}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\width}{width}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+\newcommand{\Pn}{\mathcal{P}_n}
+\newcommand{\cl}[2]{#1_{[#2]}}           % full parity class
+\newcommand{\sm}[2]{F_{#1}^{(#2)}}        % q-smooth part of F_j
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bz}{\mathbf{z}}
+
+\begin{document}
+
+\title{A proof of Pilz's Extended 1-2-3 Conjecture}
+
+\author{}
+
+\subjclass[2020]{Primary 11B75; Secondary 05D05, 11N25, 94B05}
+\keywords{Extended 1-2-3 Conjecture, symmetric difference, near-ring codes, polynomials over $\mathbb{F}_2$, Frobenius, rough numbers}
+\date{}
+
+\begin{abstract}
+Pilz's Extended 1-2-3 Conjecture asserts that for every finite nonempty set $A$ of positive integers and every $n\ge1$, at least $n$ integers have an odd number of representations $aj$ with $a\in A$ and $1\le j\le n$; equivalently, $|A\mathbin{\triangle}2A\mathbin{\triangle}\cdots\mathbin{\triangle}nA|\ge n$. The question goes back to Pilz's work on the minimal distance of near-ring codes. It was previously known for $n\le8$, for $|A|\le3$, for $A=\{1,\dots,k\}$, and for all $n\ge2(3^{80}-321)$. We prove it for every $n$.
+
+Encoding each prime $p$ as a variable $x_p$ over $\Ft$ and each integer $a$ as the monomial $X(a)=\prod_px_p^{v_p(a)}$, the conjecture says that no nonzero multiple of $F_n=\sum_{a\le n}X(a)$ has fewer than $n$ terms. The primes in $(n/2,n]$ occur in $F_n$ as isolated linear terms. Our main new ingredient is a square-root descent in characteristic two, which shows that once there are at least $\lfloor\sqrt n\,\rfloor$ such primes, a counterexample can be chosen that avoids all of them. More generally, for any polynomial $C+z_1+\cdots+z_r$ over $\Ft$ we prove this whenever $r\ge\sigma(C)$, where $\sigma(C)$ is the largest number of terms of $C$ in one exponent-parity class. This condition cannot be weakened to $r=\sigma(C)-1$. For $n\ge67$ the proof is completed by a splitting inequality for minimal counterexamples and an explicit count of rough-factor components. The same descent settles $n\le66$. All estimates are elementary and are proved in full.
+\end{abstract}
+
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\input{sections/intro}
+\input{sections/prelim}
+\input{sections/descent}
+\input{sections/cut}
+\input{sections/assembly}
+\input{sections/primes}
+\input{sections/counting}
+\input{sections/small}
+\input{sections/remarks}
+
+\appendix
+\input{sections/appendix}
+
+\section*{Acknowledgements}
+The author thanks Philippa Holdridge and P\'eter P\'al Pach, whose paper~\cite{HP} introduced several of the ideas developed here. In particular it introduced the slicing at the primes in $(n/2,n]$, the use of squares in characteristic two, and the rough-component and splitting estimates. The pairing that underlies the use of squares goes back to Ke and Meyer~\cite{KM}.
+
+\section*{Formalization}
+The accompanying Lean~4 sources give a formal proof of Theorem~A.
+The finite-set statement is \texttt{Pilz.pilz\_conjecture} in
+\texttt{Pilz/Assembly.lean}. Build and verification commands are given
+in the repository's \texttt{README.md}.
+
+\section*{License}
+This paper is licensed under Creative Commons Attribution~4.0 International
+(\url{https://creativecommons.org/licenses/by/4.0/}).
+
+\begin{thebibliography}{99}
+\bibitem{Buchstab} A. A. Buchstab, \emph{Asymptotic estimates of a general number-theoretic function}, Mat. Sb. \textbf{2(44)} (1937), 1239--1246.
+\bibitem{CCP} A. E. Caicedo, T. A. C. Chartier and P. P. Pach, \emph{Coloring the $n$-smooth numbers with $n$ colors}, Electron. J. Combin. \textbf{28}(1) (2021), Paper No.~P1.34.
+\bibitem{Chebyshev} P. L. Chebyshev, \emph{M\'emoire sur les nombres premiers}, J. Math. Pures Appl. \textbf{17} (1852), 366--390.
+\bibitem{Erdos} P. Erd\H{o}s, \emph{Beweis eines Satzes von Tschebyschef}, Acta Litt. Sci. Szeged \textbf{5} (1932), 194--198.
+\bibitem{Fan} K. Fan, \emph{Numerically explicit estimates for the distribution of rough numbers}, J. Number Theory \textbf{260} (2024), 120--150.
+\bibitem{FanPom} K. Fan and C. Pomerance, \emph{An inequality related to the sieve of Eratosthenes}, J. Number Theory \textbf{254} (2024), 169--183.
+\bibitem{Hanson} D. Hanson, \emph{On the product of the primes}, Canad. Math. Bull. \textbf{15} (1972), 33--37.
+\bibitem{HP} P. Holdridge and P. P. Pach, \emph{On the Extended 1-2-3 Conjecture of Pilz}, preprint (2026), arXiv:2607.00934.
+\bibitem{HKP} P.-Y. Huang, W.-F. Ke and G. F. Pilz, \emph{The cardinality of some symmetric differences}, Proc. Amer. Math. Soc. \textbf{138} (2010), 787--797.
+\bibitem{KM} W.-F. Ke and J. H. Meyer, \emph{On a conjecture regarding the symmetric difference of certain sets}, Bull. Aust. Math. Soc. \textbf{111} (2025), 397--404.
+\bibitem{Mertens} F. Mertens, \emph{Ein Beitrag zur analytischen Zahlentheorie}, J. Reine Angew. Math. \textbf{78} (1874), 46--62.
+\bibitem{Nair} M. Nair, \emph{On Chebyshev-type inequalities for primes}, Amer. Math. Monthly \textbf{89} (1982), 126--129.
+\bibitem{NP} J. Nagy and P. P. Pach, \emph{A sumset version of a conjecture of Pilz}, SIAM J. Discrete Math. \textbf{40} (2026), 675--679.
+\bibitem{PS} P. P. Pach and C. Szab\'o, \emph{On the minimal distance of a polynomial code}, Discrete Math. Theor. Comput. Sci. \textbf{13}(4) (2011), 33--43.
+\bibitem{Pak} I. Pak, \emph{Lectures on Discrete and Polyhedral Geometry}, Cambridge University Press, to appear.
+\bibitem{PilzBook} G. Pilz, \emph{Near-Rings: The Theory and its Applications}, revised ed., North-Holland Math. Stud. \textbf{23}, North-Holland, Amsterdam, 1983.
+\bibitem{Pilz} G. F. Pilz, \emph{On polynomial near-ring codes}, Contrib. Gen. Algebra \textbf{8} (1992), 233--238.
+\bibitem{Pinchasi} R. Pinchasi, \emph{On the odd area of the unit disc}, Israel J. Math. \textbf{256} (2023), 619--637.
+\bibitem{RS} J. B. Rosser and L. Schoenfeld, \emph{Approximate formulas for some functions of prime numbers}, Illinois J. Math. \textbf{6} (1962), 64--94.
+\end{thebibliography}
+
+\end{document}

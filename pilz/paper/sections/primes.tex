@@ -1,0 +1,227 @@
+\section{Counting the fresh primes}\label{sec:primes}
+
+This section proves \cref{prop:fresh-count}. For $n\le1023$ we compute directly from the residues modulo~$30$. For larger $n$ we use an elementary form of Chebyshev's method.
+
+\subsection{From \texorpdfstring{$67$}{67} to \texorpdfstring{$100$}{100}}
+
+\begin{lemma}\label{lem:67-100}
+For $67\le n\le100$ we have $r(n)\ge8+\mathbf 1_{n\ge73}+\mathbf 1_{n\ge97}\ge\lfloor\sqrt n\rfloor$ and $\beta(n)\ge104\ge n$.
+\end{lemma}
+
+\begin{proof}
+An integer in $(33,100]$ coprime to $30$ is prime unless it is divisible by $7$, since every composite number up to $100$ has a prime factor at most~$7$. The integers in $(33,100]$ coprime to $30$ are
+\[
+ 37,\,41,\,43,\,47,\,49,\,53,\,59,\,61,\,67,\,71,\,73,\,77,\,79,\,83,\,89,\,91,\,97,
+\]
+and removing $49$, $77$ and $91$ leaves the primes. At $n=67$ the fresh primes are $37,41,43,47,53,59,61,67$, so $r(67)=8$. As $n$ runs from $67$ to $100$:
+\begin{itemize}
+\item a prime enters $(n/2,n]$ at $n=71,73,79,83,89,97$;
+\item a prime leaves it at $n=74,82,86,94$.
+\end{itemize}
+Pair the arrivals $71,79,83,89$ with the departures $74,82,86,94$, respectively. Each arrival precedes its departure, and $73$ and $97$ remain unpaired. This proves the bound for $r(n)$. The comparison with $\lfloor\sqrt n\rfloor$ holds because $\lfloor\sqrt n\rfloor\le8$ for $n\le80$, $\lfloor\sqrt n\rfloor=9$ for $81\le n\le99$, and $\lfloor\sqrt{100}\rfloor=10$.
+
+The primes up to $33$ are $2,3,\dots,31$, eleven in number. So $\pi(n/2)\ge\pi(33)=11$, $\pi(n/3)\ge\pi(22)=8$ and $\pi(n/5)\ge\pi(13)=6$ throughout the range. Hence $\beta(n)\ge80+44+16+12-48=104$.
+\end{proof}
+
+\subsection{From \texorpdfstring{$101$}{101} to \texorpdfstring{$1023$}{1023}}
+Let $\mathcal R=\{1,7,11,13,17,19,23,29\}$ be the residues coprime to $30$. For real $x\ge0$ write $\lfloor x\rfloor=30h+s$ with $0\le s<30$, and put
+\[
+ N_{30}(x)=8h+\#\{a\in\mathcal R:a\le s\},
+\]
+the number of positive integers at most $x$ coprime to $30$. Let $\Phi_7(x)=N_{30}(x)-N_{30}(x/7)$ count the $7$-rough integers up to~$x$.
+
+\begin{lemma}[An exact prime count below $1024$]\label{lem:semiprime}
+Let $(p_1,\dots,p_7)=(11,13,17,19,23,29,31)$. For every real $x$ with $7\le x\le1023$,
+\[
+ \pi(x)=3+\Phi_7(x)-\sum_{i=1}^{7}\max\{\Phi_7(x/p_i)-i,\,0\}.
+\]
+\end{lemma}
+
+\begin{proof}
+A $7$-rough integer up to $1023$ is $1$, a prime greater than $7$, or a product of two primes greater than $7$, because $11^3=1331>1023$. In a product $pp'$ with $p\le p'$ we have $p\le\sqrt{1023}<32$, so $p=p_i$ for some~$i$. For fixed $p_i$, the admissible $p'$ are the primes in $[p_i,x/p_i]$. Since $x/p_i\le93<121=11^2$, every $7$-rough integer up to $x/p_i$ is $1$ or a prime. Exactly $i$ of them, namely $1,p_1,\dots,p_{i-1}$, lie below $p_i$. So there are $\max\{\Phi_7(x/p_i)-i,0\}$ such products. Each composite is counted once, prime squares included. Adding the primes $2,3,5,7$ and removing the integer $1$ gives the formula.
+\end{proof}
+
+\begin{proposition}\label{prop:101-1023}
+For $101\le n\le1023$ we have $r(n)\ge\lfloor\sqrt n\rfloor$ and $\beta(n)\ge n$.
+\end{proposition}
+
+\begin{proof}
+Cover $[101,1023]$ by the thirteen intervals $[a,b]$ of \cref{tab:low-range}. For $n\in[a,b]$, monotonicity gives
+\[
+ r(n)\ge r_0:=\pi(a)-\pi(b/2),
+ \qquad
+ \beta(n)\ge\beta_0:=10r_0+4\pi(a/2)+2\pi(a/3)+2\pi(a/5)-48 .
+\]
+It therefore suffices that $r_0\ge\lfloor\sqrt b\rfloor$ and $\beta_0\ge b$ in each row, which the table shows. All prime counts follow from \cref{lem:semiprime}.
+
+For instance, in the row $[422,524]$, the five arguments $422$, $262$, $211$, $140$, $84$ (integer parts of $a$, $b/2$, $a/2$, $a/3$, $a/5$) give the following.
+\begin{itemize}
+\item $N_{30}$ values: $113,70,57,38,23$; at $x/7$: $16,10,8,6,3$.
+\item $\Phi_7$ values: $97,60,49,32,20$.
+\item Correction sums: $18,8,5,1,0$. For $x=422$ the seven corrections are $8,6,3,1,0,0,0$.
+\item Prime counts: $82,55,47,34,23$.
+\end{itemize}
+Hence $r_0=27\ge22$ and $\beta_0=270+188+68+46-48=524=b$.
+\end{proof}
+
+\begin{table}[ht]
+\centering\small
+\caption{Prime counts for $101\le n\le1023$.}\label{tab:low-range}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{rr|rrrrr|rrr}
+\toprule
+$a$&$b$&$\pi(a)$&$\pi(b/2)$&$\pi(a/2)$&$\pi(a/3)$&$\pi(a/5)$&$r_0$&$\lfloor\sqrt b\rfloor$&$\beta_0$\\\midrule
+101&117&26&16&15&11&8&10&10&150\\
+118&141&30&19&17&12&9&11&11&172\\
+142&165&34&22&20&15&9&12&12&200\\
+166&195&38&25&23&16&11&13&13&228\\
+196&225&44&29&25&18&12&15&15&262\\
+226&273&48&32&30&21&14&16&16&302\\
+274&345&58&39&33&24&16&19&18&354\\
+346&421&68&46&40&30&19&22&20&430\\
+422&524&82&55&47&34&23&27&22&524\\
+525&636&99&66&55&40&27&33&25&636\\
+637&765&115&75&66&47&31&40&27&772\\
+766&913&135&87&76&54&36&48&30&916\\
+914&1023&156&97&88&62&42&59&31&1102\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{An elementary Chebyshev estimate}
+Let $\vartheta(x)=\sum_{p\le x}\log p$ and $\psi(x)=\sum_{p^k\le x}\log p$. We use Chebyshev's combination of factorials~\cite{Chebyshev} together with the bound $\lcm(1,\dots,k)<4^k$, which goes back to the central-binomial argument in Erd\H{o}s's proof of Bertrand's postulate~\cite{Erdos}; see also~\cite{Hanson,Nair}. Put
+\[
+ \mu_1=\frac{14\log2+9\log3+5\log5}{30},\qquad \mu_2=\frac65\mu_1,\qquad
+ \eta(x)=\frac{5}{4\log6}\Bigl(\log x+\tfrac12\log6-\tfrac65\Bigr)^2+9 .
+\]
+
+\begin{lemma}[Elementary Chebyshev bounds]\label{lem:chebyshev}
+For $x\ge30$,
+\[
+ \mu_1x-\tfrac52\log x+2<\psi(x)<\mu_2x+\eta(x),
+\]
+and for $x\ge256$,
+\[
+ 0\le\psi(x)-\vartheta(x)<\tfrac83\sqrt x .
+\]
+Consequently, for $n\ge256$,
+\begin{equation}\label{eq:rlogn}
+ r(n)\log n>\tfrac25\mu_1n-\tfrac83\sqrt n-\tfrac52\log n+2-\eta(n/2).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write $\lambda(t)=\log\lfloor t\rfloor!$ and $h(t)=t\log t-t$.
+
+\emph{Factorials.} We first show, for $t\ge1$,
+\begin{equation}\label{eq:stirling}
+ h(t)-\tfrac12\log t+\tfrac{1+\log2}2\le\lambda(t)\le h(t)+\tfrac12\log t+1 .
+\end{equation}
+For an integer $k\ge1$, the trapezoidal rule underestimates $\int_1^k\log v\,dv=h(k)+1$ by concavity, so $\lambda(k)\le h(k)+\frac12\log k+1$. This extends to real $t$ since $h$ and $\log$ increase on $[1,\infty)$. For the lower bound, concavity gives $\log i\ge\int_{i-1/2}^{i+1/2}\log v\,dv$. Summing over $i\le k=\lfloor t\rfloor$ gives
+\[
+ \lambda(t)\ge h(k+\tfrac12)-h(\tfrac12)=h(k+\tfrac12)+\tfrac{1+\log2}{2}.
+\]
+Finally $h(t)-h(k+\frac12)\le\frac12\log t$, because $h'=\log$ and $t<k+1$.
+
+\emph{Chebyshev's combination.} Put
+\[
+ \Xi(x)=\lambda(x)-\lambda(x/2)-\lambda(x/3)-\lambda(x/5)+\lambda(x/30).
+\]
+In the combination of the functions $h(x/d)$, the coefficients of $x\log x$ and of $x$ vanish. The remaining linear term is $\mu_1x$. Applying~\eqref{eq:stirling} to each term, for $x\ge30$,
+\begin{equation}\label{eq:Xi}
+ \mu_1x-\tfrac52\log x+\log60-2\ \le\ \Xi(x)\ \le\ \mu_1x+\tfrac52\log x-\log30+\tfrac{1-3\log2}{2}.
+\end{equation}
+The numerical bounds below give $\log60-2>2$ and $-\log30+\frac{1-3\log2}2<-3$.
+
+By Legendre's formula $\lambda(x)=\sum_{p^k\le x}\lfloor x/p^k\rfloor\log p$, we have
+\[
+ \Xi(x)=\sum_{p^k\le x}f(x/p^k)\log p,\qquad f(t)=\lfloor t\rfloor-\lfloor t/2\rfloor-\lfloor t/3\rfloor-\lfloor t/5\rfloor+\lfloor t/30\rfloor .
+\]
+The function $f$ has period $30$ and is constant on each interval $[k,k+1)$. In one period it equals $1$ on the intervals with left endpoint
+\[
+ 1,2,3,4,5,7,8,9,11,13,14,17,19,23,29,
+\]
+and $0$ elsewhere. In particular $0\le f\le1$, and $f=1$ on $[1,6)$. Hence
+\[
+ \psi(x)-\psi(x/6)\le\Xi(x)\le\psi(x),
+\]
+and the lower bound for $\psi$ follows from~\eqref{eq:Xi}.
+
+\emph{The bound $\psi(t)<t\log4$ for $t\ge1$.} Equivalently, $\lcm(1,\dots,k)<4^k$ for every integer $k\ge1$. We induct on $k$; the case $k=1$ is clear. Passing from $k-1$ to an even $k$ multiplies the lcm by at most $2$, because the only prime power that can be even is a power of~$2$. For $k=2m+1$, every prime power $p^e\in(m+1,2m+1]$ with $p^{e-1}\le m+1$ contributes a single factor $p$. That $p$ divides $\binom{2m+1}{m}$, by Legendre's formula at the level $p^e$. Hence
+\[
+ \lcm(1,\dots,2m+1)\le\lcm(1,\dots,m+1)\binom{2m+1}{m}<4^{m+1}4^m ,
+\]
+using $2\binom{2m+1}{m}\le2^{2m+1}$.
+
+\emph{Upper bound for $\psi$.} Iterate $\psi(x)\le\Xi(x)+\psi(x/6)$ until $t=x/6^k\in[5,30)$. Each argument $x/6^j$ with $j<k$ is at least $30$, so~\eqref{eq:Xi} applies. The linear terms sum to $\mu_2(x-t)$. Moreover $\psi(t)<t\log4$ and $(\log4-\mu_2)t<9$. The logarithmic terms sum to
+\[
+ \sum_{j=0}^{k-1}\Bigl(\tfrac52(\log x-j\log6)-3\Bigr)
+ =-\tfrac54\log6\,k^2+\Bigl(\tfrac52\log x+\tfrac54\log6-3\Bigr)k\le\eta(x)-9,
+\]
+by completing the square.
+
+\emph{Prime powers.} Grouping even exponents,
+\[
+ \psi(x)-\vartheta(x)=\psi(\sqrt x)+\sum_{\substack{a\ge3\\ a\text{ odd}}}\vartheta(x^{1/a}).
+\]
+At most $\frac{\log x}{2\log2}-\frac32$ odd exponents $a\ge5$ contribute. With $\psi(t)<t\log4$ this gives
+\[
+ \frac{\psi(x)-\vartheta(x)}{\sqrt x}<\log4\Bigl(1+x^{-1/6}+\bigl(\tfrac{\log x}{2\log2}-\tfrac32\bigr)x^{-3/10}\Bigr).
+\]
+For $x\ge256$ we have $x^{-1/6}<\frac25$. The last term decreases for $x\ge256$, because $\log2>\frac23$, and at $x=256$ it equals $\frac52\cdot2^{-12/5}<\frac12$. Since $\log4<\frac75$, the bound is less than $\frac75\cdot\frac{19}{10}<\frac83$.
+
+\emph{Conclusion.} Every prime in $(n/2,n]$ contributes at most $\log n$ to $\vartheta(n)-\vartheta(n/2)$, so $r(n)\log n\ge\vartheta(n)-\vartheta(n/2)$. Insert the bounds above, noting that $\mu_1n-\frac12\mu_2n=\frac25\mu_1n$.
+
+\emph{Numerical constants.} All logarithm bounds used come from the series $\log\frac{1+t}{1-t}=2\sum_{j\ge0}t^{2j+1}/(2j+1)$.
+\begin{itemize}
+\item The first three terms at $t=\frac13$ give $\log2>\frac{693}{1000}$. Bounding the remaining denominators below by $3$ gives $\log2<\frac{25}{36}<\frac7{10}$.
+\item The first four terms at $t=\frac12$ give $\log3>\frac{1098}{1000}$.
+\item The first two terms at $t=\frac19$ give $\log\frac54>\frac{223}{1000}$, hence $\log5>\frac{1609}{1000}$.
+\item The same tail bound at $t=\frac15$ gives $\log\frac32<\frac{73}{180}$.
+\end{itemize}
+These give $\mu_1>\frac{23}{25}$ and $\log6>\frac{25}{14}$, so $\frac{5}{4\log6}<\frac7{10}$. They also give $\log2+\frac65-\frac12\log6=\frac65-\frac12\log\frac32>\frac{99}{100}$, as well as the two constants used for~\eqref{eq:Xi}.
+\end{proof}
+
+\subsection{Large \texorpdfstring{$n$}{n}}
+
+\begin{lemma}\label{lem:fresh-large}
+We have $r(n)>n/30$ for $1024\le n\le32768$ and $r(n)>7n/(20\log n)$ for $n\ge32768$. In particular $r(n)>\sqrt n$ for all $n\ge1024$.
+\end{lemma}
+
+\begin{proof}
+Put $L=\log n$ and
+\[
+ w(L)=\tfrac7{10}\bigl(L-\tfrac{99}{100}\bigr)^2+\tfrac52L+7,\qquad
+ g(L)=\tfrac{46}{125}-\tfrac83e^{-L/2}-e^{-L}w(L).
+\]
+For $L>6$, the constants at the end of the proof of \cref{lem:chebyshev} give
+\[
+ \eta(n/2)=\tfrac5{4\log6}\Bigl(L-\bigl(\log2+\tfrac65-\tfrac12\log6\bigr)\Bigr)^2+9<\tfrac7{10}\bigl(L-\tfrac{99}{100}\bigr)^2+9 .
+\]
+Together with $\mu_1>\frac{23}{25}$, inequality~\eqref{eq:rlogn} then yields $r(n)L/n>g(L)$.
+
+For $L\ge6$, $g$ is increasing and strictly concave. Indeed $g'=\frac43e^{-L/2}+e^{-L}(w-w')$ and $g''=-\frac23e^{-L/2}-e^{-L}(w-2w'+w'')$, and both
+\[
+ w-w'=\tfrac7{10}\Bigl\{\bigl(L-\tfrac{99}{100}\bigr)^2-2\bigl(L-\tfrac{99}{100}\bigr)\Bigr\}+\tfrac52L+\tfrac92
+\]
+and
+\[
+ w-2w'+w''=\tfrac7{10}\Bigl\{\bigl(L-\tfrac{299}{100}\bigr)^2-2\Bigr\}+\tfrac52L+2
+\]
+are positive there. Hence $g(L)-L/30$ is strictly concave as well.
+
+\emph{The endpoint $n=1024$.} Here $L<7$, $\sqrt n=32$ and $w(7)<50$, so
+\[
+ g(L)-\tfrac L{30}>\tfrac{46}{125}-\tfrac1{12}-\tfrac{50}{1024}-\tfrac7{30}=\tfrac{481}{192000}>0 .
+\]
+\emph{The endpoint $n=32768=2^{15}$.} Here $L<\frac{21}2$, $\sqrt n>180$ and $w(\frac{21}2)<97$, so
+\[
+ g(L)-\tfrac7{20}>\tfrac{46}{125}-\tfrac2{135}-\tfrac{97}{32768}-\tfrac7{20}=\tfrac{24881}{110592000}>0 .
+\]
+At $n=32768$ also $L/30<\frac7{20}$. By concavity, $g(L)>L/30$ on the whole first range, which gives $r(n)>n/30$. Since $g$ is increasing, $g(L)>\frac7{20}$ on the second range, which gives $r(n)>7n/(20\log n)$.
+
+Finally, $n/30>\sqrt n$ for $n\ge1024$. The function $\sqrt n/\log n$ increases for $n\ge e^2$, and $\frac7{20}\cdot\frac{180}{21/2}=6>1$, so $7n/(20\log n)>\sqrt n$ for $n\ge32768$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:fresh-count}]
+Combine \cref{lem:67-100}, \cref{prop:101-1023} and \cref{lem:fresh-large}. The bound $r(n)\ge8$ for $n\le1023$ follows from the first two.
+\end{proof}

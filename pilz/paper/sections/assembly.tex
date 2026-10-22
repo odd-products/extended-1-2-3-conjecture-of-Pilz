@@ -1,0 +1,29 @@
+\section{Proof of Theorem A for \texorpdfstring{$n\ge67$}{n >= 67}}\label{sec:assembly}
+
+The proof for $n\ge67$ uses two counting statements, proved in the next two sections.
+
+\begin{proposition}[Fresh primes]\label{prop:fresh-count}
+For every integer $n\ge67$ we have $r(n)\ge\lfloor\sqrt n\rfloor$. Moreover:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item for $67\le n\le1023$, $r(n)\ge8$ and
+\[
+ \beta(n):=10\,r(n)+4\pi(n/2)+2\pi(n/3)+2\pi(n/5)-48\ \ge\ n;
+\]
+\item for $1024\le n\le32768$, $r(n)>n/30$;
+\item for $n\ge32768$, $r(n)>7n/(20\log n)$.
+\end{enumerate}
+\end{proposition}
+
+The value $67$ is optimal for the first assertion: $r(66)=7<8=\lfloor\sqrt{66}\rfloor$.
+
+The second statement is \cref{thm:localized-intro} from the introduction. We prove it in \cref{sec:counting}. It holds over every field, and it assumes no minimality of~$D$.
+
+\begin{proof}[Proof of Theorem~A for $n\ge67$]
+Fix $n\ge67$ and suppose that $\dist_{\Ft}(F_n)<n$. By \cref{prop:fresh-count}, $r(n)\ge\lfloor\sqrt n\rfloor$. So \cref{cor:interval-elim} provides a counterexample at $n$ involving only primes at most $n/2$. Delete terms until it is minimal under deletion, and divide by its greatest common monomial factor. Call the result $D$, with $u$ terms. Both operations preserve the restriction to primes at most $n/2$ and the property of being a counterexample.
+
+A monomial multiplier gives exactly $n$ terms, so $D$ is not a monomial. Let $q$ be the largest prime whose variable occurs in $D$. Then $q\le n/2$, and \cref{lem:directed-cut} gives $q<2(u-1)$. Now \cref{thm:localized-intro} gives $\wt(F_nD)\ge n$, contradicting the choice of~$D$.
+\end{proof}
+
+\begin{remark}
+The argument works at a single fixed $n$. It uses no instance of Theorem~A at any other interval length, and in particular no induction on~$n$.
+\end{remark}

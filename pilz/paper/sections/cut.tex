@@ -1,0 +1,30 @@
+\section{Minimal counterexamples and the directed cut}\label{sec:cut}
+
+Fix $n\ge1$ and a field $\K$. A nonzero $H\in\K[x_p]$ is a \emph{counterexample at $n$} if $\wt(F_nH)<n$. It is \emph{minimal under deletion} if no polynomial obtained by deleting some, but not all, of its terms is a counterexample. Every counterexample contains one that is minimal under deletion: keep deleting terms while a counterexample remains. Deletion never introduces a new variable, so it preserves any restriction on the primes involved. Dividing by the greatest common monomial factor also preserves minimality under deletion, by \cref{lem:reductions}(a).
+
+The next lemma is a variant of the splitting inequality of Holdridge and Pach~\cite[Lemma~4.1 and Corollary~4.3]{HP}. Here the split is taken at a prime power, intersections are counted from the lower side only, and the input is minimality under deletion.
+
+\begin{lemma}[Directed cut]\label{lem:directed-cut}
+Let $D$ be a normalised counterexample at $n$ that is minimal under deletion, with $u$ terms, and let $q$ be a prime. For $a\ge0$ let $u_a$ be the number of terms of $D$ whose $x_q$-exponent equals $a$. Then for every $b>0$ with $u_b>0$,
+\begin{equation}\label{eq:directed-cut}
+ 2\sum_{a<b}u_a\left\lfloor\frac{n}{q^{\,b-a}}\right\rfloor>n.
+\end{equation}
+Consequently every prime $q$ whose variable occurs in $D$ satisfies
+\[
+                    q<2u_0\le2(u-1).
+\]
+\end{lemma}
+
+\begin{proof}
+Split $D=L+U$, where $L$ consists of the terms with $x_q$-exponent less than $b$. Both pieces are nonzero (the exponent $0$ is occupied because $D$ is normalised), so both are proper. Minimality gives $\wt(F_nL)\ge n$ and $\wt(F_nU)\ge n$. Over any field,
+\[
+ \wt(P+Q)\ge\wt(P)+\wt(Q)-2\,|\supp P\cap\supp Q|,
+\]
+so $n>\wt(F_nD)$ forces $|\supp(F_nL)\cap\supp(F_nU)|>n/2$.
+
+Every monomial of $F_nU$ has $x_q$-exponent at least $b$. A monomial of $F_nL$ with $x_q$-exponent at least $b$ arises from a term of $L$ with exponent $a<b$ and an integer $j\le n$ with $q^{b-a}\mid j$. There are $\lfloor n/q^{b-a}\rfloor$ such $j$. Hence the intersection has at most $\sum_{a<b}u_a\lfloor n/q^{b-a}\rfloor$ elements, proving~\eqref{eq:directed-cut}.
+
+If $x_q$ occurs in $D$, let $b$ be its least positive exponent. Then only $a=0$ contributes, and $2u_0\lfloor n/q^b\rfloor>n$ gives $q\le q^b<2u_0$. Finally $u_0\le u-1$ because the exponent $b$ is occupied.
+\end{proof}
+
+A more general form of this inequality, which counts all gaps between occupied exponents, is given in \cref{sec:remarks}. It shows that the support of a minimal counterexample consists of divisors of $(2u-3)!$.

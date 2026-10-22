@@ -1,0 +1,60 @@
+\section{Remarks and open problems}\label{sec:remarks}
+
+\subsection{Sharpness of the hypotheses}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The hypothesis $r\ge\sigma(C)$ of \cref{thm:elimination} cannot simply be dropped (\cref{ex:sharp}). For intervals it is what forces the threshold $n\ge67$, since $r(66)=7<\lfloor\sqrt{66}\rfloor$.
+\item Theorem~A uses the structure of $[n]$ in an essential way. Holdridge and Pach~\cite{HP} observe that $\{1,2\}*\{1,2,4\}=\{1,8\}$, so the analogue of Theorem~A fails for the divisor-closed set $\{1,2,4\}$. By contrast, \cref{thm:elim-set} applies to every finite set $B$ with enough fresh primes.
+\item In characteristic two, Theorem~A shows that the conclusion of \cref{thm:localized-intro} holds even without its hypotheses. The hypotheses serve to make a direct counting proof possible over every field. The condition $q\le n/2$ makes every prime in $(n/2,n]$ $q$-rough. The condition $q<2(u-1)$ guarantees enough terms in each index-one component. Over other fields, removing them would answer part of \cref{q:odd}.
+\end{enumerate}
+
+\subsection{The structure of minimal counterexamples}
+The directed cut is a special case of a general inequality for products of polynomials. The general inequality below is not needed for Theorem~A, but it describes the rigidity that any minimal counterexample, to Theorem~A or to related statements, must have.
+
+\begin{lemma}[Separated blocks]\label{lem:separated}
+Let $\K$ be a field, $P\ne0$ a polynomial and $N\ge1$. Let $D\ne0$ have $u$ terms with $\wt(PD)<N$, and suppose $\wt(PE)\ge N$ for every polynomial $E\ne0$ obtained by deleting some, but not all, terms of $D$. Fix a variable $x$ with $\ord_xP=\ord_xD=0$. For $g\ge1$ let $\tau_g(P)$ be the number of terms of $P$ with $x$-exponent at least $g$. Partition the occupied $x$-exponents of $D$ into $k+1\ge2$ consecutive blocks, each separated from the next by a gap of at least $g$, and let $v$ be the number of terms of $D$ in the highest block. Then
+\[
+ kN<2(u-v)\,\tau_g(P).
+\]
+\end{lemma}
+
+\begin{proof}
+Let $D_1,\dots,D_{k+1}$ be the parts of $D$ in the blocks, in increasing order. Each is proper, so $\wt(PD_i)\ge N$. If an output monomial occurs in $h\ge2$ of the products $PD_i$, at most $h\le2(h-1)$ terms are lost there on addition. Charge two to each occurrence except the one in the highest participating block.
+
+A charged occurrence in block $i$ has $x$-exponent at least the least exponent of a higher block. That is at least $g$ more than every exponent in $D_i$, so it arises from a term of $P$ with $x$-exponent at least~$g$. There are at most $\wt(D_i)\tau_g(P)$ such occurrences, and the highest block is never charged. Hence $\wt(PD)\ge(k+1)N-2(u-v)\tau_g(P)$, and comparison with $\wt(PD)<N$ proves the claim.
+\end{proof}
+
+\begin{proposition}[Factorial localisation]\label{prop:factorial}
+Let $D$ be a normalised counterexample at $n$ that is minimal under deletion, with $u$ terms, over any field. For a prime $q$, list the occupied $x_q$-exponents as $0=a_0<a_1<\cdots<a_s$, and let $k_g=\#\{i:a_i-a_{i-1}\ge g\}$. Then
+\[
+ k_g\le\Bigl\lfloor\frac{2u-3}{q^g}\Bigr\rfloor\qquad(g\ge1),
+ \qquad\text{hence}\qquad a_s\le v_q\bigl((2u-3)!\bigr).
+\]
+In particular every integer encoded by a monomial of $D$ divides $(2u-3)!$.
+\end{proposition}
+
+\begin{proof}
+Apply \cref{lem:separated} with $P=F_n$, $N=n$, $x=x_q$, splitting at all $k_g$ gaps of size at least $g$. Here $\tau_g(F_n)=\lfloor n/q^g\rfloor$. If $k_g>0$, then $k_gn<2(u-1)n/q^g$, so the integer $q^gk_g$ is at most $2u-3$. Summing over $g$ gives $a_s=\sum_{g\ge1}k_g\le\sum_g\lfloor(2u-3)/q^g\rfloor=v_q((2u-3)!)$, by Legendre's formula.
+\end{proof}
+
+The slice counts for different primes are not independent. For example, $1+x_2x_3$ has two slices in each of $x_2$ and $x_3$ but only two terms. So \cref{prop:factorial} does not by itself bound $u$ in terms of the number of primes involved.
+
+\subsection{Open problems}
+\begin{question}[Other characteristics]\label{q:odd}
+Is $\dist_\K(F_n)=n$ for every field $\K$? Equivalently, does every nonzero finitely supported $f\colon\N\to\K$ have $|\supp(f*\mathbf 1_{[n]})|\ge n$, where $*$ is multiplicative convolution?
+\end{question}
+
+By \cref{cor:char2} the answer is yes in characteristic two, and \cref{thm:localized-intro} holds over every field. Our descent, however, relies on the Frobenius map $P\mapsto P^2$. In characteristic $p$ the identity $F_n\cdot F_n^{p-1}=F_n^p$ again gives $n$ terms, which suggests a descent through $p$-th roots. Over $\mathbb Q$ there is no Frobenius at all.
+
+\begin{question}[Equality]
+Which finite sets $A$ satisfy $|A*[n]|=n$? Besides $\{a\}$, $\{a,2a\}$ for even $n$, and the families of Ke and Meyer~\cite{KM}, the identities $F_n\cdot F_n^{2^k-1}=F_n^{2^k}$ give equality for every $k\ge1$.
+\end{question}
+
+\begin{question}[Density]
+Holdridge and Pach~\cite[Theorem~1.8]{HP} proved that the limit $h(A)=\lim_n|A*[n]|/n$ satisfies $h(A)\ge\frac87$ unless $A$ is $\{a\}$ or $\{a,2a\}$, and suggest that $\frac43$ is the truth. Can the descent of \cref{sec:descent} be used to determine the optimal constant?
+\end{question}
+
+\begin{question}[Other sets]
+For which finite $B\subset\N$ does $\min_{A\ne\emptyset}|A*B|=|B|$ hold? \Cref{thm:elim-set} reduces this question to $T$-free multipliers whenever $B$ has at least $\sigma(B\setminus T)$ fresh primes.
+\end{question}
+
+Finally, the counting in \cref{sec:primes,sec:counting} is the longest part of the proof. A proof of \cref{thm:localized-intro}, or of the weaker statement actually used in \cref{sec:assembly}, that avoids explicit prime estimates would shorten the argument considerably.

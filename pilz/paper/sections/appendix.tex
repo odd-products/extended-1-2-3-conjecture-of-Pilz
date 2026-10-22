@@ -1,0 +1,22 @@
+\section{Logical structure}\label{app:deps}
+
+For the reader's convenience, and as a guide to formal verification, we list the inputs of each main step.
+
+\begin{center}\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.31\textwidth}>{\raggedright\arraybackslash}p{0.63\textwidth}@{}}
+\toprule
+Result&Inputs\\\midrule
+\Cref{lem:reductions,lem:endpoints,lem:parity}, \eqref{eq:squarefree-split}, \eqref{eq:rough-decomposition}, \cref{lem:profile}&Unique factorisation and elementary polynomial algebra.\\
+\Cref{lem:basic}, \cref{prop:normal-form,prop:residual}, \cref{cor:protection}&\Cref{lem:reductions,lem:endpoints}; formal derivatives; Frobenius in characteristic two.\\
+\Cref{thm:elimination}, \cref{thm:elim-set}, \cref{cor:interval-elim}&\Cref{prop:normal-form,prop:residual}, \cref{cor:protection}(i), \eqref{eq:squarefree-split}.\\
+\Cref{lem:directed-cut}&Minimality under deletion; \cref{lem:reductions}.\\
+\Cref{prop:fresh-count}&\Cref{lem:67-100,lem:semiprime,prop:101-1023,lem:chebyshev,lem:fresh-large}.\\
+\Cref{thm:localized-intro}&\Cref{lem:profile}, \eqref{eq:budget4}, \eqref{eq:budget8}, \cref{lem:discrepancy,lem:one-step,lem:half,prop:small-q,lem:prime-budget,lem:reciprocals,lem:five-bands,lem:middle,lem:rho,lem:large-q}, \cref{prop:fresh-count}.\\
+Theorem~A, $n\ge67$&\Cref{prop:fresh-count}, \cref{cor:interval-elim}, \cref{lem:directed-cut}, \cref{thm:localized-intro}. No other value of~$n$.\\
+Theorem~A, $n\le10$&\Cref{lem:endpoints,lem:parity,lem:two-row,lem:cores,lem:core}, \cref{prop:normal-form}, \cref{cor:protection}(iii).\\
+\Cref{lem:two-primes}, \cref{cor:three-lists}, \cref{thm:three-primes}, \cref{cor:four-lists}&Theorem~A for $n\le10$; \cref{lem:directed-cut,lem:three-prime-count}.\\
+Theorem~A, $11\le n\le66$&\Cref{lem:cores,lem:core,lem:dispersed,lem:unit-classes,lem:four-exceptions,lem:four-at-27}, \cref{cor:three-lists,cor:four-lists}, \cref{cor:protection}; Theorem~A for $j\le8$ (for the coefficients $F_j$). No case $n'\ge11$.\\
+\bottomrule
+\end{tabular}
+\end{center}

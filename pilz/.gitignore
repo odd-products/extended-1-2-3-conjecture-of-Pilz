@@ -1,0 +1,14 @@
+.lake/
+*.olean
+*.ilean
+*.trace
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/main.pdf
+.DS_Store
+Thumbs.db

@@ -1,0 +1,111 @@
+\section{The polynomial model}\label{sec:prelim}
+
+\subsection{Encoding}
+Let $\K$ be a field. We work in the polynomial ring $\K[x_p : p\text{ prime}]$ in one variable for each prime. Every polynomial involves only finitely many variables. Unique factorisation shows that $a\mapsto X(a)$ is a bijection from $\N$ onto the monomials, with $X(ab)=X(a)X(b)$. For finite $A,B\subset\N$ we therefore have, over $\Ft$,
+\begin{equation}\label{eq:encoding}
+ \Bigl(\sum_{a\in A}X(a)\Bigr)\Bigl(\sum_{b\in B}X(b)\Bigr)=\sum_{x\in A*B}X(x),
+\end{equation}
+since the coefficient of $X(x)$ on the left is the number of representations $x=ab$, reduced modulo~$2$. This is the identification of~\cite[Lemmas~2.1 and~2.2]{HP}. In particular $|A*[n]|=\wt(F_nH_A)$ with $H_A=\sum_{a\in A}X(a)$, and Theorem~A is equivalent to $\dist_{\Ft}(F_n)=n$. The upper bound $\dist_{\Ft}(F_n)\le n$ is witnessed by $H=1$.
+
+For example, with $x=x_2$, $y=x_3$, $z=x_5$,
+\[
+ (1+x)(1+x+y+x^2+z+xy)=1+y+z+x^3+xz+x^2y,
+\]
+which records $\{1,2\}*[6]=\{1,3,5,8,10,12\}$.
+
+We write $\supp P$ for the set of monomials of $P$ with nonzero coefficient. A nonzero polynomial is \emph{normalised} if its terms have no common monomial factor, that is, if its minimum exponent in every variable is zero. For a variable $x$, write $\deg_x P$ and $\ord_x P$ for the largest and smallest exponent of $x$ in $P$, and put $\width_x(P)=\deg_xP-\ord_xP$. Widths add under multiplication, since lowest and highest terms multiply.
+
+\begin{lemma}[Elementary reductions]\label{lem:reductions}
+Let $P\ne0$.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item Multiplying $P$ or a multiplier by a monomial changes neither weights nor $\dist_\K(P)$. In particular, multipliers may be assumed normalised.
+\item If $P$ involves only the variables $\bx$, then $\dist_\K(P)$ is attained by a multiplier in $\K[\bx]$.
+\item A nonzero multiple of a non-monomial has at least two terms.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) is clear. For (b), let $H\ne0$ be any multiplier and expand $H=\sum_\beta \mathbf{w}^\beta H_\beta$ in the remaining variables $\mathbf{w}$, with $H_\beta\in\K[\bx]$. Then $PH=\sum_\beta\mathbf{w}^\beta(PH_\beta)$, and the summands have disjoint supports. Hence $\wt(PH_\beta)\le\wt(PH)$ for a nonzero $H_\beta$. For (c), a divisor of a monomial is a monomial.
+\end{proof}
+
+\subsection{Endpoints and parity}
+The following bound is a polynomial form of the slicing by $p$-adic valuation used in~\cite[Section~3]{HP}.
+
+\begin{lemma}[Endpoint bound]\label{lem:endpoints}
+Let $y$ be a variable and $P=\sum_{i=0}^d a_iy^i$ with $d\ge1$, $a_0a_d\ne0$ and every $a_i$ independent of $y$. Then over any field
+\[
+                \dist(P)\ge\dist(a_0)+\dist(a_d).
+\]
+Consequently, if $P$ contains a nonzero constant term and a positive pure power of each of $s$ distinct variables, then $\dist(P)\ge s+1$. In particular $\dist(z_1+\cdots+z_r)\ge r$ and $\dist(1+z_1+\cdots+z_r)\ge r+1$.
+\end{lemma}
+
+\begin{proof}
+Let $H\ne0$, and let $h_e$ and $h_f$ be the lowest and highest nonzero $y$-coefficients of $H$. The lowest and highest $y$-coefficients of $PH$ are $a_0h_e$ and $a_dh_f$. Both are nonzero, and they lie in different $y$-degrees because $d\ge1$. This proves the first claim.
+
+For the second, slice in one of the $s$ variables. The lowest coefficient still contains the constant and the other $s-1$ pure powers. The highest coefficient is nonzero, so it has distance at least one. Induction on $s$ completes the proof.
+
+For $z_1+\cdots+z_r$ the case $r=1$ is trivial. For $r\ge2$, slice in $z_1$: the lowest coefficient is $z_2+\cdots+z_r$ and the highest is $1$, so induction on $r$ applies. The bound for $1+z_1+\cdots+z_r$ is the second claim with $s=r$.
+\end{proof}
+
+\begin{lemma}[Weight parity~{\cite[Lemma~3.4]{HP}}]\label{lem:parity}
+Over $\Ft$, $\wt(PH)\equiv\wt(P)\wt(H)\pmod 2$. In particular every multiple of a polynomial of even weight has even weight.
+\end{lemma}
+
+The special case that $|A*[n]|$ is even for even $n$ is~\cite[Lemma~4]{Pilz}.
+
+\begin{proof}
+Over $\Ft$, $\wt(P)\bmod2$ is the value of $P$ at $(1,1,\dots)$, and evaluation is a ring homomorphism.
+\end{proof}
+
+\subsection{Parity classes}
+Over $\Ft$, the map $P\mapsto P^2$ is additive, and it sends distinct monomials to distinct monomials. Hence $\wt(P^2)=\wt(P)$. Every $P\in\Ft[\bx]$ has a unique decomposition
+\begin{equation}\label{eq:parity}
+  P=\sum_{\epsilon\in\{0,1\}^{\bx}}\bx^\epsilon\,P_\epsilon^2,
+\end{equation}
+obtained by grouping monomials according to the parities of their exponents. We call $\cl P\epsilon=\bx^\epsilon P_\epsilon^2$ the \emph{full parity class} of $P$ indexed by~$\epsilon$. Distinct classes have disjoint supports, and $\wt(\cl P\epsilon)=\wt(P_\epsilon)$. Let $\sigma(P)=\max_\epsilon\wt(\cl P\epsilon)$. In integer language, two monomials $X(a)$ and $X(b)$ lie in the same class exactly when $a$ and $b$ have the same squarefree part. Since every integer is uniquely a squarefree number times a square,
+\begin{equation}\label{eq:squarefree-split}
+ F_n=\sum_{\substack{a\le n\\ a\text{ squarefree}}} X(a)\,F_{\lfloor\sqrt{n/a}\rfloor}^{\,2}.
+\end{equation}
+Thus the class of $F_n$ indexed by a squarefree $a$ has $\lfloor\sqrt{n/a}\rfloor$ terms. Hence $\sigma(F_n)=\lfloor\sqrt n\rfloor$, attained by the squares, and every other class has at most $\lfloor\sqrt{n/2}\rfloor$ terms. The identity $F_n\cdot F_n=F_n^2$ is the polynomial form of $[n]*[n]=\{k^2:k\le n\}$~\cite{KM,HP}.
+
+A polynomial all of whose exponents of a variable $z$ are even has formal derivative $\partial_zP=0$, and conversely. In characteristic two, $\partial_z(z^k)=kz^{k-1}$ is nonzero exactly when $k$ is odd. So $\partial_z$ maps each monomial that is odd in $z$ to a distinct monomial even in $z$, and kills the rest. Every derivative $\partial_zP$ is even in~$z$.
+
+\subsection{Rough components}\label{sec:rough}
+Let $T$ be a finite set of primes. An integer is \emph{$T$-smooth} if all its prime factors lie in $T$, and \emph{$T$-rough} if none does. For real $t\ge0$ and integers $j\ge1$ put
+\[
+ F_j^{(T)}=\sum_{\substack{a\le j\\ a\ T\text{-smooth}}}X(a),\qquad
+ \Phi_T(t)=\#\{b\le t:\ b\ T\text{-rough}\},\qquad
+ I_T(t)=\Phi_T(t)-\Phi_T(t/2).
+\]
+Thus $I_T(t)$ counts the $T$-rough integers in $(t/2,t]$. When $T$ is the set of primes at most $q$, we say \emph{$q$-smooth} and \emph{$q$-rough}, and write $\sm jq$, $\Phi_q$ and $I_q$.
+
+Each $a\le n$ factors uniquely as $a=bc$ with $b$ $T$-rough and $c$ $T$-smooth. A multiplier $D$ involving only primes in $T$ preserves the $T$-rough part of every monomial. Hence (compare~\cite[Lemma~2.4]{HP})
+\begin{equation}\label{eq:rough-decomposition}
+ F_nD=\sum_{\substack{b\le n\\ b\ T\text{-rough}}}X(b)\,F^{(T)}_{\lfloor n/b\rfloor}D,
+ \qquad
+ \wt(F_nD)=\sum_{\substack{b\le n\\ b\ T\text{-rough}}}\wt\bigl(F^{(T)}_{\lfloor n/b\rfloor}D\bigr),
+\end{equation}
+over any field. The summands have pairwise disjoint supports. We call $F^{(T)}_{\lfloor n/b\rfloor}D$ the \emph{component} of $b$, and $\lfloor n/b\rfloor$ its \emph{index}. For each $k\ge1$ there are exactly $\Phi_T(n/k)$ components of index at least~$k$. There are $I_T(n)$ components of index one, and each of them is a copy of~$D$.
+
+\begin{lemma}[Component profile]\label{lem:profile}
+Let $D$ be a normalised nonconstant polynomial over any field, and let $q$ be the largest prime whose variable occurs in $D$. Then for every $j\ge1$,
+\[
+ \wt\bigl(\sm jq D\bigr)\ \ge\
+ \begin{cases}
+ \wt(D) & j=1,\\
+ 2\bigl(1+\pi(j)\bigr) & 2\le j<q,\\
+ 1+\pi(q) & j\ge q.
+ \end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+For $j=1$ the component is $D$. If $2\le j<q$, then $\sm jq=F_j$ is independent of $x_q$. Since $D$ is normalised and involves $x_q$, it has at least two nonzero $x_q$-slices. Multiplication by $F_j$ keeps these slices in distinct $x_q$-degrees. Each product contains a nonzero multiple of $F_j$, and $F_j$ contains $1$ and the variables $x_p$ for $p\le j$, so each has at least $1+\pi(j)$ terms by \cref{lem:endpoints}. If $j\ge q$, then $\sm jq$ contains $1$ and $x_p$ for every $p\le q$, and \cref{lem:endpoints} gives $1+\pi(q)$.
+\end{proof}
+
+Summing the profile over components gives two budgets that we use repeatedly. Every component of index at least two has at least four terms if $q\ge5$. Moreover, the profile values at indices $1,2,3,4$ and at every index $\ge5$ are at least $\wt(D),4,6,6,8$ when $q\ge17$, because $\pi(17)=7$. Writing $u=\wt(D)$, we obtain
+\begin{align}
+ \wt(F_nD)&\ge 4\Phi_q(n)+(u-4)I_q(n) && (q\ge5),\label{eq:budget4}\\
+ \wt(F_nD)&\ge u\,I_q(n)+4\Phi_q(n/2)+2\Phi_q(n/3)+2\Phi_q(n/5) && (q\ge17).\label{eq:budget8}
+\end{align}
+Inequality~\eqref{eq:budget4} holds for every $u\ge1$, since $u$ is the exact weight of each index-one component. The lower bound through the index-one components alone, $\wt(F_nD)\ge u\,I_q(n)$, is the bound of~\cite[Lemma~4.4]{HP}.

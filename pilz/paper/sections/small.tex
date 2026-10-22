@@ -1,0 +1,382 @@
+\section{The intervals \texorpdfstring{$n\le66$}{n <= 66}}\label{sec:small}
+
+All polynomials in this section are over $\Ft$. We apply the descent of \cref{sec:descent} to $F=F_n=C_n+Z_n$ with the target $N=n=\wt(C_n)+r(n)$. A counterexample has weight at most
+\[
+ m^*(n)=\begin{cases}n-1,&n\text{ odd},\\ n-2,&n\text{ even},\end{cases}
+\]
+by \cref{lem:parity}. In the setting of \cref{prop:normal-form}, write $m=\wt(G)\le m^*(n)$, $u=\wt(D)$ and $r=r(n)$.
+
+The proof uses only the cases $n\le10$ as inputs to other cases. Within the range $11\le n\le66$, no case is used to prove another.
+
+\subsection{Three further consequences of the descent}
+
+\begin{lemma}[Dispersed capacity]\label{lem:dispersed}
+Suppose that one full parity class of $C$ has $s$ terms and every other class has at most $t\le s$ terms. If the fresh-even multiplier $D$ of \cref{prop:normal-form} occupies $k$ full parity classes, then every class of $CD$ has at most $us-(k-1)(s-t)$ terms.
+\end{lemma}
+
+\begin{proof}
+A class $\cl{(CD)}\epsilon$ is the sum of the products $\cl C{\epsilon-\epsilon''}\cl D{\epsilon''}$ over the $k$ classes $\epsilon''$ occupied by $D$, of sizes $u_1,\dots,u_k\ge1$ with $\sum u_i=u$. At most one of these products uses the largest class of $C$, say the one with $D$-class size $u_j$. So the class has at most $su_j+t(u-u_j)$ terms. This is nondecreasing in $u_j$, and $u_j\le u-(k-1)$, so it is at most $s(u-k+1)+t(k-1)=us-(k-1)(s-t)$.
+\end{proof}
+
+For $F_n$ we may take $s=\lfloor\sqrt n\rfloor$ and $t=\lfloor\sqrt{n/2}\rfloor$, by~\eqref{eq:squarefree-split}.
+
+\begin{lemma}[Unit classes]\label{lem:unit-classes}
+Let $Q_1(n)$ be the number of squarefree integers in $(n/4,n]$. In the setting above, if $D$ occupies a single full parity class, then $m\ge u\,Q_1(n)$. Moreover $Q_1(n)>n/4$ for every $n\ge1$, so if $u\ge4$ the multiplier $D$ of \cref{prop:normal-form} occupies at least two classes.
+\end{lemma}
+
+\begin{proof}
+For squarefree $a\in(n/4,n]$, the class of $F_n$ indexed by $a$ is the single monomial $X(a)$, by~\eqref{eq:squarefree-split}. If $D$ occupies one class, then multiplication by $D$ maps classes injectively to classes, so $X(a)D$ is a full class of $F_nD$ with $u$ terms. If $a$ is not a fresh prime, this is a class of $CD$ of weight $u\le ru$, so it is protected (\cref{cor:protection}(i)) and appears unchanged in~$G$. If $a=p$ is fresh, the class is $x_pD$, which is part of $ZD\subseteq G$. These $Q_1(n)$ classes are distinct, so $m\ge uQ_1(n)$.
+
+For the count, let $Q(n)$ be the number of squarefree integers up to $n$. Every non-squarefree integer is divisible by $p^2$ for some prime $p$, so
+\[
+ n-Q(n)\le n\sum_{p}\frac1{p^2}<n\Bigl(\frac14+\sum_{k\ge1}\frac1{(2k+1)^2}\Bigr)\le\frac n2 ,
+\]
+using $\frac1{(2k+1)^2}<\frac14\bigl(\frac1k-\frac1{k+1}\bigr)$. Thus $Q_1(n)=Q(n)-Q(\lfloor n/4\rfloor)>\frac n2-\frac n4$. If $u\ge4$ and $D$ occupied one class, then $m>un/4\ge n$, which is impossible.
+\end{proof}
+
+\begin{lemma}[The core cannot vanish cheaply]\label{lem:core}
+Let $C,P_1,\dots,P_r\in\Ft[\bx]$ with $C\ne0$, and put $F=C+\sum_iz_iP_i$. Let $G=FD+F^2E$, where $D\ne0$ and $F^2E$ are fresh-even. If $\wt(D)<\dist(C)$, then
+\[
+ \wt(G)\ge\dist(C)+\sum_{i=1}^r\wt(P_iD).
+\]
+In particular, in the setting of \cref{prop:normal-form,prop:residual}, $u<\dist(C)$ implies $m\ge ru+\dist(C)$.
+\end{lemma}
+
+\begin{proof}
+Since $F^2E$ is fresh-even, so is $E$. The fresh-odd part of $G$ is $\sum_iz_iP_iD$, with disjoint summands. The fresh-even part is $CD+(C^2+\sum_iw_iP_i^2)E$, where $w_i=z_i^2$. Regard $D$ and $E$ as polynomials in $w_1,\dots,w_r$ with coefficients in $\Ft[\bx]$. Let $j$ be the least total $w$-degree occurring in $D$ or~$E$.
+
+The degree-$j$ part of the fresh-even part of $G$ is $C(D_j+CE_j)$, and it is nonzero. Indeed, if $D_j=CE_j$, then either $E_j\ne0$ and some coefficient of $D_j$ is a nonzero multiple of $C$ with fewer than $\dist(C)$ terms, or $E_j=0=D_j$, contrary to the choice of~$j$. So some $w$-coefficient of the fresh-even part is a nonzero multiple of $C$, contributing at least $\dist(C)$ terms.
+
+For the final assertion, take $P_i=1$ and $F^2E=R$.
+\end{proof}
+
+\subsection{Cores}
+In the rest of this section write $x=x_2$ and $y=x_3$, and put $c_k=1+x+\cdots+x^k$. Note that $c_3=c_1^3$ and $c_1c_4=1+x^5$, and that
+\[
+ F_2=c_1,\qquad F_3=c_1+y,\qquad F_4=c_2+y .
+\]
+
+\begin{lemma}[A two-row obstruction]\label{lem:two-row}
+Let $P=\sum_{i=0}^da_iy^i$ with coefficients $a_i\in\Ft[\bx]$, $d\ge1$ and $a_0a_d\ne0$. Suppose some nonzero multiple of $P$ has only two nonzero $y$-coefficients. Then
+\[
+ a_i^{\,d-j}a_d^{\,j-i}=a_j^{\,d-i}\qquad\text{whenever }0\le i<j<d\text{ and }a_ia_j\ne0 .
+\]
+Hence, if one such identity fails, $\dist(P)\ge\dist(a_0)+\dist(a_d)+1$. For a quadratic with $a_1\ne0$, it suffices that $a_0a_2\ne a_1^2$.
+\end{lemma}
+
+\begin{proof}
+Let $\Omega$ be an algebraic closure of $\Ft(\bx)$. After removing a power of $y$, the multiple is $b_0+b_1y^h$ with $b_0b_1\ne0$. Since $y\nmid P$, the polynomial $P$ divides $b_0+b_1y^h$ in $\Ft(\bx)[y]$. The roots of the latter in $\Omega$ are $\rho\zeta$, where $\rho$ is one root and $\zeta$ runs over $h$-th roots of unity. So the roots of $P$, with multiplicity, are $\rho\zeta_1,\dots,\rho\zeta_d$ with each $\zeta_i$ algebraic over~$\Ft$.
+
+Hence $a_i/a_d=\rho^{d-i}\gamma_i$, where $\gamma_i$ is an elementary symmetric function of the $\zeta$'s and is algebraic over $\Ft$. The quotient $a_i^{d-j}a_d^{j-i}/a_j^{d-i}=\gamma_i^{d-j}/\gamma_j^{d-i}$ lies in $\Ft(\bx)$ and is algebraic over~$\Ft$. Since $\Ft$ is algebraically closed in the purely transcendental extension $\Ft(\bx)$, the quotient lies in $\Ft^\times=\{1\}$.
+
+Finally, a nonzero multiple of $P$ has $y$-width at least $d\ge1$, so it has at least two nonzero rows. If an identity fails it has at least three rows: the lowest is a multiple of $a_0$, the highest a multiple of $a_d$, and a third contributes at least one term.
+\end{proof}
+
+Define the cores
+\begin{align*}
+ f_9&=c_3+c_1y+y^2, & f_{12}&=c_3+c_2y+y^2, & f_{16}&=c_4+c_2y+y^2,\\
+ f_{18}&=c_4+c_2y+c_1y^2, & f_{24}&=c_4+c_3y+c_1y^2, & f_{25}&=f_{24}+x_5F_4+x_5^2 .
+\end{align*}
+Here $f_k$ encodes the $3$-smooth integers up to $k$ for $k\le24$, and $f_{25}$ the $5$-smooth integers up to $25$. Writing $f_{16}(x,x_5)$ for $f_{16}$ with $y$ replaced by $x_5$, one checks that
+\begin{equation}\label{eq:f25}
+ f_{25}=f_{16}(x,x_5)+(c_3+x_5)\,y+c_1y^2 .
+\end{equation}
+
+\begin{lemma}[Core bounds]\label{lem:cores}
+$\dist(f_9)\ge5$, $\dist(f_{12})\ge4$, $\dist(f_{16})\ge4$, $\dist(f_{18})\ge6$, $\dist(f_{24})\ge5$ and $\dist(f_{25})\ge8$.
+\end{lemma}
+
+\begin{proof}
+For all but $f_9$ we use \cref{lem:endpoints}, \cref{lem:two-row} and \cref{lem:parity}. The endpoint bounds in $y$ are $2+1$, $2+1$, $2+2$, $2+2$ for $f_{12},f_{16},f_{18},f_{24}$, using $\dist(c_k)\ge2$. The quadratic identities fail:
+\[
+ c_3\ne c_2^2,\qquad c_4\ne c_2^2,\qquad c_1c_4=1+x^5\ne c_2^2,\qquad c_1c_4\ne c_3^2 .
+\]
+So the two-row obstruction adds one. Moreover $f_{18}$ has even weight $10$, so its bound $5$ rounds up to~$6$.
+
+For $f_{25}$ use~\eqref{eq:f25}. The endpoint bound is $\dist(f_{16})+\dist(c_1)\ge4+2$. The identity fails because $c_1f_{16}(x,x_5)$ has the nonzero linear $x_5$-coefficient $c_1c_2$, whereas $(c_3+x_5)^2$ has none. This gives $7$, and the even weight $16$ of $f_{25}$ rounds it to~$8$.
+
+For $f_9$ we use a parametrisation. By \cref{lem:reductions}(b) it suffices to consider multipliers in $\Ft[x,y]$. Over $\Ft$, substitute
+\[
+ x=v^2+v+1,\qquad y=v^2(v+1),
+\]
+so that $c_1=v(v+1)$ and $f_9=v^3(v+1)^2\bigl((v+1)+1+v\bigr)=0$. At $v=0$ and $v=1$ the value of $x$ is $1$, while $y$ vanishes to orders $2$ and $1$, respectively. For $k>0$ the polynomial $1+x^k$ vanishes to order $2^{v_2(k)}$ at both points, since $1+x=v(v+1)$ has simple zeros there.
+
+Suppose a multiple $G$ of $f_9$ had at most four terms, normalised to have a term free of $y$. Evaluating at $v=0$ shows that its $y$-free part has a positive even number of terms. That part cannot be all of $G$, since $x(v)$ is transcendental. So it is a binomial $x^i(1+x^k)$, whose orders at $v=0$ and $v=1$ are equal. At most two terms involve $y$.
+\begin{itemize}
+\item If a unique term has the least positive $y$-exponent $e$, these terms have orders $(2e,e)$ at the two points.
+\item If two terms share that exponent, they have orders $(2e+\tau,e+\tau)$ with $\tau=2^{v_2(k')}$ for some $k'$.
+\end{itemize}
+In neither case are the two orders equal, so the $y$-part cannot cancel the $y$-free part at both points. Hence $\dist(f_9)\ge5$.
+\end{proof}
+
+The bound $\dist(f_9)\ge5$ is sharp: $f_9(1+x+y)=1+xy+x^3y+y^3+x^4$, that is, $\{1,2,3\}*\{1,2,3,4,6,8,9\}=\{1,6,16,24,27\}$.
+
+\subsection{The cases \texorpdfstring{$n\le10$}{n <= 10}}
+For $n\le3$ the endpoint bound gives $\dist(F_n)=n$. For $n=4$, it gives $3$, and \cref{lem:parity} rounds this up to~$4$. For $5\le n\le10$:
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|c|l|c}
+$n$&$r(n)$&$C_n$&$\kappa\le\dist(C_n)$\\\hline
+5&2&$c_2$&2\\
+6&1&$c_2+yF_2$&4\\
+7&2&$c_2+yF_2$&4\\
+8&2&$c_3+yF_2$&4\\
+9&2&$f_9$&5\\
+10&1&$f_9+x_5F_2$&7
+\end{tabular}
+\end{center}
+\smallskip
+
+The bounds come from \cref{lem:endpoints,lem:cores} and $\dist(F_2)=2$. Suppose $\dist(F_n)<n$, and take $G=G_0+ZD$ as in \cref{prop:normal-form} with $N=n$. Then $ru<m\le m^*(n)$ and $u\le m/2$ give $u<\kappa$ in every row. So \cref{lem:core} gives $m\ge ru+\kappa$. At $n=6$ this exceeds $m^*(6)=4$. In the other rows it forces $u=1$, and then $\wt(F_nD)=n$. Every class of $C_nD$ has at most $M=\sigma(C_n)=\lfloor\sqrt n\rfloor$ terms, and $n\ge2M$, so \cref{cor:protection}(iii) excludes the counterexample. Hence $\dist(F_n)=n$ for all $n\le10$. In particular $\dist(F_2)=2$, $\dist(F_3)=3$ and $\dist(F_4)=4$.
+
+\subsection{Few multipliers and few primes}
+The results of this subsection hold for every $n\ge1$ and every multiplier, including multipliers involving fresh-prime variables.
+
+\emph{One and two multipliers}~\cite{KM}. One multiplier gives exactly $n$ terms. For distinct $a,b$, after dividing by $\gcd(a,b)$ the larger quotient is at least $2$. So $|a[n]\cap b[n]|\le\lfloor n/2\rfloor$ and $|\{a,b\}*[n]|\ge2n-2\lfloor n/2\rfloor\ge n$.
+
+\begin{lemma}[Two primes]\label{lem:two-primes}
+If the normalised multiplier involves at most two primes, then $\wt(F_nD)\ge n$.
+\end{lemma}
+
+\begin{proof}
+We use the decomposition~\eqref{eq:rough-decomposition} with $T$ the set of these primes.
+
+\emph{One prime $p$, at least two terms.} The component of $b$ is $D$ itself when $\lfloor n/b\rfloor<p$. Otherwise it has at least two terms by \cref{lem:reductions}(c). There are $n-\lfloor n/p\rfloor\ge\lceil n/2\rceil$ components, so $\wt(F_nD)\ge2\lceil n/2\rceil\ge n$.
+
+\emph{Two primes $p<q$, at least three terms.} Fewer terms are covered by the one- and two-multiplier bounds above. Every component has at least three terms:
+\begin{itemize}
+\item index $j<p$: the component is $D$;
+\item $p\le j<q$: two $x_q$-slices, each with at least two terms by \cref{lem:endpoints};
+\item $j\ge q$: three endpoints, namely $1$, $x_p$ and $x_q$.
+\end{itemize}
+So $\wt(F_nD)\ge3\Phi_{\{p,q\}}(n)$, and it suffices to bound the number $\Phi_{\{p,q\}}(n)$ of integers up to $n$ divisible by neither $p$ nor $q$.
+\begin{itemize}
+\item If $p\ge3$, then $\Phi_{\{p,q\}}(n)\ge n(1-\frac13-\frac15)>n/3$.
+\item If $p=2$ and $q\ge5$, then $\Phi_{\{2,q\}}(n)=\lceil n/2\rceil-\lceil\lfloor n/q\rfloor/2\rceil$ is nondecreasing in $q$. For $q=5$, the residues $1,3,7,9$ modulo $10$ give $3\Phi\ge n$: at the ends $2,6,8,10$ of the constant stretches in the first period the values of $3\Phi$ are $3,6,9,12$, and each period adds two to the surplus.
+\item If $p=2$ and $q=3$, then $3\Phi_{\{2,3\}}(n)\ge n$ fails only for $n\equiv4\pmod6$, and then by one. For $n=6k+4\ge10$ an integer coprime to $6$ lies in $(n/3,n/2]$: take $5$ or $7$ when $k=1,2$; when $k\ge3$, the integers $2k+2,\dots,3k+2$ include four consecutive ones. Its component has index two and hence at least four terms, which supplies the missing term. The case $n=4$ is $\dist(F_4)=4$.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}[Three multipliers~\cite{KM}]\label{cor:three-lists}
+Every multiplier with at most three terms gives at least $n$ terms.
+\end{corollary}
+
+\begin{proof}
+Take a counterexample with at most three terms, minimal under deletion and normalised, with $u$ terms. The one- and two-multiplier bounds give $u=3$. \Cref{lem:directed-cut} gives $q<4$ for every prime involved, so only $2$ and $3$ occur. This contradicts \cref{lem:two-primes}.
+\end{proof}
+
+\begin{lemma}\label{lem:three-prime-count}
+For distinct primes $p<q<\ell$ and every $n\ge11$, the number $\Phi_{\{p,q,\ell\}}(n)$ of integers up to $n$ coprime to $pq\ell$ satisfies $4\Phi_{\{p,q,\ell\}}(n)\ge n$.
+\end{lemma}
+
+\begin{proof}
+\begin{itemize}
+\item If $p\ge3$, the union bound gives at least $n(1-\frac13-\frac15-\frac17)=\frac{34}{105}n>\frac n4$.
+\item If $p=2$, $q\ge5$ and $\ell\ge7$, subtracting the odd multiples of $q$ and $\ell$ from the odd integers gives at least $(\frac12-\frac1{10}-\frac1{14})n-1=\frac{23}{70}n-1\ge\frac n4$ for $n\ge13$. For $n=11,12$, each of $q$ and $\ell$ removes at most one of the six odd integers.
+\item If $p=2$ and $q=3$, then $\Phi_{\{2,3,\ell\}}(n)=\Phi_{\{2,3\}}(n)-\Phi_{\{2,3\}}(n/\ell)\ge\Phi_5(n)$. This count increases by $8$ per period of $30$. At the ends $6,10,12,16,18,22,28,30$ of its constant stretches it takes the values $1,\dots,8$. So $4\Phi_5(n)-n<0$ in the first period only at $n=5,6,9,10$, and each further period adds two.
+\end{itemize}
+\end{proof}
+
+\begin{theorem}[Three primes]\label{thm:three-primes}
+If the normalised multiplier involves at most three primes, then $\wt(F_nD)\ge n$ for every $n\ge1$.
+\end{theorem}
+
+\begin{proof}
+By the cases $n\le10$, \cref{lem:two-primes} and \cref{cor:three-lists}, we may assume $n\ge11$, $u\ge4$, and that exactly three primes $p<q<\ell$ occur. Every component has at least four terms:
+\begin{itemize}
+\item index $j<p$: the component is $D$;
+\item $p\le j<q$: at least two joint $(x_q,x_\ell)$-slices, each with two endpoints;
+\item $q\le j<\ell$: at least two $x_\ell$-slices, each with three endpoints;
+\item $j\ge\ell$: four endpoints.
+\end{itemize}
+Now apply \cref{lem:three-prime-count}.
+\end{proof}
+
+\begin{corollary}[Four multipliers]\label{cor:four-lists}
+Every multiplier with at most four terms gives at least $n$ terms, for every $n$.
+\end{corollary}
+
+\begin{proof}
+A minimal normalised counterexample would have $u=4$ by \cref{cor:three-lists}. By \cref{lem:directed-cut} it would involve only primes $q<6$, contradicting \cref{thm:three-primes}.
+\end{proof}
+
+\subsection{The cases \texorpdfstring{$11\le n\le26$}{11 <= n <= 26}}
+Write the cores as a $3$- or $5$-smooth part plus linear terms in larger primes. The bound $\kappa$ adds the core bound of \cref{lem:cores} to $\dist(F_j)=j$ for each linear coefficient $F_j$, by \cref{lem:endpoints}. Put $U=\lfloor(m^*(n)-\kappa)/r\rfloor$.
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|c|l|r|r}
+$n$&$r$&$C_n$&$\kappa$&$U$\\\hline
+11&2&$f_9+x_5F_2$&7&1\\
+12&2&$f_{12}+x_5F_2$&6&2\\
+13&3&$f_{12}+x_5F_2$&6&2\\
+14&2&$f_{12}+x_5F_2+x_7F_2$&8&2\\
+15&2&$f_{12}+x_5F_3+x_7F_2$&9&2\\
+16&2&$f_{16}+x_5F_3+x_7F_2$&9&2\\
+17&3&$f_{16}+x_5F_3+x_7F_2$&9&2\\
+18&3&$f_{18}+x_5F_3+x_7F_2$&11&1\\
+19&4&$f_{18}+x_5F_3+x_7F_2$&11&1\\
+20&4&$f_{18}+x_5F_4+x_7F_2$&12&1\\
+21&4&$f_{18}+x_5F_4+x_7F_3$&13&1\\
+22&3&$f_{18}+x_5F_4+x_7F_3+x_{11}F_2$&15&1\\
+23&4&$f_{18}+x_5F_4+x_7F_3+x_{11}F_2$&15&1\\
+24&4&$f_{24}+x_5F_4+x_7F_3+x_{11}F_2$&14&2\\
+25&4&$f_{25}+x_7F_3+x_{11}F_2$&13&2\\
+26&3&$f_{25}+x_7F_3+x_{11}F_2+x_{13}F_2$&15&3
+\end{tabular}
+\end{center}
+\smallskip
+
+In every row, $ru<m\le m^*(n)$ and $u\le m/2$ give $u<\kappa$. Then \cref{lem:core} gives $m\ge ru+\kappa$, hence $u\le U$. Every class of $C_nD$ has at most $M=u\lfloor\sqrt n\rfloor\le U\lfloor\sqrt n\rfloor$ terms, and $\wt(F_nD)\ge n$ by \cref{cor:three-lists}. Every row except $n=26$ satisfies $n\ge2U\lfloor\sqrt n\rfloor$, and at $n=26$ the inequality $n\ge2u\lfloor\sqrt n\rfloor$ holds for $u\le2$. So \cref{cor:protection}(iii) excludes everything except $n=26$ with $u=3$, which is treated together with $27\le n\le29$ below.
+
+\subsection{The cases \texorpdfstring{$27\le n\le66$}{27 <= n <= 66}}
+Let $B_n$ be the sum of $X(a)$ over the $\sqrt n$-smooth $a\le n$. The primes $p$ with $\sqrt n<p\le n/2$ occur in $C_n$ only linearly:
+\[
+ C_n=B_n+\sum_{\sqrt n<p\le n/2}x_pF_{\lfloor n/p\rfloor}.
+\]
+Slicing in these variables (\cref{lem:endpoints}) gives
+\begin{equation}\label{eq:core-sum}
+ \dist(C_n)\ge\kappa_B(n)+\sum_{\sqrt n<p\le n/2}\Bigl\lfloor\frac np\Bigr\rfloor .
+\end{equation}
+Here we use $\dist(F_j)=j$ for $j=\lfloor n/p\rfloor<\sqrt{66}<9$, which is covered by the cases $n\le10$. The bounds $\kappa_B(n)\le\dist(B_n)$ are:
+\[
+\begin{array}{c|ccccccc}
+n&27\text{--}29&30\text{--}31&32\text{--}35&36\text{--}39&40\text{--}44&45\text{--}48&49\text{--}66\\\hline
+\kappa_B(n)&7&8&7&8&7&6&8
+\end{array}
+\]
+
+\begin{proof}[Proof of the values of $\kappa_B$]
+Regard $B_n$ as a polynomial in $x=x_2$, and apply \cref{lem:two-row} to its top three coefficients, using $i=d-2$ and $j=d-1$. The top coefficient is always $1$. The bottom coefficient, which encodes the odd $\sqrt n$-smooth integers up to $n$, is as follows.
+\begin{itemize}
+\item For $27\le n\le44$ it is $f_9(y,x_5)$, of distance at least $5$.
+\item For $45\le n\le48$ it is $f_{12}(y,x_5)$, of distance at least $4$.
+\item For $49\le n\le66$ it is $g=f_{12}(y,x_5)+hx_7+x_7^2$, with $h=1+y+x_5$ for $n\le62$ and $h=1+y+y^2+x_5$ for $n\ge63$. Since $f_{12}(y,x_5)$ has a term of odd exponent, it is not $h^2$, so $\dist(g)\ge4+1+1=6$ by \cref{lem:two-row}.
+\end{itemize}
+The degree $d=\deg_xB_n$ and the coefficients $(a_{d-2},a_{d-1},a_d)$ are:
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|c|ccc}
+$n$&$d$&$a_{d-2}$&$a_{d-1}$&$a_d$\\\hline
+27--31&4&$1+y+x_5$&$1+y$&1\\
+32--39&5&$1+y$&1&1\\
+40--47&5&$1+y+x_5$&1&1\\
+48--55&5&$1+y+x_5$&$1+y$&1\\
+56--63&5&$1+y+x_5+x_7$&$1+y$&1\\
+64--66&6&$1+y$&1&1
+\end{tabular}
+\end{center}
+\smallskip
+
+In each row $a_{d-2}a_d\ne a_{d-1}^2$, so \cref{lem:two-row} adds one to the endpoint bound. This gives $5+1+1=7$ for $27\le n\le44$, $4+1+1=6$ for $45\le n\le48$, and $6+1+1=8$ for $49\le n\le66$. The weights of $B_n$ are $17,18,19,20,21$ on the ranges $27$--$29$, $30$--$31$, $32$--$35$, $36$--$39$, $40$--$44$. On the two even-weight ranges, \cref{lem:parity} raises $7$ to~$8$.
+\end{proof}
+
+\subsubsection*{Regular blocks}
+For a block $[L,H]$ of consecutive $n$ put
+\[
+ r_0=\pi(L)-\pi(H/2),\qquad
+ \kappa_0=\min_{L\le n\le H}\kappa_B(n)+\sum_{\sqrt H<p\le L/2}\Bigl\lfloor\frac Lp\Bigr\rfloor,\qquad
+ U=\Bigl\lfloor\frac{m^*(H)-\kappa_0}{r_0}\Bigr\rfloor .
+\]
+Then $r(n)\ge r_0$, $\dist(C_n)\ge\kappa_0$ and $m\le m^*(H)$ for $n\in[L,H]$. In every block below, $\lfloor(m^*(H)-1)/r_0\rfloor<\kappa_0$, so $ru<m$ gives $u<\kappa_0$, and \cref{lem:core} gives $u\le U\le4$. Put $s=\lfloor\sqrt H\rfloor$, and let $M_0=Us$ if $U\le3$, and $M_0=3s+\lfloor\sqrt{H/2}\rfloor$ if $U=4$.
+
+By \cref{lem:unit-classes,lem:dispersed}, $M_0$ bounds every class of $C_nD$. Indeed $u\lfloor\sqrt n\rfloor\le us\le Us=M_0$ if $U\le3$, and $us\le3s\le M_0$ if $U=4$ and $u\le3$. If $u=4$, then $D$ occupies at least two classes, so \cref{lem:dispersed} gives the bound $3\lfloor\sqrt n\rfloor+\lfloor\sqrt{n/2}\rfloor\le M_0$. Every block has $L\ge2M_0$. Moreover $\wt(F_nD)\ge n$ by \cref{cor:four-lists}. So \cref{cor:protection}(iii) excludes all these blocks.
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|r|r|r|r@{\qquad}c|r|r|r|r}
+$[L,H]$&$r_0$&$\kappa_0$&$U$&$s$&$[L,H]$&$r_0$&$\kappa_0$&$U$&$s$\\\hline
+30--32&4&15&3&5&41--42&5&22&3&6\\
+33&5&16&3&5&43--45&6&22&3&6\\
+34&4&18&3&5&46&5&25&3&6\\
+35&4&19&3&5&47--48&6&25&3&6\\
+36&4&20&3&6&53--57&7&23&4&7\\
+37&5&20&3&6&58&6&27&4&7\\
+38&4&22&3&6&59--61&7&27&4&7\\
+39&4&23&3&6&62--63&7&29&4&7\\
+&&&&&64&7&29&4&8\\
+&&&&&65--66&7&30&4&8
+\end{tabular}
+\end{center}
+\smallskip
+
+The primes used are those up to $61$, all detected by trial division by $2,3,5,7$. The remaining values of $n$ are covered by the same preliminary inequalities, with the following data. Here the comparison with $M=us$ already excludes $u\le2$ at $n=27$--$29$, and $u\le3$ at $n=40$ and $n=49$--$52$.
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|r|r|r}
+$n$&$r_0$&$\kappa_0$&$U$\\\hline
+27&3&14&4\\
+28&3&15&3\\
+29&4&15&3\\
+40&4&22&4\\
+49--50&6&21&4\\
+51--52&6&22&4
+\end{tabular}
+\end{center}
+\smallskip
+
+\subsubsection*{Three terms at \texorpdfstring{$26\le n\le29$}{26 <= n <= 29}}
+The ten squarefree integers $10,11,13,14,15,17,19,21,22,23$ lie in $(n/4,n]$, so $Q_1(n)\ge10$. If $u=3$ and $D$ occupied one class, \cref{lem:unit-classes} would give $m\ge30>n$. So $D$ occupies at least two classes, and \cref{lem:dispersed} gives
+\[
+ M=2\lfloor\sqrt n\rfloor+\lfloor\sqrt{n/2}\rfloor=13 .
+\]
+Since $n\ge26=2M$ and $\wt(F_nD)\ge n$ by \cref{cor:three-lists}, \cref{cor:protection}(iii) applies.
+
+\subsubsection*{Four terms at \texorpdfstring{$n=40$}{n = 40} and \texorpdfstring{$49\le n\le52$}{49 <= n <= 52}}
+
+\begin{lemma}\label{lem:four-exceptions}
+Every four-term multiplier $D$ satisfies $\wt(F_{40}D)\ge44$, and $\wt(F_nD)\ge56$ for $49\le n\le52$.
+\end{lemma}
+
+\begin{proof}
+Normalise $D$ and let $q$ be its largest prime.
+
+\emph{$q\ge7$.} Split $D$ at the first positive $x_q$-exponent, as in the proof of \cref{lem:directed-cut}. Both pieces have at most three terms, so each gives at least $n$ terms by \cref{cor:three-lists}. The intersection has at most $3\lfloor n/7\rfloor$ elements. Hence $\wt(F_nD)\ge2n-6\lfloor n/7\rfloor$, which is $50$ at $n=40$ and at least $56$ for $49\le n\le52$.
+
+\emph{$q=2$.} The components give $\wt(F_nD)\ge2\Phi_2(n)+2I_2(n)\ge\frac32n-1$.
+
+\emph{$q=3$.} Every component has at least four terms:
+\begin{itemize}
+\item index one: $D$ itself;
+\item index two: two $x_3$-slices with two endpoints each;
+\item larger indices: three endpoints, rounded up to four by \cref{lem:parity}, since $D$ has even weight.
+\end{itemize}
+Since $\Phi_3(40)=13$ and $\Phi_3(49)=17$, this suffices.
+
+\emph{$q=5$.} Every component has at least four terms: two $x_5$-slices before $5$ is active, and four endpoint directions after. Since $\Phi_5(49)=14$, this settles $49\le n\le52$. At $n=40$, $\Phi_5(40)=10$. The $\Phi_5(40/3)-\Phi_5(8)=2$ components of index $3$ or $4$ have at least six terms each, from two $x_5$-slices with three endpoints each. The total is at least $44$.
+\end{proof}
+
+At $n=40$ we have $r=4$, $m\le38$ and $M=3\cdot6+4=22$ by \cref{lem:unit-classes,lem:dispersed}. Two residual classes would need $2(n-M)=36$ terms in $G_0$. But $\wt(G_0)\le38-16=22$, so $a\le1$. Since $\wt(F_{40}D)\ge44=2M$, \cref{cor:protection}(iii) applies.
+
+At $49\le n\le52$ we have $r=6$, and $M=26$ works for all four values. Two residual classes would need $2(n-26)$ terms, but $\wt(G_0)\le m-24\le n-25$. So $a\le1$, and $\wt(F_nD)\ge56\ge\max\{n,52\}$.
+
+\subsubsection*{Four terms at \texorpdfstring{$n=27$}{n = 27}}
+We use a small compatibility bound. If $E\ne0$ has $k\le3$ terms, then
+\begin{equation}\label{eq:compat}
+ \wt(F_2E)+\wt(F_3E)\ge k+4 .
+\end{equation}
+For $k=1$ the two weights are $2$ and $3$. For $k=2$ they are at least $2$ and $4$. For $k=3$, if $\wt(F_2E)\ge4$, the endpoint bound $\wt(F_3E)\ge3$ suffices. Otherwise $(1+x)E$ has two terms. These agree at $x=1$, so up to a monomial factor $E=1+x+x^2$. Then $F_3E=1+x^3+y(1+x+x^2)$ has five terms, and the total is $2+5$.
+
+\begin{lemma}\label{lem:four-at-27}
+Every four-term multiplier $D$ satisfies $\wt(F_{27}D)\ge36$.
+\end{lemma}
+
+\begin{proof}
+Normalise $D$ and let $q$ be its largest prime. For $q\ge7$ the split gives $54-6\cdot3=36$. For $q=2$ the bound is $2\Phi_2(27)+2I_2(27)=42$, and for $q=3$ it is $4\Phi_3(27)=36$.
+
+For $q=5$, the $5$-rough $b\le27$ are $1,7,11,13,17,19,23$, with indices $27,3,2,2,1,1,1$.
+\begin{itemize}
+\item The index-$27$ component has at least $8$ terms, since $\dist(B_{27})\ge7$ and $D$ has even weight.
+\item The three index-one components contribute $12$.
+\item Write $D=\sum_ix_5^iE_i$. At least two $E_i$ are nonzero, each with at most three terms. Since $F_2$ and $F_3$ do not involve $x_5$, summing~\eqref{eq:compat} over the slices gives $\wt(F_2D)+\wt(F_3D)\ge4+4\cdot2=12$.
+\item The second index-two component contributes at least $4$, two from each of two slices.
+\end{itemize}
+The total is at least $8+12+12+4=36$.
+\end{proof}
+
+Now let $n=27$ and $u=4$. Then $\kappa_0=14$ forces $m\ge3\cdot4+14=26=m^*(27)$, so $\wt(G_0)=14$. By \cref{lem:unit-classes}, $D$ occupies at least two classes. The largest class of $C_{27}$ has $5$ terms (the squares) and every other class has at most $3$. So \cref{lem:dispersed} gives $M=3\cdot5+3=18$. Two residual classes would need $2(27-18)=18>14$ terms, so $a\le1$. Since $\wt(F_{27}D)\ge36=2M$ by \cref{lem:four-at-27}, \cref{cor:protection}(iii) applies.
+
+This completes the proof of Theorem~A for $n\le66$, and with \cref{sec:assembly}, for all~$n$. \qed

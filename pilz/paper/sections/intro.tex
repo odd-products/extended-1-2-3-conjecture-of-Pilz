@@ -1,0 +1,149 @@
+\section{Introduction}\label{sec:intro}
+
+\subsection{The conjecture}
+For finite sets $A,B\subset\N=\{1,2,\dots\}$ we follow~\cite{HP} and write $A*B$ for the set of integers having an \emph{odd} number of representations $x=ab$ with $a\in A$ and $b\in B$. Put $[n]=\{1,\dots,n\}$. Then
+\[
+ A*[n]=A\mathbin{\triangle}2A\mathbin{\triangle}\cdots\mathbin{\triangle}nA
+      =\mathop{\triangle}_{a\in A}\{a,2a,\dots,na\},
+\]
+where $\triangle$ denotes symmetric difference and $kA=\{ka:a\in A\}$.
+
+\begin{maintheorem}
+For every finite nonempty set $A\subset\N$ and every integer $n\ge1$,
+\[
+                        |A*[n]|\ge n .
+\]
+\end{maintheorem}
+
+The bound is attained, for example, by $A=\{a\}$, by $A=\{a,2a\}$ when $n$ is even, and by $A=[n]$; see~\cite[Section~1]{HP}. In the last case every representation $x=ab$ with $a\ne b$ is paired with $x=ba$, so $[n]*[n]=\{1^2,2^2,\dots,n^2\}$. Ke and Meyer~\cite{KM} showed that equality holds for arbitrarily large sets $A$. So the extremal configurations are far from unique, and a proof must deal with substantial cancellation.
+
+\subsection{History}
+The problem comes from coding theory. Pilz~\cite{Pilz} studied the minimal distance of certain polynomial near-ring codes (for near-rings see~\cite{PilzBook}). In our notation he showed that $|A*[n]|\ge n$ for $n\le6$. He also reported that a computer search found no set with $|A*[n]|<n$. The resulting question, whether the minimal distance always equals~$n$, became known as Pilz's conjecture. Pach and Szab\'o~\cite{PS} showed that it is equivalent to Theorem~A. They proved it for $A=[k]$, and proved the general lower bound $|A*[n]|\gg n/(\log n)^{\lambda}$ for every $\lambda>\lambda_0\approx 0.2223$.
+
+Huang, Ke and Pilz~\cite{HKP} independently settled the case $A=[k]$, referred to as the \emph{1-2-3 Conjecture}. They stated the general case as the \emph{Extended 1-2-3 Conjecture}. This conjecture is unrelated to the graph-theoretic 1-2-3 Conjecture.
+
+Ke and Meyer~\cite{KM} proved the conjecture for $|A|\le3$. Nagy and Pach~\cite{NP} proved the analogous statement for sumsets.
+
+Most recently, Holdridge and Pach~\cite{HP} proved the conjecture for $n\le 8$ and for all $n\ge 2(3^{80}-321)$. They also obtained $|A*[n]|\gg kn/\log k$ when $k=|A|$ is small compared with~$n$, and they studied the limiting density $\lim_n|A*[n]|/n$. Before the present work, the conjecture was therefore open for all $9\le n<2(3^{80}-321)$.
+
+The conjecture is related to colourings of the $n$-smooth numbers~\cite{CCP}. In particular, the case of odd $|A|$ would follow from the existence of an $n$-colouring of $\N$ in which $a,2a,\dots,na$ receive distinct colours for every $a$. It is also an arithmetic relative of Pak's problem on the odd area of unit discs~\cite{Pak,Pinchasi}.
+
+\subsection{Main results}
+We prove Theorem~A for every $n$. Throughout, primes are encoded as variables (see \cref{sec:prelim}). For $a\in\N$ put
+\[
+ X(a)=\prod_p x_p^{v_p(a)},\qquad F_n=\sum_{a=1}^nX(a),
+\]
+where $v_p(a)$ is the exponent of $p$ in $a$.
+For a field $\K$ and a nonzero polynomial $P\in\K[x_p:p\text{ prime}]$, let $\wt(P)$ be the number of its nonzero terms, and put
+\[
+ \dist_\K(P)=\min\{\wt(PH):H\ne0\}.
+\]
+We write $\dist$ for $\dist_\K$ when the field is clear from the context.
+By unique factorisation, $|A*[n]|=\wt(F_nH_A)$ over $\Ft$, where $H_A=\sum_{a\in A}X(a)$. So Theorem~A states that $\dist_{\Ft}(F_n)=n$. Since $\wt$ cannot increase under an $\Ft$-linear map applied coefficientwise, the same holds over any field of characteristic two, and for vector-valued multipliers (\cref{cor:char2}).
+
+The primes $p\in(n/2,n]$ are special. Each divides exactly one element of~$[n]$, namely $p$ itself, so it enters $F_n$ as a single linear term. We call these primes \emph{fresh} and write $\Pn$ for the set of them and $r(n)=|\Pn|=\pi(n)-\pi(n/2)$. Thus
+\[
+ F_n=C_n+\sum_{p\in\Pn}x_p,
+\]
+where $C_n$ does not involve the fresh variables. The first main ingredient is a general elimination theorem for such polynomials. In set language it reads as follows. Recall that two integers lie in the same \emph{square class} if their ratio is the square of a rational number, that is, if they have the same squarefree part.
+
+\begin{theorem}[Elimination of fresh primes]\label{thm:elim-set}
+Let $B\subset\N$ be finite and let $T$ be a set of primes. Suppose that each $p\in T$ lies in $B$ and divides no other element of $B$, and put $B_0=B\setminus T$. Let $\sigma(B_0)$ be the largest number of elements of $B_0$ lying in one square class, with $\sigma(\emptyset)=0$. If $|T|\ge\sigma(B_0)$, then
+\[
+ \min_{A\ne\emptyset}|A*B|
+   =\min_{\substack{A\ne\emptyset\\ \gcd(a,p)=1\ (a\in A,\ p\in T)}}
+       \bigl(|A*B_0|+|T|\,|A|\bigr).
+\]
+The hypothesis $|T|\ge\sigma(B_0)$ cannot be omitted (\cref{ex:sharp}).
+\end{theorem}
+
+The polynomial version (\cref{thm:elimination}) holds for every polynomial $C+z_1+\cdots+z_r$ over $\Ft$ with $r\ge\sigma(C)$. For $B=[n]$ the squares form the largest square class, so the hypothesis is $r(n)\ge\lfloor\sqrt n\rfloor$, and this holds for every $n\ge67$ (\cref{prop:fresh-count}). A counterexample at such $n$ may therefore be assumed to avoid all fresh primes. Each of the $r(n)$ fresh rows then contains a complete copy of the multiplier, so the multiplier has fewer than $n/r(n)\approx2\log n$ terms.
+
+The second ingredient is a lower bound for multipliers that involve only a few small primes. It holds over every field.
+
+\begin{theorem}[Expansion for localised support]\label{thm:localized-intro}
+Let $\K$ be any field and let $n\ge67$. Let $D\in\K[x_p]$ be a nonconstant polynomial with $u$ terms whose terms have no common monomial factor, and let $q$ be the largest prime whose variable occurs in~$D$. If
+\[
+                q\le n/2\qquad\text{and}\qquad q<2(u-1),
+\]
+then $\wt(F_nD)\ge n$.
+\end{theorem}
+
+The two hypotheses are exactly what the reductions deliver. Fresh-prime elimination gives $q\le n/2$. The condition $q<2(u-1)$ holds for every counterexample that is minimal under deletion of terms, by a splitting inequality (\cref{lem:directed-cut}).
+
+\subsection{Strategy}\label{sec:strategy}
+The proof for $n\ge67$ consists of three moves (\cref{fig:flow}).
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item \emph{Remove the fresh primes.} The identity $F_n\cdot F_n=F_n^2$, which has exactly $n$ terms, shows that a multiplier may profit from containing fresh primes. In characteristic two, however, any such profit is controlled by squares. Choose a short multiple $G$ of $F_n$ of least total width in the non-fresh variables, and then of least weight. Formal derivatives in the fresh variables synchronise the fresh rows of~$G$. What remains is divisible by $F_n^2$, and each of its square classes is the square of another multiple of $F_n$ of strictly smaller total width. Minimality makes each such class cost at least $n$ terms. When there are at least $\lfloor\sqrt n\rfloor$ fresh primes, no such class can be paid for, and the counterexample can be replaced by one that avoids the fresh primes (\cref{sec:descent}).
+\item \emph{Confine the remaining primes.} Delete terms of the multiplier while it remains a counterexample. Split the resulting multiplier at the first positive power of a prime $q$. Both pieces then produce at least $n$ terms, and they can cancel only through integers divisible by $q$. This forces $q<2(u-1)$, where $u$ is the number of terms (\cref{sec:cut}).
+\item \emph{Count rough components.} A multiplier supported on the primes up to $q$ cannot change the $q$-rough part of an integer. So the product splits into disjoint pieces, one for each $q$-rough $b\le n$. Lower bounds for the pieces, combined with elementary sieve and Chebyshev estimates, give at least $n$ terms (\cref{sec:primes,sec:counting}).
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw,rounded corners=2pt,align=center,font=\small,inner sep=4pt,text width=5.3cm},
+  node distance=11mm,
+  arr/.style={-{Latex[length=2mm]},thick},
+  lab/.style={font=\footnotesize,align=left}]
+\node[box] (a) {a counterexample $H$ at $n$:\\ \mbox{$\wt(F_nH)<n$}};
+\node[box,below=of a] (b) {a counterexample $D$ avoiding $\Pn$,\\ with \mbox{$\wt(D)<n/r(n)$}};
+\node[box,below=of b] (c) {normalised, deletion-minimal $D$\\ with \mbox{$q\le n/2$} and \mbox{$q<2(\wt D-1)$}};
+\node[box,below=of c] (d) {\mbox{$\wt(F_nD)\ge n$}: contradiction};
+\draw[arr] (a)--(b) node[midway,right=3mm,lab]{\cref{thm:elimination}, square-root descent;\\ needs $r(n)\ge\lfloor\sqrt n\rfloor$ (\cref{prop:fresh-count})};
+\draw[arr] (b)--(c) node[midway,right=3mm,lab]{deletion and the directed cut\\ (\cref{lem:directed-cut})};
+\draw[arr] (c)--(d) node[midway,right=3mm,lab]{rough components and sieve bounds\\ (\cref{thm:localized-intro})};
+\end{tikzpicture}
+\caption{The proof of Theorem~A for a fixed $n\ge67$. No case $n'\ne n$ is used.}\label{fig:flow}
+\end{figure}
+
+The threshold $67$ is exactly where the counting hypothesis of the first move becomes available: $r(66)=7<8=\lfloor\sqrt{66}\rfloor$, while $r(n)\ge\lfloor\sqrt n\rfloor$ for all $n\ge67$. For $n\le66$ we apply the same descent directly with target~$n$. Explicit lower bounds for the cores $C_n$ show that any correction would be too expensive (\cref{sec:small}). Within that range, only the cases $n\le10$ are used as inputs to other cases.
+
+\subsection{Relation to previous work}\label{sec:prior}
+Several ingredients go back to Holdridge and Pach~\cite{HP}, and we indicate them where they are used.
+\begin{itemize}
+\item The ring structure of finite sets under $\triangle$ and $*$ and its identification with $\Ft[x_p]$ are in~\cite[Lemmas~2.1--2.2]{HP}. Polynomials over $\Ft$ also appear in the coding-theoretic origin of the problem~\cite{Pilz,PS} and in the proof of~\cite{NP}.
+\item The decomposition by rough parts is~\cite[Lemma~2.4]{HP} (for $n$-rough parts). Slicing a multiplier by $p$-adic valuation is~\cite[Section~3]{HP}.
+\item The fact that the primes in $(n/2,n]$ appear exactly once in $[n]$, and the importance of this fact, are emphasised in~\cite[Section~1]{HP}. Holdridge and Pach remove these primes one at a time. They expand the remaining multiplier in powers of $[n]\setminus\mathcal Q$ and use the identity $S*S=\{s^2:s\in S\}$~\cite[Lemma~6.2 and Section~6]{HP}. They also observe that, for products with $[n]\setminus T$, one may assume that no element of $A$ is divisible by a prime of $T$~\cite[proof of Lemma~6.1]{HP}. This is a precursor of \cref{cor:interval-elim}. Our square-root descent (\cref{sec:descent}) is an exact, threshold version of this mechanism. It removes all fresh primes at once, with no loss, as soon as there are $\lfloor\sqrt n\rfloor$ of them.
+\item The splitting inequality of \cref{lem:directed-cut} is a variant of~\cite[Lemma~4.1 and Corollary~4.3]{HP}, combined here with minimality under deletion.
+\item The lower bound through rough numbers in $(n/2,n]$ for smooth multipliers is~\cite[Lemma~4.4]{HP}. \Cref{thm:localized-intro} is an explicit refinement valid for every $n\ge67$.
+\item The overall shape of the second and third moves follows Holdridge and Pach's proofs of their Theorem~1.4 and of the case $k\ge81$ of their Lemma~6.1. If a large prime divides an element of $A$, they split $A$ using~\cite[Corollary~4.3]{HP}. Otherwise $A$ is smooth, and they count rough numbers in $(n/2,n]$~\cite[Lemma~4.4]{HP}.
+\item The identity $S*S=\{s^2:s\in S\}$ is~\cite[Lemma~6.2]{HP}. The pairing idea behind it goes back to the proof of~\cite[Theorem~5.1]{KM}.
+\item The multiplicativity of weight parity is~\cite[Lemma~3.4]{HP}, generalising~\cite[Lemma~4]{Pilz}.
+\item The two- and three-term cases of Theorem~A are due to Ke and Meyer~\cite{KM}. We reprove them in our framework because the small cases use them.
+\item The example $\{1,2\}*\{1,2,4\}=\{1,8\}$, showing that Theorem~A fails for general $B$ in place of $[n]$, is from~\cite{HP}.
+\end{itemize}
+Holdridge and Pach used the explicit rough-number estimates of Fan and of Fan--Pomerance~\cite{Fan,FanPom} and the prime estimates of Rosser--Schoenfeld~\cite{RS}. To keep the present paper self-contained and suitable for formal verification, we instead prove the weaker estimates we need from first principles. These are Chebyshev's argument~\cite{Chebyshev} with the binomial-coefficient bound familiar from Erd\H{o}s's proof of Bertrand's postulate~\cite{Erdos} (see also~\cite{Hanson,Nair}), and a Legendre-type sieve for rough numbers in the sense of Buchstab~\cite{Buchstab}.
+
+\subsection{Further results}
+Besides Theorem~A, \cref{thm:elim-set} and \cref{thm:localized-intro}, the proof gives several statements of independent interest.
+\begin{itemize}
+\item Theorem~A holds over every field of characteristic two and for vector-valued multipliers (\cref{cor:char2}).
+\item The polynomial elimination theorem (\cref{thm:elimination}) comes with a lower bound for every residual square class (\cref{prop:residual}).
+\item Theorem~A holds for every multiplier with at most four terms, extending the case $|A|\le3$ of~\cite{KM}, and for every multiplier supported on at most three primes (\cref{cor:three-lists,thm:three-primes,cor:four-lists}). These are proved early, using only the cases $n\le10$.
+\item Over any field, minimal counterexamples have a rigid structure: every element of their normalised support divides $(2u-3)!$, where $u$ is the number of terms (\cref{prop:factorial}). This is relevant to \cref{q:odd}.
+\end{itemize}
+
+\subsection{Organisation and notation}
+\Cref{sec:prelim} sets up the polynomial model, the endpoint bound and the rough decomposition. \Cref{sec:descent} proves the elimination theorem, and \cref{sec:cut} the splitting inequality. \Cref{sec:assembly} assembles the proof for $n\ge67$ from two propositions, proved in \cref{sec:primes} (counting fresh primes) and \cref{sec:counting} (counting rough components). \Cref{sec:small} treats $n\le66$, and \cref{sec:remarks} discusses sharpness and open problems. \Cref{app:deps} records the logical dependencies, which we hope will be useful for formalisation.
+
+Throughout, $p$ and $q$ denote primes, $\pi(t)$ is the number of primes at most $t$ (for real $t$), and $\log$ is the natural logarithm. \Cref{tab:notation} collects the main notation.
+
+\begin{table}[ht]
+\centering\small
+\caption{Main notation.}\label{tab:notation}
+\begin{tabular}{@{}ll@{}}
+\toprule
+$X(a)$, $F_n$ & monomial of $a\in\N$; $F_n=\sum_{a\le n}X(a)$\\
+$\wt$, $\supp$, $\dist_\K$ & number of terms; support; minimal weight of a nonzero multiple\\
+$\Pn$, $r(n)$ & fresh primes $p\in(n/2,n]$; $r(n)=|\Pn|=\pi(n)-\pi(n/2)$\\
+$C_n$ & $F_n$ with the fresh terms removed\\
+$\cl P\epsilon$, $\sigma(P)$ & full parity class of $P$; largest size of a parity class\\
+$\sm jq$ & sum of $X(a)$ over $q$-smooth $a\le j$\\
+$\Phi_q(t)$, $I_q(t)$ & number of $q$-rough $b\le t$; number of $q$-rough $b\in(t/2,t]$\\
+$\varrho(q)$, $\delta_q$ & $\prod_{p\le q}(1-1/p)$; discrepancy bound for $\Phi_q$\\
+$\width_x$, $W$ & $\deg_x-\ord_x$; total width in the base variables\\
+\bottomrule
+\end{tabular}
+\end{table}

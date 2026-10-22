@@ -1,0 +1,240 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\N}{\mathbb N}
+\newcommand{\lcm}{\operatorname{lcm}}
+\hypersetup{pdftitle={The optimal 4/3 density bound in Pilz's problem},pdfauthor={}}
+\title{The optimal \(4/3\) density bound in Pilz's problem}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a finite set \(A\) of positive integers, let \(A*[n]\) be the set of
+integers with an odd number of representations \(aj\), \(a\in A\),
+\(1\le j\le n\). Holdridge and Pach showed that \(|A*[n]|/n\) tends to a
+limit \(h(A)\), that \(h(A)\ge8/7\) unless \(A=\{a\}\) or \(A=\{a,2a\}\),
+and expected that \(8/7\) could be replaced by \(4/3\). We prove this.
+The constant is attained by \(\{1,3\}\), and density one occurs exactly
+for the two excluded families. The proof is elementary, uses a single
+divisibility cut and a calculation for sets of powers of two, and requires
+no computer search. It is independent of the resolution of the
+finite-interval conjecture in~\cite{Main}. All results are formally
+verified in Lean~4.
+\end{abstract}
+
+\section*{Introduction}
+Here \(\N=\{1,2,\ldots\}\) and \([n]=\{1,\ldots,n\}\), with \([0]=\varnothing\).
+For finite \(A,B\subset\N\) we follow~\cite{HP} and write \(A*B\) for the
+set of integers with an odd number of ordered representations \(ab\), where
+\(a\in A\), \(b\in B\). Thus \(A*[n]\) is the symmetric difference of the
+sets \(a[n]\), \(a\in A\).
+
+Pilz's Extended 1-2-3 Conjecture~\cite{Pilz,HKP} asserts that
+\(|A*[n]|\ge n\) for every finite nonempty \(A\) and every \(n\ge1\).
+Holdridge and Pach~\cite{HP} proved it for all sufficiently large \(n\), and
+a proof for every \(n\) is given in~\cite{Main}. Alongside the
+finite-interval problem, \cite{HP} studies the asymptotic behaviour for a
+fixed set \(A\). Using the exact counting formula of Ke and
+Meyer~\cite[(2.1)]{KM}, they show \cite[Lemma 1.6]{HP} that the density
+\[
+h(A)=\lim_{n\to\infty}\frac{|A*[n]|}{n}
+\]
+exists, and they prove \cite[Theorem 1.8]{HP} that \(h(A)\ge8/7\) unless
+\(A\) has the form \(\{a\}\) or \(\{a,2a\}\). In \cite[Remark 1.9]{HP} they
+write that they expect the same theorem to hold with \(8/7\) replaced by
+\(4/3\), and that their method could achieve this up to checking a number
+of finite cases too large to carry out. We prove this bound, without any
+case check.
+
+\begin{theorem}\label{main}
+For every finite nonempty \(A\subset\N\), the limit \(h(A)\) exists and is
+rational. If \(A\) is neither \(\{a\}\) nor \(\{a,2a\}\) for any \(a\in\N\),
+then \(h(A)\ge4/3\). The excluded sets have density one, and
+\(h(\{1,3\})=4/3\), so the constant is best possible.
+\end{theorem}
+
+In particular \(h(A)=1\) exactly for the two excluded families, and every
+other set has density at least \(4/3\). For sets of powers of two the proof
+gives the stronger bound \(3/2\).
+
+The argument has two ingredients. The first is a divisibility cut
+(Lemma~\ref{cut}), which splits \(A\) according to divisibility by a prime
+\(p\) and loses at most \(2/p\) times the density of the part coprime to
+\(p\). It is a variant of the splitting estimates of
+\cite[Lemma 4.1, Corollary 4.3]{HP}, in which the loss is controlled by a
+density rather than by a count of pairs. The second is an explicit
+calculation for sets of powers of two, which are the only sets the cut at
+an odd prime does not reach.
+
+We first establish the two counting facts needed for the proof.
+
+\begin{lemma}[Existence and scaling]\label{exist}
+For every finite nonempty \(A\subset\N\),
+\[
+h(A)=\sum_{\varnothing\ne J\subseteq A}
+       (-2)^{|J|-1}\frac{\min J}{\lcm(J)}.
+\]
+In particular \(h(A)\) exists and is rational.
+Moreover, \(h(cA)=h(A)\) for every \(c\in\N\).
+\end{lemma}
+The counting formula below is \cite[(2.1)]{KM}, and the limit formula is
+\cite[Lemma 1.6]{HP}; we include the short proof for completeness.
+\begin{proof}
+An integer lying in exactly \(r\) of a finite family of sets contributes
+\[
+\sum_{j=1}^{r}(-2)^{j-1}\binom rj
+=\frac{1-(-1)^r}{2}
+\]
+to their signed intersection sum. This is one when \(r\) is odd and zero
+when \(r\) is even. The intersection of \(a[n]\), \(a\in J\ne\varnothing\),
+consists of the positive multiples of \(\lcm(J)\) at most \((\min J)n\).
+Consequently,
+\[
+|A*[n]|=\sum_{\varnothing\ne J\subseteq A}
+ (-2)^{|J|-1}\left\lfloor\frac{(\min J)n}{\lcm(J)}\right\rfloor .
+\]
+Divide by \(n\) and take the limit term by term in this finite sum.
+Finally, multiplication by \(c\) preserves all representation counts and
+is injective, so \((cA)*[n]=c(A*[n])\).
+\end{proof}
+
+\begin{lemma}[The divisibility cut]\label{cut}
+Let \(p\) be a prime and let \(A=B\sqcup C\), where no element of \(B\)
+is divisible by \(p\) and every element of \(C\) is divisible by \(p\).
+Then
+\[
+h(A)\ \ge\ (1-2/p)h(B)+h(C).
+\]
+Here the empty set may be assigned density zero.
+\end{lemma}
+\begin{proof}
+The essential identity is
+\[
+(B*[n])\cap p\N=p\bigl(B*[\lfloor n/p\rfloor]\bigr).
+\]
+Indeed, if \(py=aj\) with \(a\in B\), then \(p\nmid a\) implies \(j=pk\).
+Thus \(py=aj\), \(1\le j\le n\), corresponds bijectively to
+\(y=ak\), \(1\le k\le\lfloor n/p\rfloor\). In particular, their
+representation counts have the same parity.
+
+Put \(S=B*[n]\) and \(T=C*[n]\). Since \(T\subseteq p\N\) and
+\(A*[n]=S\mathbin{\triangle}T\),
+\[
+|A*[n]|=|S|+|T|-2|S\cap T|
+\ge |B*[n]|+|C*[n]|-2|B*[\lfloor n/p\rfloor]|.
+\]
+Divide by \(n\) and take limits. The final term divided by \(n\)
+tends to \(h(B)/p\): set \(m=\lfloor n/p\rfloor\), and use
+\((|B*[m]|/m)(m/n)\to h(B)/p\).
+\end{proof}
+
+\begin{lemma}[A baseline]\label{baseline}
+Every finite nonempty \(A\subset\N\) has \(h(A)\ge1\).
+\end{lemma}
+\begin{proof}
+Induct on \(|A|\). A singleton gives exactly \(n\) products, so has density one.
+For \(|A|\ge2\), divide all elements by their greatest common divisor;
+Lemma~\ref{exist} leaves the density unchanged. The resulting set has gcd one
+and contains an element greater than one. Choose a prime \(p\) dividing that
+element, and partition the set into \(B=\{a:p\nmid a\}\) and \(C=\{a:p\mid a\}\).
+Both parts are nonempty: the second by our choice, the first because the gcd
+is one. By induction their densities are at least one. Since \(p\ge2\),
+Lemma~\ref{cut} gives
+\[
+h(A)\ge(1-2/p)\cdot1+1=2-2/p\ge1.
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+Existence and rationality of \(h(A)\) are Lemma~\ref{exist}.
+Divide \(A\) by its gcd. This preserves its density and whether it belongs
+to either excluded family. If an odd prime \(p\) divides one of its elements,
+the partition in the preceding proof and Lemmas~\ref{cut}--\ref{baseline} give
+\[
+h(A)\ge2-2/p\ge4/3.
+\]
+
+Otherwise every element is a power of two. In such a set, deleting the least
+element cannot increase the density: divide by that element, leaving
+\(B=\{1\}\) and a set \(C\) of even numbers, and apply Lemma~\ref{cut} with
+\(p=2\) to obtain \(h(B\cup C)\ge h(C)\). Scaling back proves the assertion.
+
+For two powers of two, scale to \(A=\{1,u\}\). Outside the excluded case
+\(u=2\), we have \(u\ge4\), and Lemma~\ref{exist} gives
+\[
+h(A)=2-\frac2u\ge\frac32.
+\]
+For three powers of two, scale to \(A=\{1,u,uv\}\), where \(u,v\ge2\).
+The same formula gives
+\[
+h(A)=3-\frac2u-\frac2v+\frac2{uv}
+=1+2\left(1-\frac1u\right)\left(1-\frac1v\right)\ge\frac32.
+\]
+For a larger set, delete the least element repeatedly until three remain.
+Its original density is at least that of the final three-element set.
+This proves the required bound, and in fact the stronger \(3/2\) bound
+in the powers-of-two case.
+
+Finally, a singleton has density one, and direct counting gives
+\[
+|\{a,qa\}*[n]|=2n-2\lfloor n/q\rfloor\qquad(q\ge2).
+\]
+Taking \(q=2\) proves the remaining exception; taking \(a=1,q=3\)
+proves sharpness.
+\end{proof}
+
+\paragraph{Scope.}
+The set \(A\) is fixed while \(n\) tends to infinity.
+There is no assertion that \(|A*[n]|\ge4n/3\) for every \(n\):
+for example, \(\{1,2,3\}*[3]=\{1,4,9\}\).
+The proof also shows that density one occurs exactly in the two stated
+families. It does not classify all sets of density \(4/3\).
+
+\section*{Formalization}
+The accompanying Lean~4 sources give a formal proof of Theorem~\ref{main}.
+The complete statement is \texttt{PilzDensity.companion\_theorem}; optimality
+of \(4/3\) is \texttt{PilzDensity.four\_thirds\_optimal}, and the limit for
+\(\{1,3\}\) is \texttt{PilzDensity.sharpness\_limit}. The density is defined
+directly as the limit of the ordered odd-representation count, and the
+development does not depend on the finite-interval theorem of~\cite{Main}.
+The repository's \texttt{paper/README.md} maps each lemma to its Lean
+theorem and gives build and verification commands.
+
+\section*{Acknowledgements}
+The question answered here was raised by Philippa Holdridge and
+P\'eter P\'al Pach~\cite[Remark 1.9]{HP}, whose paper also supplies the
+density framework and the splitting estimates on which the divisibility
+cut is modelled. The counting formula is due to Ke and Meyer~\cite{KM}.
+
+\section*{License}
+This paper is licensed under the Creative Commons Attribution~4.0
+International License, \url{https://creativecommons.org/licenses/by/4.0/}.
+
+\begin{thebibliography}{9}
+\bibitem{HP}
+P. Holdridge and P. P. Pach,
+\emph{On the Extended 1-2-3 Conjecture of Pilz},
+preprint (2026), arXiv:2607.00934.
+\bibitem{HKP}
+P.-Y. Huang, W.-F. Ke and G. F. Pilz,
+\emph{The cardinality of some symmetric differences},
+Proc. Amer. Math. Soc. \textbf{138} (2010), 787--797.
+\bibitem{KM}
+W.-F. Ke and J. H. Meyer,
+\emph{On a conjecture regarding the symmetric difference of certain sets},
+Bull. Aust. Math. Soc. \textbf{111} (2025), 397--404.
+\bibitem{Main}
+\emph{A proof of Pilz's Extended 1-2-3 Conjecture},
+preprint (2026), with Lean~4 formalization.
+\bibitem{Pilz}
+G. F. Pilz,
+\emph{On polynomial near-ring codes},
+Contrib. Gen. Algebra \textbf{8} (1992), 233--238.
+\end{thebibliography}
+\end{document}

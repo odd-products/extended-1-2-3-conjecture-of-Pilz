@@ -1,0 +1,223 @@
+\section{Eliminating the fresh primes}\label{sec:descent}
+
+All polynomials in this section have coefficients in $\Ft$.
+
+\subsection{Setting}
+Fix base variables $\bx=(x_1,\dots,x_t)$ and fresh variables $\bz=(z_1,\dots,z_r)$ with $r\ge1$. Let $0\ne C\in\Ft[\bx]$ and put
+\[
+ Z=z_1+\cdots+z_r,\qquad F=C+Z.
+\]
+By \cref{lem:reductions}(b) we may compute $\dist(F)$ inside $\Ft[\bx,\bz]$. A polynomial is \emph{fresh-even} if it lies in $\Ft[\bx,z_1^2,\dots,z_r^2]$. Only base variables enter the total width
+\[
+ W(P)=\sum_{i=1}^t\width_{x_i}(P)\qquad(P\ne0).
+\]
+For a variable $x_i$, the width of $F$ equals $\deg_{x_i}C$, because $Z$ has $x_i$-exponent $0$. Hence
+\begin{equation}\label{eq:widthF}
+ \width_{x_i}(F)=\deg_{x_i}C\qquad(1\le i\le t).
+\end{equation}
+Fix an integer target $N$ with $1\le N\le\wt(C)+r$. Call a nonzero multiple $G$ of $F$ \emph{short} if $\wt(G)<N$.
+
+\begin{definition}[Extremal multiples]\label{def:extremal}
+A short multiple $G$ of $F$ is \emph{extremal} if it minimises $W$ among all short multiples, and minimises $\wt$ among the short multiples with that value of $W$.
+\end{definition}
+
+Extremal multiples exist whenever short ones do, because $W$ and $\wt$ take values in $\N\cup\{0\}$. The descent consists of replacing an extremal multiple by others that are still extremal, until it takes a rigid form.
+
+\begin{lemma}[Basic facts]\label{lem:basic}
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $F$ is a prime element of $\Ft[\bx,\bz]$. It divides no monomial, it does not divide $Z$, and it does not divide $z_i+z_j$ for $i\ne j$.
+\item If $\wt(C)=1$, there are no short multiples. Hence, if short multiples exist, then $C$ is not a monomial and $W(F)\ge1$.
+\item \textup{(Stability.)} Let $G$ be extremal and let $G'$ be a nonzero multiple of $F$ with $\wt(G')\le\wt(G)$ and $\width_{x_i}(G')\le\width_{x_i}(G)$ for all $i$. Then $G'$ is extremal, with the same weight and the same widths as~$G$.
+\item If $G$ is extremal and $\bz^\beta$ is a monomial in the fresh variables, then $\bz^\beta G$ is extremal.
+\item For $i\ne j$ the derivation $\partial_{ij}=\partial_{z_i}+\partial_{z_j}$ satisfies $\partial_{ij}F=0$. Hence $\partial_{ij}(FH)=F\,\partial_{ij}H$, and $\partial_{ij}$ maps multiples of $F$ to multiples of $F$. Every $\partial_{z_i}$ maps a polynomial to one whose base exponents occur among those of the original.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) Since $F$ is linear in $z_1$ with coefficient $1$, substituting $z_1=C+z_2+\cdots+z_r$ identifies $\Ft[\bx,\bz]/(F)$ with the domain $\Ft[\bx,z_2,\dots,z_r]$. So $F$ is prime, and $F$ divides a polynomial exactly when that polynomial vanishes under the substitution. A monomial maps to a nonzero product, since $C+z_2+\cdots+z_r\ne0$. The polynomial $Z$ maps to $C\ne0$. For $i,j\ne1$, $z_i+z_j$ maps to itself. Finally $z_1+z_j$ maps to $C+\sum_{k\ne1,j}z_k$, which is nonzero because $C\ne0$ involves no fresh variable.
+
+(b) If $C=\bx^\alpha$ is a monomial, then $\dist(F)\ge r+1=\wt(C)+r\ge N$. This follows by slicing $F=\bx^\alpha+z_1+\cdots+z_r$ successively in $z_1,\dots,z_r$ as in \cref{lem:endpoints}. Otherwise $C$ involves some $x_i$, and $W(F)\ge\deg_{x_i}C\ge1$ by~\eqref{eq:widthF}.
+
+(c) $G'$ is short, so $W(G')\ge W(G)$ by extremality. Since each width of $G'$ is at most the corresponding width of $G$, all widths are equal. Extremality then gives $\wt(G')\ge\wt(G)$, hence equality.
+
+(d) Multiplying by $\bz^\beta$ changes neither base widths nor weight.
+
+(e) $\partial_{z_i}F=1$ for every $i$. The rest is the Leibniz rule and the fact that $\partial_{z_i}$ does not change base exponents.
+\end{proof}
+
+Note that $\wt(\partial_{z_i}G)$ equals the number $m_i(G)$ of terms of $G$ whose $z_i$-exponent is odd.
+
+\subsection{Synchronising the fresh rows}
+
+\begin{proposition}[Synchronised normal form]\label{prop:normal-form}
+Suppose short multiples of $F$ exist. Then there is an extremal multiple $G$, of weight $m$ say, with
+\[
+ G=G_0+Z D,\qquad m=\wt(G_0)+r\,u,\qquad u:=\wt(D)\le\tfrac m2,
+\]
+where $G_0$ and $D$ are fresh-even and nonzero.
+In particular $ru<m<N$, and $\partial_{z_i}G=D$ for every $i$.
+\end{proposition}
+
+\begin{proof}
+By \cref{lem:basic}(b), $W(F)\ge1$. Start from any extremal $G$, of weight $m$, and write $m_i=m_i(G)$.
+
+\emph{Step 1 (parity normalisation).} Multiplying by $z_i$ replaces $m_i$ by $m-m_i$ and leaves the other $m_j$ unchanged. By \cref{lem:basic}(d) we may therefore assume $m_i\le m/2$ for all~$i$.
+
+\emph{Step 2 (synchronisation).} Suppose that $m_i<m/2$ for some $i$, and let $j\ne i$. By \cref{lem:basic}(e), $\partial_{ij}G$ is a multiple of $F$ of weight at most $m_i+m_j<m$, with no larger base widths than $G$. By \cref{lem:basic}(c) it must vanish. Hence all the derivatives $\partial_{z_j}G$ coincide; call the common value~$D$. Since $D=\partial_{z_j}G$ is even in $z_j$ for every $j$, it is fresh-even. Put $G_0=G+ZD$. Then
+\[
+ \partial_{z_j}G_0=D+(\partial_{z_j}Z)D+Z\,\partial_{z_j}D=D+D+0=0
+\]
+for every $j$, so $G_0$ is fresh-even. In $G=G_0+ZD$ the summands $G_0$, $z_1D,\dots,z_rD$ have pairwise disjoint supports: $G_0$ is even in every fresh variable, while $z_jD$ is odd in $z_j$ only. Hence $m=\wt(G_0)+r\,\wt(D)$ and $u=\wt(D)=m_i\le m/2$. If $r=1$, Step 2 applies without any condition on $m_1$: it is just the decomposition by $z_1$-parity.
+
+\emph{Step 3 (the balanced case).} Suppose $r\ge2$ and $m_i=m/2$ for every $i$. Write $y=z_1$, $y'=z_2$ and
+\[
+ G=B_{00}+yB_{10}+y'B_{01}+yy'B_{11},
+\]
+with each $B_{kl}$ even in $y$ and $y'$. The conditions $m_1=m_2=m/2$ give $\wt(B_{10})=\wt(B_{01})=:b$ and $\wt(B_{00})=\wt(B_{11})=:h$ with $m=2(h+b)$.
+
+If $b>0$, put $G'=\partial_{12}G=B_{10}+B_{01}+(y+y')B_{11}$. This is a multiple of $F$ of weight at most $2b+2h=m$, with no larger base widths. It is nonzero. Indeed, $G'=0$ would force $B_{11}=0$, hence $h=0$ and $B_{00}=0$, and $B_{10}=B_{01}$, so $G=(y+y')B_{10}$. Then $F\mid B_{10}$ by \cref{lem:basic}(a), and $B_{10}$ is a nonzero multiple of weight $m/2<m$ with no larger widths, contradicting \cref{lem:basic}(c). So $G'$ is extremal by \cref{lem:basic}(c), and its number of terms odd in $y$ is $\wt(B_{11})=h<m/2$.
+
+If $b=0$, put $G''=\partial_{12}(yG)=B_{00}+y^2B_{11}$. Here $yG$ is extremal by \cref{lem:basic}(d). If $G''=0$ then $G=y(y+y')B_{11}$, and the same argument gives a contradiction. So $G''$ is extremal, and it has no terms odd in $y$.
+
+In both cases we obtain an extremal multiple with $m_1<m/2$. Multiplying by suitable $z_j$ with $j\ge3$ restores $m_j\le m/2$ for those $j$ without changing $m_1$, and Step 2 applies.
+
+\emph{Step 4 ($D\ne0$).} Let $G$ be as produced by Step 2, and suppose $D=0$, so that every fresh derivative of $G$ vanishes. Write $G=FH$. Then $0=\partial_{z_1}G=H+F\,\partial_{z_1}H$, so $F\mid H$ and $G=F^2E$. Since $F^2$ is fresh-even and $\partial_{z_j}G=F^2\partial_{z_j}E$, the polynomial $E$ is fresh-even. Decompose it as $E=\sum_{\epsilon}\bx^{\epsilon}E_\epsilon^2$ over base parities. Then
+\[
+ G=\sum_\epsilon \bx^\epsilon (FE_\epsilon)^2,
+\]
+and the summands have disjoint supports. Choose $\epsilon$ with $E_\epsilon\ne0$. Then $FE_\epsilon$ is a nonzero multiple of $F$ of weight $\wt(\bx^\epsilon(FE_\epsilon)^2)\le m<N$. Its widths satisfy $2\width_{x_i}(FE_\epsilon)=\width_{x_i}(\bx^\epsilon(FE_\epsilon)^2)\le\width_{x_i}(G)$. Since $W(G)\ge W(F)\ge1$, we get $W(FE_\epsilon)\le W(G)/2<W(G)$, contradicting extremality.
+
+\emph{Step 5 ($G_0\ne0$).} If $r=1$, then $m=\wt(G_0)+u$ and $u\le m/2$ force $\wt(G_0)\ge m/2>0$. If $r\ge2$ and $G_0=0$, then $G=ZD$. Since $F$ is prime and does not divide $Z$, we get $F\mid D$. But $D=\partial_{z_1}G$ is nonzero, has weight $m/r<m$, and has no larger widths than $G$, contradicting \cref{lem:basic}(c).
+
+Finally $G_0\ne0$ gives $ru<m$.
+\end{proof}
+
+\subsection{The residual and its square classes}
+
+\begin{proposition}[Residual classes cost the full target]\label{prop:residual}
+Let $G=G_0+ZD$ be as in \cref{prop:normal-form}, and put
+\[
+ R=G+FD=G_0+CD.
+\]
+Then $R$ is fresh-even and divisible by $F^2$, and every nonzero full parity class of $R$ has at least $N$ terms.
+\end{proposition}
+
+\begin{proof}
+The two expressions for $R$ agree because $ZD+ZD=0$. The second shows that $R$ is fresh-even. Write $G=FH$. Then $D=\partial_{z_1}G=H+F\,\partial_{z_1}H$, so $R=FH+FH+F^2\partial_{z_1}H=F^2J$ with $J=\partial_{z_1}H$. Since $R$ is fresh-even and $\partial_{z_j}R=F^2\partial_{z_j}J$, the polynomial $J$ is fresh-even too.
+
+If $R=0$, the assertion is immediate; assume $R\ne0$.
+
+\emph{The cofactor $H$ has positive width in some base variable.} Otherwise $H=\bx^\beta H'$ with $H'\in\Ft[\bz]$. Let $c_0\in\{0,1\}$ be the constant term of $C$. Then $FH'=(C-c_0)H'+(c_0+Z)H'$. The terms of $(C-c_0)H'$ are copies of $H'$ in distinct nonzero base monomials, and $(c_0+Z)H'$ lies in base degree zero. By \cref{lem:endpoints},
+\[
+ \wt(FH')=(\wt(C)-c_0)\wt(H')+\wt((c_0+Z)H')\ge \wt(C)-c_0+r+c_0\ge N,
+\]
+contradicting $\wt(FH')=\wt(G)<N$.
+
+\emph{Width of the residual.} Fix a base variable $x$. Every exponent of $x$ in $G_0$ or in $D=\partial_{z_1}G$ is an exponent of $x$ in $G$. Since $R=G_0+CD$, we get $\ord_xR\ge\ord_xG$ and $\deg_xR\le\deg_xG+\deg_xC$. Using~\eqref{eq:widthF} and $\width_x(G)=\width_x(F)+\width_x(H)$, this gives
+\begin{equation}\label{eq:residual-width}
+ \width_x(R)\le\width_x(G)+\width_x(F)=2\width_x(G)-\width_x(H).
+\end{equation}
+
+\emph{Square classes.} Since $R=F^2J$ is fresh-even, decomposing $J$ by full parity shows that the nonzero full parity classes of $R$ are $\cl R\epsilon=\bx^\epsilon(FJ_\epsilon)^2$ for base parity vectors $\epsilon$ and polynomials $J_\epsilon$. Here $\wt(\cl R\epsilon)=\wt(FJ_\epsilon)$, and by~\eqref{eq:residual-width}
+\[
+ \width_x(FJ_\epsilon)=\tfrac12\width_x(\cl R\epsilon)\le\tfrac12\width_x(R)\le\width_x(G)-\tfrac12\width_x(H)
+\]
+for every base variable $x$, with strict inequality for at least one~$x$. Thus $FJ_\epsilon$ is a nonzero multiple of $F$ with $W(FJ_\epsilon)<W(G)$. By extremality it is not short, so $\wt(\cl R\epsilon)=\wt(FJ_\epsilon)\ge N$.
+\end{proof}
+
+The polynomial $G$ differs from the multiple $FD$ only by $R$. The fresh-odd part of $FD$ is $ZD$ and its fresh-even part is $CD$. A residual class can therefore be cancelled only by the corresponding class of $CD$. This yields the following comparison. Let $a$ denote the number of nonzero full parity classes of~$R$.
+
+\begin{corollary}[Protected classes]\label{cor:protection}
+In the situation of \cref{prop:residual}:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item If $\wt(\cl{(CD)}\epsilon)<ru+N-m$, then $\cl R\epsilon=0$. In particular this holds whenever $\wt(\cl{(CD)}\epsilon)\le ru$.
+\item If every full parity class of $CD$ has at most $M$ terms, then
+\[
+ m\ge\wt(FD)+a(N-2M)\qquad\text{and}\qquad a(N-M)\le m-ru .
+\]
+\item Let $M$ bound every class of $CD$. If either $N\ge2M$ and $\wt(FD)\ge N$, or $a\le1$ and $\wt(FD)\ge\max\{N,2M\}$, then $m\ge N$, which is impossible. In applications this shows that no short multiple exists.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Classwise, $\cl G\epsilon=\cl R\epsilon+\cl{(FD)}\epsilon$. Every class of $R$ is fresh-even, and for fresh-even $\epsilon$ we have $\cl{(FD)}\epsilon=\cl{(CD)}\epsilon$. Moreover $\cl G\epsilon$ is then contained in $G_0$, whose weight is $m-ru$. If $\cl R\epsilon\ne0$, then
+\[
+ m-ru\ge\wt(\cl G\epsilon)\ge N-\wt(\cl{(CD)}\epsilon),
+\]
+which proves~(i). For (ii), each $\epsilon$ with $\cl R\epsilon\ne0$ satisfies
+\[
+ \wt(\cl G\epsilon)\ge N-M\ge\wt(\cl{(FD)}\epsilon)+N-2M.
+\]
+The other classes satisfy $\wt(\cl G\epsilon)=\wt(\cl{(FD)}\epsilon)$. Summing over all classes gives the first inequality. The $a$ classes with $\cl R\epsilon\ne0$ lie in $G_0$, which gives the second. For~(iii): in the first case $m\ge\wt(FD)\ge N$. In the second, $m\ge\wt(FD)\ge N$ if $a=0$, and $m\ge\wt(FD)+N-2M\ge N$ if $a=1$.
+\end{proof}
+
+\subsection{The elimination theorem}
+
+\begin{theorem}[Fresh-variable elimination]\label{thm:elimination}
+If $r\ge\sigma(C)$, then
+\[
+ \dist(C+z_1+\cdots+z_r)=\min_{0\ne D\in\Ft[\bx]}\bigl(\wt(CD)+r\,\wt(D)\bigr).
+\]
+In particular, the minimum on the left is attained by a multiplier involving no fresh variable.
+\end{theorem}
+
+\begin{proof}
+Let $d$ denote the right-hand side. A multiplier $D\in\Ft[\bx]$ gives $FD=CD+z_1D+\cdots+z_rD$ with disjoint summands, so $\dist(F)\le d\le\wt(C)+r$ (take $D=1$). Suppose $\dist(F)<d$. Then short multiples exist for the target $N=d$, and \cref{prop:normal-form} provides $G=G_0+ZD$ with fresh-even $D\ne0$ of weight $u$.
+
+Every full parity class of $CD$ is a sum of products $\cl C{\epsilon'}\cdot\cl D{\epsilon''}$ with $\epsilon'+\epsilon''\equiv\epsilon$. For fixed $\epsilon$, each class of $D$ occurs once, so the class has at most $\sigma(C)\,u\le ru$ terms. By \cref{cor:protection}(i), $R=0$, that is, $G=FD$.
+
+Write $D=\sum_\alpha \bz^{2\alpha}D_\alpha$ with $D_\alpha\in\Ft[\bx]$. Then
+\[
+ G=FD=\sum_\alpha\Bigl(\bz^{2\alpha}CD_\alpha+\sum_{i=1}^r\bz^{2\alpha}z_iD_\alpha\Bigr).
+\]
+All these summands have pairwise disjoint supports, since their fresh exponent vectors are $2\alpha$ and $2\alpha+e_i$. Hence
+\[
+ m=\wt(G)=\sum_\alpha\bigl(\wt(CD_\alpha)+r\,\wt(D_\alpha)\bigr)\ge d,
+\]
+because some $D_\alpha\ne0$. This contradicts $m<N=d$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:elim-set}]
+Let $\bx$ be the variables of the primes dividing elements of $B_0$, and let $z_p=x_p$ for $p\in T$. By hypothesis $\sum_{b\in B}X(b)=C+\sum_{p\in T}z_p$ with $C=\sum_{b\in B_0}X(b)\in\Ft[\bx]$. Two elements of $B_0$ lie in the same square class exactly when their monomials lie in the same full parity class, so $\sigma(C)=\sigma(B_0)$.
+
+If $B_0=\emptyset$, so that $B=T$, both sides equal $|T|$ by \cref{lem:endpoints}. So let $B_0\ne\emptyset$; then $|T|\ge\sigma(B_0)\ge1$. By~\eqref{eq:encoding}, the left-hand side of the theorem is $\dist(C+\sum_{p\in T}z_p)$, which may be computed in $\Ft[\bx,\bz]$ by \cref{lem:reductions}(b). By \cref{thm:elimination} it equals the minimum of $\wt(CD)+|T|\wt(D)$ over nonzero $D\in\Ft[\bx]$.
+
+On the right-hand side, $A$ may involve further primes outside $T$. Let $\mathbf w$ be the corresponding variables and let $D$ be free of the $z_p$. Expanding $D=\sum_\beta\mathbf w^\beta D_\beta$ with $D_\beta\in\Ft[\bx]$ gives $\wt(CD)+|T|\wt(D)=\sum_\beta\bigl(\wt(CD_\beta)+|T|\wt(D_\beta)\bigr)$. So such primes never lower the minimum. Finally, for $A$ with no element divisible by a prime of $T$, the encoding gives $\wt(CH_A)=|A*B_0|$ and $\wt(H_A)=|A|$.
+\end{proof}
+
+\begin{example}[The hypothesis $r\ge\sigma(C)$ is needed]\label{ex:sharp}
+Let $x=x_2$, $z=x_3$ and $C=(1+x)^5=1+x+x^4+x^5$, so that $\sigma(C)=2$ and $r=1$. In integers, $B=\{1,2,3,16,32\}$, $T=\{3\}$ and $B_0=\{1,2,16,32\}$. Then
+\[
+ G=(1+x)z^3+1+x^{16}=(C+z)\,(1+x)(z^2+Cz+C^2)
+\]
+has four terms. With the corresponding $A$,
+\[
+ A=\{1,2,3,4,8,9,12,18,48,192,256,512,1024,2048\},
+\]
+we get $A*B=\{1,27,54,65536\}$. On the other hand, every $D\in\Ft[x]\setminus\{0\}$ has $\wt(CD)+\wt(D)\ge5$. For one-term $D$ the value is $5$, and for $D$ with at least three terms it is at least $2+3$. For two terms we may take $D=1+x^j$ with $j\ge1$; then the exponent set $\{0,1,4,5\}$ of $C$ meets its translate by $j$ in at most two points, so $\wt(CD)\ge4$. As in the proof of \cref{thm:elim-set}, further primes cannot lower this minimum, so $|A*B_0|+|A|\ge5$ for every nonempty $A$ coprime to $3$. So the conclusion of \cref{thm:elim-set} fails for $B=\{1,2,3,16,32\}$.
+
+The multiple $G$ also shows the structure described in \cref{prop:normal-form,prop:residual}. With target $N=5$, it has the synchronised form with $m=4$, $D=(1+x)z^2$, $u=2$, $G_0=1+x^{16}$ and $R=F^2(1+x)^6$. The residual has a single parity class, of weight $6\ge N$, as \cref{prop:residual} requires of extremal multiples. (We have not proved that $G$ is extremal.) The matching class of $CD$ has weight $4>ru+N-m=3$, so it is not protected, and the cancellation is genuine.
+\end{example}
+
+\subsection{Application to intervals}
+For $F_n$ the fresh variables are $x_p$ with $p\in\Pn$, and $F_n=C_n+Z_n$ with $Z_n=\sum_{p\in\Pn}x_p$. Removing these primes from $[n]$ leaves every square. So, by~\eqref{eq:squarefree-split}, $\sigma(C_n)=\lfloor\sqrt n\rfloor$.
+
+\begin{corollary}[Counterexamples avoid the fresh primes]\label{cor:interval-elim}
+Let $n\ge2$ with $r(n)\ge\lfloor\sqrt n\rfloor$. If $\dist_{\Ft}(F_n)<n$, then there is a nonzero $D$ involving only the primes at most $n/2$ with
+\[
+ \wt(F_nD)=\wt(C_nD)+r(n)\wt(D)<n.
+\]
+In particular $\wt(D)<n/r(n)$.
+\end{corollary}
+
+\begin{proof}
+By \cref{lem:reductions}(b) we may work with the variables of $F_n$. These are the base variables $x_p$ with $p\le n/2$ and the fresh variables. Now apply \cref{thm:elimination}.
+\end{proof}
+
+\begin{corollary}[Characteristic two and vector coefficients]\label{cor:char2}
+Let $\K$ be a field of characteristic two, or let $V$ be a vector space over $\Ft$. If Theorem~A holds for a given $n$, then $\wt(F_nH)\ge n$ for every nonzero finitely supported $H=\sum_a h_aX(a)$ with coefficients in $\K$, respectively in $V$. Here weight counts monomials with nonzero coefficient.
+\end{corollary}
+
+\begin{proof}
+The coefficients of $H$ span a finite-dimensional $\Ft$-space. Choose an $\Ft$-linear functional $\lambda$ on it that does not vanish on all of them. Applying $\lambda$ coefficientwise commutes with multiplication by $F_n$, because $F_n$ has coefficients in $\Ft$. It also cannot enlarge supports. So $\wt(F_nH)\ge\wt(F_n\lambda(H))\ge n$.
+\end{proof}
