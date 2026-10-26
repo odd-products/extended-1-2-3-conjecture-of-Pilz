@@ -12,11 +12,13 @@ jobs:
   verify:
     name: Verify ${{ matrix.project }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 360
     strategy:
       fail-fast: false
       matrix:
         include:
+          - project: pilz-weighted
+            checks: WeightedPilzFinalChecks.lean WeightedPilzChecks.lean
           - project: pilz
             checks: Checks.lean
           - project: pilz-density
@@ -38,4 +40,8 @@ jobs:
           use-github-cache: false
       - name: Check theorem statements and axioms
         working-directory: ${{ matrix.project }}
-        run: lake env lean ${{ matrix.checks }}
+        run: |
+          for f in ${{ matrix.checks }}; do
+            echo "== $f"
+            lake env lean "$f"
+          done

@@ -18,7 +18,7 @@ For every finite nonempty set $A\subset\N$ and every integer $n\ge1$,
 The bound is attained, for example, by $A=\{a\}$, by $A=\{a,2a\}$ when $n$ is even, and by $A=[n]$; see~\cite[Section~1]{HP}. In the last case every representation $x=ab$ with $a\ne b$ is paired with $x=ba$, so $[n]*[n]=\{1^2,2^2,\dots,n^2\}$. Ke and Meyer~\cite{KM} showed that equality holds for arbitrarily large sets $A$. So the extremal configurations are far from unique, and a proof must deal with substantial cancellation.
 
 \subsection{History}
-The problem comes from coding theory. Pilz~\cite{Pilz} studied the minimal distance of certain polynomial near-ring codes (for near-rings see~\cite{PilzBook}). In our notation he showed that $|A*[n]|\ge n$ for $n\le6$. He also reported that a computer search found no set with $|A*[n]|<n$. The resulting question, whether the minimal distance always equals~$n$, became known as Pilz's conjecture. Pach and Szab\'o~\cite{PS} showed that it is equivalent to Theorem~A. They proved it for $A=[k]$, and proved the general lower bound $|A*[n]|\gg n/(\log n)^{\lambda}$ for every $\lambda>\lambda_0\approx 0.2223$.
+The problem comes from coding theory. Pilz~\cite{Pilz} studied the minimal distance of certain polynomial near-ring codes (for near-rings see~\cite{PilzBook}). In our notation he showed that $|A*[n]|\ge n$ for $n\le6$. He also reported that a computer search found no set with $|A*[n]|<n$. The resulting question, whether the minimal distance always equals~$n$, became known as Pilz's conjecture. Pach and Szab\'o~\cite{PS} explained its equivalence with Theorem~A. They proved it for $A=[k]$, and proved the general lower bound $|A*[n]|\gg n/(\log n)^{\lambda}$ for every $\lambda>\lambda_0\approx 0.2223$.
 
 Huang, Ke and Pilz~\cite{HKP} independently settled the case $A=[k]$, referred to as the \emph{1-2-3 Conjecture}. They stated the general case as the \emph{Extended 1-2-3 Conjecture}. This conjecture is unrelated to the graph-theoretic 1-2-3 Conjecture.
 
@@ -69,7 +69,7 @@ Let $\K$ be any field and let $n\ge67$. Let $D\in\K[x_p]$ be a nonconstant polyn
 then $\wt(F_nD)\ge n$.
 \end{theorem}
 
-The two hypotheses are exactly what the reductions deliver. Fresh-prime elimination gives $q\le n/2$. The condition $q<2(u-1)$ holds for every counterexample that is minimal under deletion of terms, by a splitting inequality (\cref{lem:directed-cut}).
+The two hypotheses are exactly what the reductions deliver. Fresh-prime elimination gives $q\le n/2$. The condition $q<2(u-1)$ holds for every normalised counterexample that is minimal under deletion of terms, by a splitting inequality (\cref{lem:directed-cut}).
 
 \subsection{Strategy}\label{sec:strategy}
 The proof for $n\ge67$ consists of three moves (\cref{fig:flow}).
@@ -122,7 +122,7 @@ Besides Theorem~A, \cref{thm:elim-set} and \cref{thm:localized-intro}, the proof
 \item Theorem~A holds over every field of characteristic two and for vector-valued multipliers (\cref{cor:char2}).
 \item The polynomial elimination theorem (\cref{thm:elimination}) comes with a lower bound for every residual square class (\cref{prop:residual}).
 \item Theorem~A holds for every multiplier with at most four terms, extending the case $|A|\le3$ of~\cite{KM}, and for every multiplier supported on at most three primes (\cref{cor:three-lists,thm:three-primes,cor:four-lists}). These are proved early, using only the cases $n\le10$.
-\item Over any field, minimal counterexamples have a rigid structure: every element of their normalised support divides $(2u-3)!$, where $u$ is the number of terms (\cref{prop:factorial}). This is relevant to \cref{q:odd}.
+\item Over any field, minimal counterexamples have a rigid structure: every element of their normalised support divides $(2u-3)!$, where $u$ is the number of terms (\cref{prop:factorial}).
 \end{itemize}
 
 \subsection{Organisation and notation}

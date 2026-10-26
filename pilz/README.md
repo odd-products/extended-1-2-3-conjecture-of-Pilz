@@ -36,7 +36,7 @@ lake build
 lake env lean Checks.lean
 ```
 
-The same commands work on Linux, macOS, and Windows. The first command fetches
+The first command fetches
 the pinned mathlib dependencies and their compiled cache. Lean **4.24.0** is
 selected by `lean-toolchain`; all dependency revisions are fixed in
 `lake-manifest.json`. Keep that manifest when reproducing the build.
@@ -81,7 +81,7 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-This produces `paper/main.pdf`.
+This produces `paper/main.pdf`; the supplied copy is `paper/pilz.pdf`.
 
 ## License
 

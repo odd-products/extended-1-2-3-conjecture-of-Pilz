@@ -4,7 +4,7 @@
 \begin{enumerate}[label=\textup{(\alph*)}]
 \item The hypothesis $r\ge\sigma(C)$ of \cref{thm:elimination} cannot simply be dropped (\cref{ex:sharp}). For intervals it is what forces the threshold $n\ge67$, since $r(66)=7<\lfloor\sqrt{66}\rfloor$.
 \item Theorem~A uses the structure of $[n]$ in an essential way. Holdridge and Pach~\cite{HP} observe that $\{1,2\}*\{1,2,4\}=\{1,8\}$, so the analogue of Theorem~A fails for the divisor-closed set $\{1,2,4\}$. By contrast, \cref{thm:elim-set} applies to every finite set $B$ with enough fresh primes.
-\item In characteristic two, Theorem~A shows that the conclusion of \cref{thm:localized-intro} holds even without its hypotheses. The hypotheses serve to make a direct counting proof possible over every field. The condition $q\le n/2$ makes every prime in $(n/2,n]$ $q$-rough. The condition $q<2(u-1)$ guarantees enough terms in each index-one component. Over other fields, removing them would answer part of \cref{q:odd}.
+\item In characteristic two, Theorem~A shows that the conclusion of \cref{thm:localized-intro} holds even without its hypotheses. The hypotheses serve to make a direct counting proof possible over every field. The condition $q\le n/2$ makes every prime in $(n/2,n]$ $q$-rough. The condition $q<2(u-1)$ guarantees enough terms in each index-one component. Over other fields, \cref{q:odd} has since been answered by a different route~\cite{Weighted}.
 \end{enumerate}
 
 \subsection{The structure of minimal counterexamples}
@@ -39,19 +39,18 @@ Apply \cref{lem:separated} with $P=F_n$, $N=n$, $x=x_q$, splitting at all $k_g$ 
 The slice counts for different primes are not independent. For example, $1+x_2x_3$ has two slices in each of $x_2$ and $x_3$ but only two terms. So \cref{prop:factorial} does not by itself bound $u$ in terms of the number of primes involved.
 
 \subsection{Open problems}
-\begin{question}[Other characteristics]\label{q:odd}
+\begin{question}[Other characteristics; since resolved]\label{q:odd}
 Is $\dist_\K(F_n)=n$ for every field $\K$? Equivalently, does every nonzero finitely supported $f\colon\N\to\K$ have $|\supp(f*\mathbf 1_{[n]})|\ge n$, where $*$ is multiplicative convolution?
 \end{question}
 
-By \cref{cor:char2} the answer is yes in characteristic two, and \cref{thm:localized-intro} holds over every field. Our descent, however, relies on the Frobenius map $P\mapsto P^2$. In characteristic $p$ the identity $F_n\cdot F_n^{p-1}=F_n^p$ again gives $n$ terms, which suggests a descent through $p$-th roots. Over $\mathbb Q$ there is no Frobenius at all.
+By \cref{cor:char2} the answer is yes in characteristic two. Our descent relies on the Frobenius map $P\mapsto P^2$. The question has since been answered affirmatively, for every field and all nonzero weights, by a descent in widths and exponent residues~\cite{Weighted}.
 
 \begin{question}[Equality]
-Which finite sets $A$ satisfy $|A*[n]|=n$? Besides $\{a\}$, $\{a,2a\}$ for even $n$, and the families of Ke and Meyer~\cite{KM}, the identities $F_n\cdot F_n^{2^k-1}=F_n^{2^k}$ give equality for every $k\ge1$.
+Which finite sets $A$ satisfy $|A*[n]|=n$? Examples include $\{a\}$, $\{a,2a\}$ for even $n$, and the families of Ke and Meyer~\cite{KM}, which in polynomial form are the identities $F_n\cdot F_n^{2^k-1}=F_n^{2^k}$, $k\ge1$.
 \end{question}
 
-\begin{question}[Density]
-Holdridge and Pach~\cite[Theorem~1.8]{HP} proved that the limit $h(A)=\lim_n|A*[n]|/n$ satisfies $h(A)\ge\frac87$ unless $A$ is $\{a\}$ or $\{a,2a\}$, and suggest that $\frac43$ is the truth. Can the descent of \cref{sec:descent} be used to determine the optimal constant?
-\end{question}
+\paragraph{Density (since resolved).}
+Holdridge and Pach~\cite[Theorem~1.8]{HP} proved that the limit $h(A)=\lim_n|A*[n]|/n$ satisfies $h(A)\ge\frac87$ unless $A$ is $\{a\}$ or $\{a,2a\}$, and suggested that $\frac43$ is the truth~\cite[Remark~1.9]{HP}. A companion note in the same archive~\cite{Weighted} proves $h(A)\ge\frac43$ for all other $A$, by a direct divisibility argument rather than the descent of \cref{sec:descent}.
 
 \begin{question}[Other sets]
 For which finite $B\subset\N$ does $\min_{A\ne\emptyset}|A*B|=|B|$ hold? \Cref{thm:elim-set} reduces this question to $T$-free multipliers whenever $B$ has at least $\sigma(B\setminus T)$ fresh primes.

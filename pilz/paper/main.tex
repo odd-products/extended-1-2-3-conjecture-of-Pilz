@@ -49,7 +49,7 @@
 
 \begin{document}
 
-\title{A proof of Pilz's Extended 1-2-3 Conjecture}
+\title{A proof of Pilz's Extended 1--2--3 Conjecture}
 
 \author{}
 
@@ -81,9 +81,15 @@ Encoding each prime $p$ as a variable $x_p$ over $\Ft$ and each integer $a$ as t
 \input{sections/appendix}
 
 \section*{Acknowledgements}
-The author thanks Philippa Holdridge and P\'eter P\'al Pach, whose paper~\cite{HP} introduced several of the ideas developed here. In particular it introduced the slicing at the primes in $(n/2,n]$, the use of squares in characteristic two, and the rough-component and splitting estimates. The pairing that underlies the use of squares goes back to Ke and Meyer~\cite{KM}.
+We thank Philippa Holdridge and P\'eter P\'al Pach, whose paper~\cite{HP} introduced several of the ideas developed here. In particular it introduced the slicing at the primes in $(n/2,n]$, the use of squares in characteristic two, and the rough-component and splitting estimates. The pairing that underlies the use of squares goes back to Ke and Meyer~\cite{KM}. More broadly, this work rests on the contributions of Pilz~\cite{Pilz}, Huang, Ke and Pilz~\cite{HKP}, Pach and Szab\'o~\cite{PS}, Ke and Meyer~\cite{KM}, Nagy and Pach~\cite{NP}, and Holdridge and Pach~\cite{HP}, described in the introduction. Any errors are ours.
 
-\section*{Formalization}
+\section*{Subsequent work}
+The method of this paper turned out not to depend on characteristic two. A subsequent paper~\cite{Weighted} proves that for every field $K$ and all nonzero weights $c_1,\ldots,c_n\in K$, every nonzero multiple of $\sum_{a\le n}c_aX(a)$ has at least $n$ terms. Theorem~A is the case $K=\Ft$, $c_a=1$. That proof replaces the square-root descent with a descent in widths and exponent residues, does not use Theorem~A as an input, and has its own formalisation, which shares this one's arithmetic estimates; the two formal statements of Theorem~A are proved identical. A companion note in the same archive proves the density bound $h(A)\ge4/3$ anticipated in~\cite[Remark~1.9]{HP}.
+
+\section*{How this work was produced}
+The arguments in this paper, its written proofs, and its formalisation were developed with substantial assistance from AI systems. The written proofs have not been checked line by line by a human mathematician. The Lean~4 formalisation is over $\Ft$: Theorem~A and the intermediate results it needs are machine-checked there, using only the standard axioms of Lean's foundations, and where the text and the formal proof differ, the formal proof is authoritative. The statements made here over general fields, or with vector coefficients (\cref{thm:localized-intro} as stated, \cref{cor:char2}, \cref{lem:separated} and \cref{prop:factorial}), are not formalised in this development; the general-field results are superseded by~\cite{Weighted}, which is formalised over every field.
+
+\section*{Formalisation}
 The accompanying Lean~4 sources give a formal proof of Theorem~A.
 The finite-set statement is \texttt{Pilz.pilz\_conjecture} in
 \texttt{Pilz/Assembly.lean}. Build and verification commands are given
@@ -101,18 +107,19 @@ This paper is licensed under Creative Commons Attribution~4.0 International
 \bibitem{Fan} K. Fan, \emph{Numerically explicit estimates for the distribution of rough numbers}, J. Number Theory \textbf{260} (2024), 120--150.
 \bibitem{FanPom} K. Fan and C. Pomerance, \emph{An inequality related to the sieve of Eratosthenes}, J. Number Theory \textbf{254} (2024), 169--183.
 \bibitem{Hanson} D. Hanson, \emph{On the product of the primes}, Canad. Math. Bull. \textbf{15} (1972), 33--37.
-\bibitem{HP} P. Holdridge and P. P. Pach, \emph{On the Extended 1-2-3 Conjecture of Pilz}, preprint (2026), arXiv:2607.00934.
+\bibitem{HP} P. Holdridge and P. P. Pach, \emph{On the Extended 1-2-3 Conjecture of Pilz}, preprint (2026), \href{https://arxiv.org/abs/2607.00934}{arXiv:2607.00934}.
 \bibitem{HKP} P.-Y. Huang, W.-F. Ke and G. F. Pilz, \emph{The cardinality of some symmetric differences}, Proc. Amer. Math. Soc. \textbf{138} (2010), 787--797.
 \bibitem{KM} W.-F. Ke and J. H. Meyer, \emph{On a conjecture regarding the symmetric difference of certain sets}, Bull. Aust. Math. Soc. \textbf{111} (2025), 397--404.
 \bibitem{Mertens} F. Mertens, \emph{Ein Beitrag zur analytischen Zahlentheorie}, J. Reine Angew. Math. \textbf{78} (1874), 46--62.
 \bibitem{Nair} M. Nair, \emph{On Chebyshev-type inequalities for primes}, Amer. Math. Monthly \textbf{89} (1982), 126--129.
 \bibitem{NP} J. Nagy and P. P. Pach, \emph{A sumset version of a conjecture of Pilz}, SIAM J. Discrete Math. \textbf{40} (2026), 675--679.
-\bibitem{PS} P. P. Pach and C. Szab\'o, \emph{On the minimal distance of a polynomial code}, Discrete Math. Theor. Comput. Sci. \textbf{13}(4) (2011), 33--43.
+\bibitem{PS} P. P. Pach and C. Szab\'o, \emph{On the minimal distance of a polynomial code}, Discrete Math. Theor. Comput. Sci. \textbf{13}(4) (2011), 33--44, \href{https://doi.org/10.46298/dmtcs.556}{doi:10.46298/dmtcs.556}.
 \bibitem{Pak} I. Pak, \emph{Lectures on Discrete and Polyhedral Geometry}, Cambridge University Press, to appear.
 \bibitem{PilzBook} G. Pilz, \emph{Near-Rings: The Theory and its Applications}, revised ed., North-Holland Math. Stud. \textbf{23}, North-Holland, Amsterdam, 1983.
 \bibitem{Pilz} G. F. Pilz, \emph{On polynomial near-ring codes}, Contrib. Gen. Algebra \textbf{8} (1992), 233--238.
 \bibitem{Pinchasi} R. Pinchasi, \emph{On the odd area of the unit disc}, Israel J. Math. \textbf{256} (2023), 619--637.
 \bibitem{RS} J. B. Rosser and L. Schoenfeld, \emph{Approximate formulas for some functions of prime numbers}, Illinois J. Math. \textbf{6} (1962), 64--94.
+\bibitem{Weighted} \emph{Pilz's Extended 1--2--3 Conjecture over every field: sparse multiples of weighted integer intervals}, preprint (2026), with Lean~4 formalisation; with a companion note on the density bound, in \emph{Pilz's Extended 1--2--3 Conjecture: proofs and Lean~4 formalisations}, Zenodo, 2026, \href{https://doi.org/10.5281/zenodo.23568997}{doi:10.5281/zenodo.23568997}.
 \end{thebibliography}
 
 \end{document}

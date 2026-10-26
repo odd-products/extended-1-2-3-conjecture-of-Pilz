@@ -1,0 +1,101 @@
+{
+  "release": "pilz-weighted",
+  "release_date": "2026-10-23",
+  "status": "passed",
+  "lean_version": "4.24.0",
+  "lean_commit": "797c613eb9b6d4ec95db23e3e00af9ac6657f24b",
+  "mathlib_commit": "f897ebcf72cd16f89ab4577d0c826cd14afaafc7",
+  "acceptance": {
+    "rootBuildJobs": 3482,
+    "explicitTypeExamples": 69,
+    "weightedTheorems": 3783,
+    "pilzTheorems": 928,
+    "allowedAxioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "compactPassed": true,
+    "namespaceDeclarations": 5219,
+    "moduleOriginDeclarations": 7008,
+    "privateDeclarations": 1788
+  },
+  "coverage": {
+    "frozenLabels": 123,
+    "mathematicalLabels": 112,
+    "navigationLabels": 15,
+    "localRootModules": 325,
+    "weightedModules": 278,
+    "pilzModules": 46,
+    "currentLabels": 127,
+    "baselineMappedSourceModules": 162,
+    "baselineMappedLocalDeclarations": 241
+  },
+  "clean_build": {
+    "project_outputs_reused": false,
+    "pinned_dependency_caches_reused": true,
+    "exit_code": 0,
+    "local_modules": 320,
+    "origin_release": "1.0.0",
+    "original_proof_modules_unchanged": 319,
+    "root_imports_extended": true
+  },
+  "evidence_sha256": {
+    "weighted-clean-build.log": "c1f4fbcc6bdf22a794da6194fc1ffbcd50f5395cffe32d19cab7b4fb2455d3d6",
+    "weighted-clean-final-verification.log": "67d0539f715dc088e47d724aa8df2818f6d5691d423aebfcd216e08639d0e257",
+    "release-config-check.log": "ca81188a337dc092f703d4cbedb7d18d56565179a9bff5ce81b70490e750c3eb",
+    "revision-lean-verification.log": "4a8a04e08758a26a21dfb9a8687f72c32319f6da4d2ba8b42a3a37287a1ee7e6",
+    "final-checks-verified.log": "99e7ed3956894d57a0ea8911d09cc620f1ef92db6a36ca77eac6ec7d4caf7d95",
+    "roundoff-lean-verification.log": "babfdbb53eb9cacfefc63958c4cafefe713c3856649dcdc8e758d16129aae4ee",
+    "source-correspondence.json": "1d47810e76d997901a9a18c44ef0c8b73d4310f27887c24c3760def9bf495dfc"
+  },
+  "frozen_baseline": {
+    "zip_sha256": "1ca0028bd091939fd3410c0ad78702c53763f23bc1157169de82e5f61057e30c",
+    "tex_sha256": "ab2a04db12243d99f5ba3a0ee86605a2c4d839cf16fcd97f8ca868ad298db03b",
+    "pdf_sha256": "6dcc5811d72e498bc98ec30e5e64b8ebf889c4fff932c6a488c051cc2e832c9a"
+  },
+  "licences": {
+    "code": "Apache-2.0",
+    "paper": "CC-BY-4.0"
+  },
+  "release_configuration": {
+    "version": "1.2.0",
+    "build_and_both_acceptance_suites": "passed",
+    "exit_code": 0,
+    "verification_mode": "incremental build of additions against independently built library",
+    "prior_proof_modules_changed": false,
+    "new_consequence_modules": 4,
+    "newly_imported_existing_modules": 1,
+    "root_imports_extended": true,
+    "previous_type_examples_retained": 58,
+    "new_type_examples": 11,
+    "final_checker_sha256": "b605a0c61f1a97dfdf80fa55c5a76a5f6a77dadf7afd649c1af2a96913ea0473"
+  },
+  "paper_presentation_review": {
+    "pages": 46,
+    "all_pages_inspected": true,
+    "higher_resolution_pages": [
+      1,
+      2,
+      3,
+      13,
+      15,
+      16,
+      46
+    ],
+    "observed_presentation_defects": 0,
+    "final_pdf_sha256": "e373149d817a4887160c3d2e5fc97e529035352c2d6cba34f3e490cecb2b6983",
+    "final_tex_sha256": "b1810b8db4efca5aad427a31736e3d3e49fb36d959a420c02f5b1497d5b6e1a1",
+    "references_resolved": true,
+    "embedded_fonts": 25,
+    "author_field": "intentionally omitted"
+  },
+  "version": "1.2.0",
+  "revised_paper": {
+    "version": "1.2.0",
+    "tex_sha256": "b1810b8db4efca5aad427a31736e3d3e49fb36d959a420c02f5b1497d5b6e1a1",
+    "pdf_sha256": "e373149d817a4887160c3d2e5fc97e529035352c2d6cba34f3e490cecb2b6983",
+    "original_labels_retained": 123,
+    "new_labels": 4
+  }
+}

@@ -20,10 +20,10 @@ integers with an odd number of representations \(aj\), \(a\in A\),
 \(1\le j\le n\). Holdridge and Pach showed that \(|A*[n]|/n\) tends to a
 limit \(h(A)\), that \(h(A)\ge8/7\) unless \(A=\{a\}\) or \(A=\{a,2a\}\),
 and expected that \(8/7\) could be replaced by \(4/3\). We prove this.
-The constant is attained by \(\{1,3\}\), and density one occurs exactly
-for the two excluded families. The proof is elementary, uses a single
-divisibility cut and a calculation for sets of powers of two, and requires
-no computer search. It is independent of the resolution of the
+The constant \(4/3\) is best possible, as their computation of
+\(h(\{1,3\})\) already shows. The proof is elementary, uses one
+divisibility-cut lemma and a calculation for sets of powers of two, and
+requires no computer search. It is independent of the resolution of the
 finite-interval conjecture in~\cite{Main}. All results are formally
 verified in Lean~4.
 \end{abstract}
@@ -35,7 +35,7 @@ set of integers with an odd number of ordered representations \(ab\), where
 \(a\in A\), \(b\in B\). Thus \(A*[n]\) is the symmetric difference of the
 sets \(a[n]\), \(a\in A\).
 
-Pilz's Extended 1-2-3 Conjecture~\cite{Pilz,HKP} asserts that
+Pilz's Extended 1--2--3 Conjecture~\cite{Pilz,HKP} asserts that
 \(|A*[n]|\ge n\) for every finite nonempty \(A\) and every \(n\ge1\).
 Holdridge and Pach~\cite{HP} proved it for all sufficiently large \(n\), and
 a proof for every \(n\) is given in~\cite{Main}. Alongside the
@@ -49,8 +49,11 @@ exists, and they prove \cite[Theorem 1.8]{HP} that \(h(A)\ge8/7\) unless
 \(A\) has the form \(\{a\}\) or \(\{a,2a\}\). In \cite[Remark 1.9]{HP} they
 write that they expect the same theorem to hold with \(8/7\) replaced by
 \(4/3\), and that their method could achieve this up to checking a number
-of finite cases too large to carry out. We prove this bound, without any
-case check.
+of finite cases too large to carry out. They also computed
+\(h(\{a,b\})=2-2/b\) for coprime \(a<b\), and showed by a computer search
+that the minimum of \(h\) over three-element sets is \(4/3\) and over
+four-element sets is \(5/3\)~\cite[Lemma 5.6]{HP}. We prove the bound
+\(4/3\) for all sets, without any case check.
 
 \begin{theorem}\label{main}
 For every finite nonempty \(A\subset\N\), the limit \(h(A)\) exists and is
@@ -59,8 +62,8 @@ then \(h(A)\ge4/3\). The excluded sets have density one, and
 \(h(\{1,3\})=4/3\), so the constant is best possible.
 \end{theorem}
 
-In particular \(h(A)=1\) exactly for the two excluded families, and every
-other set has density at least \(4/3\). For sets of powers of two the proof
+The last sentence is included for completeness; it is already contained
+in~\cite[Lemma 5.6]{HP}. The new content is the lower bound \(4/3\). For sets of powers of two the proof
 gives the stronger bound \(3/2\).
 
 The argument has two ingredients. The first is a divisibility cut
@@ -69,8 +72,8 @@ The argument has two ingredients. The first is a divisibility cut
 \(p\). It is a variant of the splitting estimates of
 \cite[Lemma 4.1, Corollary 4.3]{HP}, in which the loss is controlled by a
 density rather than by a count of pairs. The second is an explicit
-calculation for sets of powers of two, which are the only sets the cut at
-an odd prime does not reach.
+calculation for sets of powers of two, which, after division by the gcd,
+are the only sets the cut at an odd prime does not reach.
 
 We first establish the two counting facts needed for the proof.
 
@@ -193,10 +196,13 @@ proves sharpness.
 The set \(A\) is fixed while \(n\) tends to infinity.
 There is no assertion that \(|A*[n]|\ge4n/3\) for every \(n\):
 for example, \(\{1,2,3\}*[3]=\{1,4,9\}\).
-The proof also shows that density one occurs exactly in the two stated
-families. It does not classify all sets of density \(4/3\).
+That density one occurs exactly in the two stated families already
+follows from~\cite[Theorem 1.8]{HP}. The proof does not classify all sets
+of density \(4/3\); among sets of greatest common divisor one with elements
+at most \(12\), the equality cases are \(\{1,3\}\), \(\{2,3\}\) and
+\(\{1,2,3\}\).
 
-\section*{Formalization}
+\section*{Formalisation}
 The accompanying Lean~4 sources give a formal proof of Theorem~\ref{main}.
 The complete statement is \texttt{PilzDensity.companion\_theorem}; optimality
 of \(4/3\) is \texttt{PilzDensity.four\_thirds\_optimal}, and the limit for
@@ -210,7 +216,16 @@ theorem and gives build and verification commands.
 The question answered here was raised by Philippa Holdridge and
 P\'eter P\'al Pach~\cite[Remark 1.9]{HP}, whose paper also supplies the
 density framework and the splitting estimates on which the divisibility
-cut is modelled. The counting formula is due to Ke and Meyer~\cite{KM}.
+cut is modelled. The counting formula used throughout is recorded by Ke
+and Meyer~\cite[(2.1)]{KM}.
+
+\paragraph{How this work was produced.}
+The arguments in this note, its written proofs, and its formalisation were
+developed with substantial assistance from AI systems. The written proofs
+have not been checked line by line by a human mathematician. Correctness
+rests on the Lean~4 formalisation: every stated theorem is machine-checked
+and depends only on the standard axioms of Lean's foundations. Where the
+text and the formal proof differ, the formal proof is authoritative.
 
 \section*{License}
 This paper is licensed under the Creative Commons Attribution~4.0
@@ -220,7 +235,7 @@ International License, \url{https://creativecommons.org/licenses/by/4.0/}.
 \bibitem{HP}
 P. Holdridge and P. P. Pach,
 \emph{On the Extended 1-2-3 Conjecture of Pilz},
-preprint (2026), arXiv:2607.00934.
+preprint (2026), \href{https://arxiv.org/abs/2607.00934}{arXiv:2607.00934}.
 \bibitem{HKP}
 P.-Y. Huang, W.-F. Ke and G. F. Pilz,
 \emph{The cardinality of some symmetric differences},
@@ -230,8 +245,12 @@ W.-F. Ke and J. H. Meyer,
 \emph{On a conjecture regarding the symmetric difference of certain sets},
 Bull. Aust. Math. Soc. \textbf{111} (2025), 397--404.
 \bibitem{Main}
-\emph{A proof of Pilz's Extended 1-2-3 Conjecture},
-preprint (2026), with Lean~4 formalization.
+\emph{Pilz's Extended 1--2--3 Conjecture over every field: sparse
+multiples of weighted integer intervals}, preprint (2026), with Lean~4
+formalisation; an earlier proof of the binary case is in the same archive,
+\emph{Pilz's Extended 1--2--3 Conjecture: proofs and Lean~4
+formalisations}, Zenodo, 2026,
+\href{https://doi.org/10.5281/zenodo.23568997}{doi:10.5281/zenodo.23568997}.
 \bibitem{Pilz}
 G. F. Pilz,
 \emph{On polynomial near-ring codes},

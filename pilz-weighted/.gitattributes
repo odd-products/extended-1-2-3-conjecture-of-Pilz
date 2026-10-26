@@ -1,0 +1,3 @@
+# Preserve the verified release bytes, including the frozen manuscript.
+* -text
+*.pdf binary

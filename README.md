@@ -1,52 +1,78 @@
-# Pilz's Extended 1-2-3 Conjecture
+# Pilz's Extended 1–2–3 Conjecture, over every field
 
-Two results on Pilz's odd-product problem, each with a paper and a
-complete Lean 4 proof.
+Papers and complete Lean 4 proofs on Pilz's odd-product problem.
 
 For a finite set `A` of positive integers, write `A * [n]` for the set of
 integers with an odd number of ordered representations `m = a · b`, where
-`a ∈ A` and `1 ≤ b ≤ n`.
+`a ∈ A` and `1 ≤ b ≤ n`. **Pilz's Extended 1-2-3 Conjecture** asserts that
+`|A * [n]| ≥ n` for every finite nonempty `A` and every `n ≥ 1`.
 
-| | Result | Paper | Lean theorem |
+## Main result
+
+**Weighted interval theorem.** For every field `K`, every `n ≥ 1`, and every
+choice of nonzero weights `c₁, …, cₙ ∈ K`, every nonzero multiple of
+
+    P = Σ_{a=1}^{n} c_a · X(a),     X(a) = Π_p x_p^{v_p(a)},
+
+has at least `n` nonzero terms. The bound is sharp. Pilz's conjecture is the
+special case `K = 𝔽₂`, `c_a = 1`. Equivalently, convolving any nonzero
+finitely supported function with a nowhere-zero weighting of `{1,…,n}`
+leaves at least `n` nonzero values.
+
+## Contents
+
+| Folder | Result | Paper | Lean |
 |---|---|---|---|
-| [`pilz/`](pilz/) | **Pilz's Extended 1-2-3 Conjecture.** For every finite nonempty `A` and every `n ≥ 1`, `\|A * [n]\| ≥ n`. | [PDF](pilz/paper/pilz.pdf) | `Pilz.pilz_conjecture` |
-| [`pilz-density/`](pilz-density/) | **The optimal 4/3 density bound.** The limit `h(A) = lim \|A * [n]\| / n` exists and is rational; `h(A) ≥ 4/3` unless `A = {a}` or `A = {a, 2a}`; `{1, 3}` attains 4/3. | [PDF](pilz-density/paper/main.pdf) | `PilzDensity.companion_theorem` |
+| [`pilz-weighted/`](pilz-weighted/) | **Weighted interval theorem over every field** (implies Pilz's conjecture), with module, action, rank, equality and erasure consequences | [PDF](pilz-weighted/paper/main.pdf) | `WeightedPilz.weighted_interval`, `WeightedPilz.weighted_symmetric_difference` |
+| [`pilz/`](pilz/) | The earlier, independent proof of the binary case (Pilz's conjecture itself) | [PDF](pilz/paper/pilz.pdf) | `Pilz.pilz_conjecture` |
+| [`pilz-density/`](pilz-density/) | The optimal 4/3 density bound, answering Remark 1.9 of Holdridge–Pach | [PDF](pilz-density/paper/main.pdf) | `PilzDensity.companion_theorem` |
 
-The two developments are independent Lean projects. The density result
-does not use the finite-interval theorem; its audit file checks this.
+The three are separate Lean projects. The weighted theorem does not use the
+earlier binary theorem as an input, so Pilz's conjecture has two formal proofs
+by different methods (they share their arithmetic estimates); the two state
+literally the same assertion (`intervalSymmetricDifference_eq_oddProduct`).
+The density result uses neither. The earlier binary formalisation is over 𝔽₂
+only; its paper's general-field remarks are superseded by the weighted theorem.
 
 ## Verification
 
-Both projects use Lean 4.24.0 and the same pinned mathlib revision. Each
-builds with no `sorry`, no added axioms and no `native_decide`. Their
-public theorems depend only on the standard axioms `propext`,
-`Classical.choice` and `Quot.sound`, which the check files enforce.
-
-To verify either project, install
-[elan](https://github.com/leanprover/elan), enter its directory and run:
+All projects use Lean 4.24.0 and the same pinned mathlib revision. They contain
+no `sorry`, no added axioms and no `native_decide`; their public theorems depend
+only on `propext`, `Classical.choice` and `Quot.sound`, which their check files
+enforce. To verify a project, install [elan](https://github.com/leanprover/elan),
+enter its folder and follow its README. In short:
 
 ```sh
 lake exe cache get
 lake build
-lake env lean Checks.lean          # in pilz/
-lake env lean DensityChecks.lean   # in pilz-density/
+lake env lean WeightedPilzFinalChecks.lean   # in pilz-weighted/ (also WeightedPilzChecks.lean)
+lake env lean Checks.lean                    # in pilz/
+lake env lean DensityChecks.lean             # in pilz-density/
 ```
 
-The GitHub Actions workflow runs these steps for both projects on every push.
+The GitHub Actions workflow runs these steps for all three projects on every push.
 
-## Background
+## Credit
 
-The problem comes from Pilz's work on the minimal distance of polynomial
-near-ring codes, and was stated as the Extended 1-2-3 Conjecture by Huang,
-Ke and Pilz. Holdridge and Pach
-([arXiv:2607.00934](https://arxiv.org/abs/2607.00934)) proved it for all
-sufficiently large `n`, proved `h(A) ≥ 8/7` outside the two exceptional
-families, and expected the constant 4/3 (their Remark 1.9). Both papers
-here build on their work; see each paper's acknowledgements.
+This work builds directly on Pilz's original question and early results, on
+the work of Huang, Ke and Pilz, Pach and Szabó, Ke and Meyer, and Nagy and Pach,
+and above all on the framework of Holdridge and Pach
+([arXiv:2607.00934](https://arxiv.org/abs/2607.00934)). Each paper's
+introduction and acknowledgements describe these debts in detail.
 
-## License
+## How this work was produced
 
-The Lean code and repository tooling are licensed under
-[Apache-2.0](LICENSE). The papers are licensed under CC BY 4.0
-([pilz](pilz/paper/LICENSE), [pilz-density](pilz-density/paper/LICENSE)).
-Dependencies retain their own licenses.
+The mathematics, the written proofs and the Lean formalisations were developed
+with substantial assistance from AI systems. The written proofs have not been
+checked line by line by a human mathematician. Correctness rests on the Lean
+formalisations, which use only the standard axioms and have been re-checked
+by an independent kernel replay (`lean4checker`); where a paper and its formal
+proof differ, the formal proof is authoritative.
+
+Archived at [doi:10.5281/zenodo.23568997](https://doi.org/10.5281/zenodo.23568997)
+(this DOI always resolves to the latest version).
+
+## Licence
+
+Lean code and tooling: [Apache-2.0](LICENSE). Papers: CC BY 4.0 (see each
+`paper/LICENSE`). Dependencies retain their own licences.

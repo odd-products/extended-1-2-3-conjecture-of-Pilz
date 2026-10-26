@@ -1,0 +1,53 @@
+{
+  "release": "pilz-weighted",
+  "version": "1.2.1",
+  "date": "2026-10-26",
+  "current": {
+    "tex_file": "main.tex",
+    "tex_sha256": "8a5be3f08f6a493a517837312940cf0915f2c1eacc906b89ee1e42f946fd38bf",
+    "pdf_file": "main.pdf",
+    "pdf_sha256": "124133a084c659e40cc35d4b8ed51c326dde26e6375aca503eb0ba2b761496a4",
+    "pages": 46
+  },
+  "frozen_baseline": {
+    "date": "2026-10-23",
+    "archive": "Weighted_Pilz_Frozen_2026-10-23.zip",
+    "tex_file": "Weighted_Pilz_Final.tex",
+    "pdf_file": "Weighted_Pilz_Final.pdf",
+    "pages": 42,
+    "zip_sha256": "1ca0028bd091939fd3410c0ad78702c53763f23bc1157169de82e5f61057e30c",
+    "tex_sha256": "ab2a04db12243d99f5ba3a0ee86605a2c4d839cf16fcd97f8ca868ad298db03b",
+    "pdf_sha256": "6dcc5811d72e498bc98ec30e5e64b8ebf889c4fff932c6a488c051cc2e832c9a"
+  },
+  "relation": "Paper revision of v1.2.0 after an independent AI referee-style read: Pilz-first title and abstract, explicit Pilz corollary, corrected history and credit, proof outline and binary roadmap, candid production statement, public concept DOI. Two Lean documentation comments corrected; no Lean statement or proof changed.",
+  "stable_labels_retained": 123,
+  "library_proof_source_changes": true,
+  "previous_releases": [
+    {
+      "version": "1.2.0",
+      "tex_sha256": "b1810b8db4efca5aad427a31736e3d3e49fb36d959a420c02f5b1497d5b6e1a1",
+      "pdf_sha256": "e373149d817a4887160c3d2e5fc97e529035352c2d6cba34f3e490cecb2b6983",
+      "pages": 46
+    },
+    {
+      "version": "1.1.0",
+      "archive": "pilz-weighted-v1.1.0.zip",
+      "sha256": "c042dc266b00def27a37cf6b102477346052c19e5df0fdcccdc53ac6822c0412",
+      "tex_sha256": "771fab6979150a0c421dae89fed74ada9543f401be66ce98bb7e1518d61d10d2",
+      "pdf_sha256": "c20088069cb227af1678fa2c4b0248733d6334e33b9088035c42a23b7d5a7e96",
+      "pages": 45
+    },
+    {
+      "version": "1.0.0",
+      "archive": "pilz-weighted.zip",
+      "sha256": "e0f8dfb05e1f7a00b1408b09fa98968c4cf362d2eb069f37568f9871be408462"
+    }
+  ],
+  "current_labels": 127,
+  "new_mathematical_labels": 4,
+  "prior_proof_modules_unchanged": 319,
+  "new_consequence_modules": 4,
+  "newly_imported_existing_modules": [
+    "Pilz.Parity"
+  ]
+}
