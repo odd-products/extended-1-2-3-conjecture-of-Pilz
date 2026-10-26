@@ -26,8 +26,8 @@ identify the supplied files.
 
 | File | SHA-256 |
 |---|---|
-| `main.tex` | `8a5be3f08f6a493a517837312940cf0915f2c1eacc906b89ee1e42f946fd38bf` |
-| `main.pdf` | `124133a084c659e40cc35d4b8ed51c326dde26e6375aca503eb0ba2b761496a4` |
+| `main.tex` | `746d43a46b1c71e3283dcda4ef57d1d3b310d51a5a6ce139d87fe3c503da2117` |
+| `main.pdf` | `b57668dd439ce8f274bb1c9fc241eead4bca9315f19a6a7fd41df72783fab6db` |
 
 Machine-readable provenance, including hashes of earlier revisions, is in
 [PROVENANCE.json](PROVENANCE.json).

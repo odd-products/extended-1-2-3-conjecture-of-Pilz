@@ -1724,22 +1724,22 @@
     {
       "path": "paper/PROVENANCE.json",
       "bytes": 2193,
-      "sha256": "30245d2d2618d12f612f97e93ecb9a8aea538248a293a23aaee3b955c8bc823e"
+      "sha256": "a15b7dd7511d635331e210414183832629050713c51c73589de91037ba1630ff"
     },
     {
       "path": "paper/README.md",
       "bytes": 1361,
-      "sha256": "118d1a57a273665f6206e544d5c8302ea3148bd8fa1090c4b92e3e052c71279e"
+      "sha256": "be5e0d7d758bcf92fd37528917812c19f527ee0d0887f85450b00743e06324d5"
     },
     {
       "path": "paper/main.pdf",
-      "bytes": 610536,
-      "sha256": "124133a084c659e40cc35d4b8ed51c326dde26e6375aca503eb0ba2b761496a4"
+      "bytes": 610582,
+      "sha256": "b57668dd439ce8f274bb1c9fc241eead4bca9315f19a6a7fd41df72783fab6db"
     },
     {
       "path": "paper/main.tex",
-      "bytes": 142759,
-      "sha256": "8a5be3f08f6a493a517837312940cf0915f2c1eacc906b89ee1e42f946fd38bf"
+      "bytes": 142760,
+      "sha256": "746d43a46b1c71e3283dcda4ef57d1d3b310d51a5a6ce139d87fe3c503da2117"
     },
     {
       "path": "verification/VERIFICATION.md",
