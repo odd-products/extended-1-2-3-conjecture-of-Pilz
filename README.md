@@ -72,6 +72,10 @@ proof differ, the formal proof is authoritative.
 Archived at [doi:10.5281/zenodo.23568997](https://doi.org/10.5281/zenodo.23568997)
 (this DOI always resolves to the latest version).
 
+Preprints, with AI-use disclosure certificates, on Diderot:
+[the weighted theorem](https://projectdiderot.com/papers/7a4dbcd9-54dd-4058-9d04-a79f9d0df491)
+and [the 4/3 density bound](https://projectdiderot.com/papers/8678929f-755f-48c0-9fec-ef552502cb8f).
+
 ## Licence
 
 Lean code and tooling: [Apache-2.0](LICENSE). Papers: CC BY 4.0 (see each
